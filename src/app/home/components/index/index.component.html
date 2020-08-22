@@ -24,7 +24,9 @@
           <h3 class="signature h1">Dušan Malušev</h3>
           <ul class="ftco-social mt-3">
             <li *ngFor="let s of social">
-              <a [href]="s.url"><span [ngClass]="s.icon"></span></a>
+              <a [href]="s.url">
+                <fa-icon [icon]="s.icon" stackItemSize="2x"></fa-icon>
+              </a>
             </li>
           </ul>
         </div>

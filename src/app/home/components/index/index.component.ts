@@ -1,5 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  faFacebook,
+  faInstagram,
+  faGithub,
+  faStackOverflow,
+  faStackExchange,
+  IconDefinition,
+} from '@fortawesome/free-brands-svg-icons';
+
 import { LoaderService } from 'src/app/core/services/loader.service';
+
+interface SocialIcon {
+  url: string;
+  icon: IconDefinition;
+}
+
+type Icons = Array<SocialIcon>;
 
 @Component({
   selector: 'app-index',
@@ -7,22 +23,26 @@ import { LoaderService } from 'src/app/core/services/loader.service';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  public social: Array<{ url: string; icon: string }> = [
+  public social: Icons = [
     {
       url: 'https://github.com/malusev998',
-      icon: 'fab fa-github',
+      icon: faGithub,
     },
     {
-      url: 'https://github.com/malusev998',
-      icon: 'fab fa-facebook',
+      url: 'https://www.facebook.com/dmalusev/',
+      icon: faFacebook,
     },
     {
-      url: 'https://github.com/malusev998',
-      icon: 'fab fa-instagram',
+      url: 'https://www.instagram.com/dusanmalusev/',
+      icon: faInstagram,
     },
     {
-      url: 'https://github.com/malusev998',
-      icon: 'fab fa-stack-overflow',
+      url: 'https://stackoverflow.com/users/8411483/dusan-malusevz',
+      icon: faStackOverflow,
+    },
+    {
+      url: 'https://stackexchange.com/users/11475985/dusan-malusev',
+      icon: faStackExchange,
     },
   ];
 
