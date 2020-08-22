@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
+  public lat: number = 43;
+  public lng: number = 21;
 
-  constructor() { }
+  public constructor(@Inject(PLATFORM_ID) private platformId: string) {}
 
-  ngOnInit(): void {
+  public get isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
-
 }

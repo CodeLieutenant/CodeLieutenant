@@ -1,3 +1,7 @@
-<div class="col-md-6 d-flex">
-  <div id="map" class="bg-light"></div>
-</div>
+<ng-container *ngIf="isBrowser">
+  <div id="map" class="bg-light">
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
+</ng-container>

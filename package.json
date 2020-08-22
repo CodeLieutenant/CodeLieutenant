@@ -15,6 +15,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~10.0.11",
     "@angular/common": "~10.0.11",
     "@angular/compiler": "~10.0.11",
@@ -30,6 +31,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@nguniversal/express-engine": "^10.0.2",
+    "@types/googlemaps": "^3.39.13",
     "bootstrap": "^4.5.2",
     "express": "^4.15.2",
     "ng-recaptcha": "^5.0.0",

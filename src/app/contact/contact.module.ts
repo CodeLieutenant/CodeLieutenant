@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, PLATFORM_ID } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { ContactComponent } from './components/contact/contact.component';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
 
+import { ContactComponent } from './components/contact/contact.component';
 import { CoreModule } from '../core/core.module';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MapComponent } from './components/map/map.component';
@@ -25,7 +26,12 @@ const routes: Routes = [
     InfoComponent,
     HeaderComponent,
   ],
-  imports: [CommonModule, CoreModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    CoreModule,
+    RouterModule.forChild(routes),
+    AgmCoreModule,
+  ],
   exports: [RouterModule],
 })
 export class ContactModule {}
