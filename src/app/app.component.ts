@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { LoaderService } from './core/services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,7 @@ import { LoaderService } from './core/services/loader.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public title = 'Dušan Malušev - Software Developer';
+  public title: string = 'Dušan Malušev - Software Developer';
 
   public constructor(private titleService: Title, private metaService: Meta) {}
 
