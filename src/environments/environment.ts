@@ -9,7 +9,7 @@ export interface Env {
 export const environment: Env = {
   production: false,
   recaptchaKey: '6Le3FcIZAAAAAEuqx3rtGyjkmLjfJz_QzBlfyfoT',
-  googleMapsKey: '',
+  googleMapsKey: 'AIzaSyCZvhYQF8uUody5Y1eTeB6zs_eIvE0tm7c',
   api: 'http://localhost:3000/api',
   apiBase: 'http://localhost:3000',
 };

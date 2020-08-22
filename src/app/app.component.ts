@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
           'Open Source enthusiast currenlty working for Nano Interactive as backend developer with Phalcon Framework. PHP and Go developer',
       },
       { name: 'og:image', content: `` },
-      { name: 'og:image:secure_url', content: '' },
     ]);
   }
 }
