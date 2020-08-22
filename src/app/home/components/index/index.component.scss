@@ -1,4 +1,7 @@
 .author-image {
-  background-position: top;
-  background-image: url("../../../../assets/images/author.jpg");
+  background-position: center;
+  background-size: cover;
+  background-origin: padding-box;
+  min-height: 450px;
+  background-image: url("../../../../assets/images/malusev_small.png");
 }

@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
-import { environment } from '../environments/environment';
+import { environment, ENVIRONMENT } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +23,10 @@ import { AppComponent } from './app.component';
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: environment.recaptchaKey,
+    },
+    {
+      provide: ENVIRONMENT,
+      useValue: environment,
     },
   ],
   bootstrap: [AppComponent],

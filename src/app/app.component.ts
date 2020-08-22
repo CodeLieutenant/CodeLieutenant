@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+
+import { ENVIRONMENT, Env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,11 @@ import { Title, Meta } from '@angular/platform-browser';
 export class AppComponent implements OnInit {
   public title: string = 'Dušan Malušev - Software Developer';
 
-  public constructor(private titleService: Title, private metaService: Meta) {}
+  public constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    @Inject(ENVIRONMENT) private environment: Env
+  ) {}
 
   public ngOnInit(): void {
     this.titleService.setTitle(this.title);
@@ -24,7 +30,7 @@ export class AppComponent implements OnInit {
         content:
           'Open Source enthusiast currenlty working for Nano Interactive as backend developer with Phalcon Framework. PHP and Go developer',
       },
-      { name: 'og:site_name', content: 'Dusan Malusev' },
+      { name: 'og:site_name', content: 'Dusan Malusev - Software Developer' },
       { name: 'og:url', content: '' },
       { name: 'og:title', content: 'Dusan Malusev - Software Developer' },
       {
@@ -32,7 +38,10 @@ export class AppComponent implements OnInit {
         content:
           'Open Source enthusiast currenlty working for Nano Interactive as backend developer with Phalcon Framework. PHP and Go developer',
       },
-      { name: 'og:image', content: `` },
+      {
+        name: 'og:image',
+        content: `${this.environment.baseUrl}/malusev.png`,
+      },
     ]);
   }
 }
