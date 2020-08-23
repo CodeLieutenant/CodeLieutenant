@@ -1,15 +1,26 @@
 <div class="colorlib-footer">
   <h3>Newsletter</h3>
   <div class="d-flex justify-content-center">
-    <form action="#" class="colorlib-subscribe-form">
+    <form
+      method="POST"
+      [formGroup]="subscribeForm"
+      (ngSubmit)="subscribe()"
+      class="colorlib-subscribe-form"
+    >
+      <div>
+        <arv-validation-messages for="email"></arv-validation-messages>
+      </div>
       <div class="form-group d-flex">
-        <div class="icon"><span class="icon-paper-plane"></span></div>
         <input
-          type="text"
+          type="email"
           class="form-control"
+          formControlName="email"
           placeholder="Enter Email Address"
         />
-        <input class="btn" type="submit" value="Send" />
+        <button type="submit" class="btn btn-custom" [disabled]="sending">
+          Send
+        </button>
+        <!-- <input class="btn" type="submit" value="Send" /> -->
       </div>
     </form>
   </div>

@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 import { environment, ENVIRONMENT } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -14,6 +16,8 @@ import { AppComponent } from './app.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     CoreModule,
+    ReactiveFormsModule,
+    ReactiveValidationModule,
     RecaptchaV3Module,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey,
