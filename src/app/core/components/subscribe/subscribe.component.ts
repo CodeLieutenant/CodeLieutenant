@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Validators } from 'angular-reactive-validation';
-import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import {
+  SubscriptionService,
+  SubscriptionError,
+} from 'src/app/shared/services/subscription.service';
 import { Subscription } from 'rxjs';
+import { SubscriptionModel } from 'src/app/shared/models/subscription.model';
 
 @Component({
   selector: 'app-subscribe',
@@ -10,7 +15,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./subscribe.component.scss'],
 })
 export class SubscribeComponent implements OnDestroy {
+  @ViewChild('dialog', { static: true })
+  private dialog: SwalComponent;
   private subscription: Subscription | null = null;
+  private dialogSubscription: Subscription | null = null;
 
   public sending: boolean = false;
   public subscribeForm: FormGroup;
@@ -31,16 +39,31 @@ export class SubscribeComponent implements OnDestroy {
     if (!this.subscribeForm.valid || this.sending) {
       return;
     }
-    this.clearSubscription();
+    this.clearSubscriptions();
     this.sending = true;
     this.subscription = this.subService
       .subscribe({ email: this.email.value })
       .subscribe(
-        (value) => {
+        async (value: SubscriptionModel) => {
+          await this.dialog.update({
+            title: 'You have subscribed successfully',
+            text: `Welcome ${value.email}. You have been added to my subscription list. No spam I promise.`,
+            icon: 'success',
+          });
+          await this.dialog.fire();
           this.sending = false;
         },
-        (error) => {
-          console.log(error);
+        async (error: SubscriptionError) => {
+          if (error.type === 'validation') {
+            this.subscribeForm.setErrors(error.validatioErrors);
+          } else {
+            await this.dialog.update({
+              title: 'An error has occurred',
+              text: error.message,
+              icon: 'error',
+            });
+            await this.dialog.fire();
+          }
           this.sending = false;
         }
       );
@@ -51,12 +74,16 @@ export class SubscribeComponent implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.clearSubscription();
+    this.clearSubscriptions();
   }
 
-  private clearSubscription() {
+  private clearSubscriptions() {
     if (this.subscription !== null) {
       this.subscription.unsubscribe();
+    }
+
+    if (this.dialogSubscription !== null) {
+      this.dialogSubscription.unsubscribe();
     }
   }
 }

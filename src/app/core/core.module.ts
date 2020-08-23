@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ReactiveValidationModule } from 'angular-reactive-validation';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 import { SharedModule } from '../shared/shared.module';
 
 import { LoaderComponent } from './components/loader/loader.component';
@@ -26,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     RouterModule,
     ReactiveFormsModule,
     ReactiveValidationModule,
+    SweetAlert2Module,
   ],
   exports: [LoaderComponent, SidebarComponent, FooterComponent],
 })

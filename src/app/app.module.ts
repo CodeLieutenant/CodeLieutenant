@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { ReactiveValidationModule } from 'angular-reactive-validation';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { environment, ENVIRONMENT } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     ReactiveValidationModule,
     RecaptchaV3Module,
+    SweetAlert2Module.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey,
     }),
