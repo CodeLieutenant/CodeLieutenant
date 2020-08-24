@@ -2,12 +2,10 @@ import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Validators } from 'angular-reactive-validation';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import {
-  SubscriptionService,
-  SubscriptionError,
-} from 'src/app/shared/services/subscription.service';
+import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { Subscription } from 'rxjs';
 import { SubscriptionModel } from 'src/app/shared/models/subscription.model';
+import { NetworkError } from 'src/app/shared/errors/network.error';
 
 @Component({
   selector: 'app-subscribe',
@@ -51,9 +49,11 @@ export class SubscribeComponent implements OnDestroy {
             icon: 'success',
           });
           await this.dialog.fire();
+          this.subscribeForm.reset();
+
           this.sending = false;
         },
-        async (error: SubscriptionError) => {
+        async (error: NetworkError) => {
           if (error.type === 'validation') {
             this.subscribeForm.setErrors(error.validatioErrors);
           } else {

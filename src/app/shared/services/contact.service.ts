@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { switchMap, catchError } from 'rxjs/operators';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
 
-import { SubscriptionModel } from '../models/subscription.model';
+import { ContactModel } from '../models/contact.model';
 import { throwNetworkError } from '../errors/network.error';
 
-export interface Subscription {
+export interface Contact {
+  name: string;
   email: string;
+  subject: string;
+  message: string;
 }
 
 @Injectable()
-export class SubscriptionService {
+export class ContactService {
   public constructor(
     private recaptchaService: ReCaptchaV3Service,
     private httpClient: HttpClient
   ) {}
 
-  public subscribe(sub: Subscription): Observable<SubscriptionModel> {
-    return this.recaptchaService.execute('subscirbe').pipe(
+  public contact(contact: Contact): Observable<ContactModel> {
+    return this.recaptchaService.execute('contact').pipe(
       switchMap((recaptcha: string) =>
-        this.httpClient.post<SubscriptionModel>('/subscribe', {
-          ...sub,
+        this.httpClient.post<ContactModel>('/contact', {
+          ...contact,
           recaptcha,
         })
       ),
