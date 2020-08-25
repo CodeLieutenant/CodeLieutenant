@@ -50,9 +50,10 @@ tasks:
       - go build -p 4 -race -o {{.EXE}}
   server-docker:
     dir: server
-    deps: [server-build]
     cmds:
-      - docker build --build-arg BINARY_NAME={{.EXE}} --build-arg PORT=3000 -t dusanmalusev-server:{{.VERSION}} .
+      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+      - docker build --build-arg PORT=3000 -t dusanmalusev-server:{{.VERSION}} .
+      - rm main
   server-dev:
     dir: server
     cmds:

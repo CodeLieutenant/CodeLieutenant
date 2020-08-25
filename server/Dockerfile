@@ -3,12 +3,12 @@ FROM alpine:edge
 WORKDIR /app
 
 ARG PORT=3000
-ARG BINARY_NAME=dusanmalusev
 
-COPY ./${BINARY_NAME} .
+COPY ./main .
 
 ENV ADDR=":${PORT}"
+ENV PORT=${PORT}
 
 EXPOSE ${PORT}
 
-CMD [ "${BINARY_NAME}" ]
+CMD [ "/app/main" ]
