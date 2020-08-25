@@ -7,11 +7,11 @@ import { BehaviorSubject, Subscription, PartialObserver } from 'rxjs';
 export class LoaderService {
   private displayLoader$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-  public displayLoader() {
+  public displayLoader(): void {
     this.displayLoader$.next(true);
   }
 
-  public hideLoaded() {
+  public hideLoaded(): void {
     this.displayLoader$.next(false);
   }
 

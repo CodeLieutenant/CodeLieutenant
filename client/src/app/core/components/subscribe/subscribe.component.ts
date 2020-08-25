@@ -18,7 +18,7 @@ export class SubscribeComponent implements OnDestroy {
   private subscription: Subscription | null = null;
   private dialogSubscription: Subscription | null = null;
 
-  public sending: boolean = false;
+  public sending = false;
   public subscribeForm: FormGroup;
 
   constructor(private subService: SubscriptionService, builder: FormBuilder) {
@@ -77,7 +77,7 @@ export class SubscribeComponent implements OnDestroy {
     this.clearSubscriptions();
   }
 
-  private clearSubscriptions() {
+  private clearSubscriptions(): void {
     if (this.subscription !== null) {
       this.subscription.unsubscribe();
     }

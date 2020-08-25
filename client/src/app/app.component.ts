@@ -9,7 +9,7 @@ import { ENVIRONMENT, Env } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public title: string = 'Dušan Malušev - Software Developer';
+  public title = 'Dušan Malušev - Software Developer';
 
   public constructor(
     private titleService: Title,

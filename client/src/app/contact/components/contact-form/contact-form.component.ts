@@ -15,7 +15,7 @@ import { NetworkError } from 'src/app/shared/errors/network.error';
 })
 export class ContactFormComponent implements OnDestroy {
   public contactForm: FormGroup;
-  public sending: boolean = false;
+  public sending = false;
 
   @ViewChild('dialog', { static: true })
   private contactDialog: SwalComponent;
@@ -68,7 +68,7 @@ export class ContactFormComponent implements OnDestroy {
     });
   }
 
-  public send() {
+  public send(): void {
     if (!this.contactForm.valid || this.sending) {
       return;
     }
@@ -108,7 +108,7 @@ export class ContactFormComponent implements OnDestroy {
       );
   }
 
-  private clearSubscription() {
+  private clearSubscription(): void {
     if (this.contactSubscription !== null) {
       this.contactSubscription.unsubscribe();
     }

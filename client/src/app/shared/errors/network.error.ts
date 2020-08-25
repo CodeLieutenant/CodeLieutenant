@@ -10,12 +10,12 @@ export type NetErrorType =
 
 export class NetworkError {
   public type: NetErrorType;
-  public message: string = '';
+  public message = '';
   public validatioErrors: { [key: string]: string | string[] } | null;
 }
 
 export const throwNetworkError = (status: number, error: any | null) => {
-  let err = new NetworkError();
+  const err = new NetworkError();
 
   switch (status) {
     case 400:

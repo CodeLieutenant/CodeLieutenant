@@ -7,8 +7,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent {
-  public lat: number = 43;
-  public lng: number = 21;
+  public lat = 43;
+  public lng = 21;
 
   public constructor(@Inject(PLATFORM_ID) private platformId: string) {}
 

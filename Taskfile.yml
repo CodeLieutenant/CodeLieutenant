@@ -1,5 +1,3 @@
-# https://taskfile.dev
-
 version: '3'
 
 vars:
@@ -46,7 +44,6 @@ tasks:
   server-build:
     dir: server
     cmds:
-      - go clean
       - go build -p 4 -race -o {{.EXE}}
   server-docker:
     dir: server
