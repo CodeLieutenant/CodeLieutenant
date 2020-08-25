@@ -1,0 +1,14 @@
+FROM alpine:edge
+
+WORKDIR /app
+
+ARG PORT=3000
+ARG BINARY_NAME=dusanmalusev
+
+COPY ./${BINARY_NAME} .
+
+ENV ADDR=":${PORT}"
+
+EXPOSE ${PORT}
+
+CMD [ "${BINARY_NAME}" ]
