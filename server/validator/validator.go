@@ -63,9 +63,10 @@ func ErrorHandler(ctx *fiber.Ctx, err error) {
 }
 
 func SetupValidator() {
-	var found bool
+
 	english := en.New()
 	Uni = ut.New(english, english)
+	var found bool
 	trans, found = Uni.GetTranslator("en")
 	if !found {
 		log.Fatalln("Error translations not found")
@@ -79,4 +80,14 @@ func SetupValidator() {
 	if err := en_translations.RegisterDefaultTranslations(Validator, trans); err != nil {
 		log.Fatalf("Cannot initialize validator: %v", err)
 	}
+
+	if err := Validator.RegisterTranslation("alphanumericunicodespace", trans, func(ut ut.Translator) error {
+		return ut.Add("alphanumericunicodespace", "{0} must contain only alphanumeric characters including space", true)
+	}, func(ut ut.Translator, fe validator.FieldError) string {
+		t, _ := ut.T("alphanumericunicodespace", fe.Field())
+		return t
+	}); err != nil {
+		log.Fatalf("Cannot register `alphanumericunicodespace` translation")
+	}
+
 }

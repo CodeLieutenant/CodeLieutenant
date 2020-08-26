@@ -12,7 +12,7 @@ func contact(cs services.ContactService) func(ctx *fiber.Ctx) {
 		var c services.Contact
 
 		if err := ctx.BodyParser(&c); err != nil {
-			ctx.Next(err)
+			ctx.Next(fiber.NewError(400, "No payload sent"))
 			return
 		}
 
