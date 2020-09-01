@@ -9,6 +9,7 @@ require (
 	github.com/gofiber/cors v0.2.2
 	github.com/gofiber/fiber v1.14.4
 	github.com/gofiber/helmet v0.1.2
+	github.com/gofiber/utils v0.0.10
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/jackc/pgproto3/v2 v2.0.4 // indirect
 	github.com/klauspost/compress v1.10.11 // indirect

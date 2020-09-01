@@ -5,5 +5,11 @@ import (
 )
 
 func RunMigrations() error {
-	return Db.AutoMigrate(&models.Contact{}, &models.Subscription{})
+	m := []interface{}{
+		models.Contact{},
+		models.Subscription{},
+	}
+
+
+	return Db.AutoMigrate(m...)
 }

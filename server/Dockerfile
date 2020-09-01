@@ -8,7 +8,6 @@ COPY ./main .
 
 ENV ADDR=":${PORT}"
 
-
 EXPOSE ${PORT}
 
 CMD [ "main" ]

@@ -1,17 +1,16 @@
 package database
 
 import (
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 	"log"
 	"os"
 	"time"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
-var (
-	Db *gorm.DB
-)
+var Db *gorm.DB
 
 func Connect(dsn string) (err error) {
 	config := &gorm.Config{
