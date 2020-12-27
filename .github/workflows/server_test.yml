@@ -33,7 +33,17 @@ jobs:
           go-version: ${{matrix.go}}
       - uses: actions/checkout@v2
         name: 'Checkout'
-      - run: go test ./... -race -covermode=atomic -coverprofile=coverage.txt
+      - uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: 'Download modules'
+        working-directory: server
+        run: go mod download
+      - name: 'Test'
+        run: go test ./... -race -covermode=atomic -coverprofile=coverage.txt
         working-directory: server
         env:
           DATABASE_HOST: localhost
