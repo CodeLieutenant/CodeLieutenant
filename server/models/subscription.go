@@ -1,8 +1,6 @@
 package models
 
-import "gorm.io/gorm"
-
 type Subscription struct {
-	gorm.Model
+	Model
 	Email string `gorm:"not null"`
 }

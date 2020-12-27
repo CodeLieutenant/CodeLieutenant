@@ -1,0 +1,6 @@
+
+2020/12/27 18:46:22 [35mC:/Projects/dusanmalusev/rewrite/database/database.go:56
+[0m[31m[error] [0mfailed to initialize database, got error cannot parse `user= host= password=xxxxx dbname= port=0 sslmode=disable TimeZone=`: invalid port (outside range)
+
+2020/12/27 18:47:44 [35mC:/Projects/dusanmalusev/rewrite/database/database.go:56
+[0m[31m[error] [0mfailed to initialize database, got error cannot parse `user= host= password=xxxxx dbname= port=0 sslmode=disable TimeZone=`: invalid port (outside range)

@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    networks:
+      - dusanmalusev
+networks:
+  dusanmalusev:
+    driver: bridge
+volumes: 
+  

@@ -1,6 +1,9 @@
-server
-server.exe
-dusanmalusev
-dusanmalusev.exe
-.idea/
-.vscode/
+tmp/
+.idea
+.vscode
+config.yml
+!tests/config.yml
+build/
+_debug_bin
+vendor/
+dist/

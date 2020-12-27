@@ -1,24 +1,32 @@
 package services
 
 import (
-	"github.com/malusev998/dusanmalusev/database"
+	"github.com/go-playground/validator/v10"
+	"github.com/leebenson/conform"
+	"gorm.io/gorm"
+
+	"github.com/malusev998/dusanmalusev/dto"
 	"github.com/malusev998/dusanmalusev/models"
 )
 
-type Contact struct {
-	Name    string `json:"name" conform:"trim" validate:"required,alphanumericunicodespace,max=50"`
-	Email   string `json:"email" conform:"trim" validate:"required,email,max=150"`
-	Subject string `json:"subject" conform:"trim" validate:"required,alphanumericunicodespace,min=3,max=150"`
-	Message string `json:"message" conform:"trim" validate:"required,min=3,max=1000"`
-}
-
 type ContactService interface {
-	AddMessage(Contact) (models.Contact, error)
+	AddMessage(dto.Contact) (models.Contact, error)
 }
 
-type contactService struct{}
+type contactService struct {
+	db        *gorm.DB
+	validator *validator.Validate
+}
 
-func (c contactService) AddMessage(contactDto Contact) (models.Contact, error) {
+func (c contactService) AddMessage(contactDto dto.Contact) (models.Contact, error) {
+	if err := conform.Strings(&contactDto); err != nil {
+		return models.Contact{}, err
+	}
+
+	if err := c.validator.Struct(c); err != nil {
+		return models.Contact{}, err
+	}
+
 	contact := models.Contact{
 		Name:    contactDto.Name,
 		Email:   contactDto.Email,
@@ -26,7 +34,7 @@ func (c contactService) AddMessage(contactDto Contact) (models.Contact, error) {
 		Message: contactDto.Message,
 	}
 
-	result := database.Db.Create(&contact)
+	result := c.db.Create(&contact)
 
 	if result.Error != nil {
 		return models.Contact{}, result.Error
@@ -35,6 +43,9 @@ func (c contactService) AddMessage(contactDto Contact) (models.Contact, error) {
 	return contact, nil
 }
 
-func NewContactService() ContactService {
-	return contactService{}
+func NewContactService(db *gorm.DB, validate *validator.Validate) ContactService {
+	return contactService{
+		db:        db,
+		validator: validate,
+	}
 }

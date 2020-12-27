@@ -1,22 +1,34 @@
 package services
 
-import "github.com/malusev998/dusanmalusev/models"
+import (
+	"github.com/go-playground/validator/v10"
+	"gorm.io/gorm"
 
-type Subscription struct {
-	Email string `json:"email" conform:"trim" validate:"required,email,max=150"`
+	"github.com/malusev998/dusanmalusev/dto"
+	"github.com/malusev998/dusanmalusev/models"
+)
+
+type SubscriptionService interface {
+	Subscribe(dto.Subscription) (models.Subscription, error)
+	Unsubscribe(uint) error
 }
 
-type SubscriptionServer interface {
-	Subscribe() (models.Subscription, error)
-	Unsubscribe() error
+type subscriptionService struct {
+	db       *gorm.DB
+	validate *validator.Validate
 }
 
-type subscriptionServer struct{}
-
-func (s subscriptionServer) Subscribe() (models.Subscription, error) {
+func (s subscriptionService) Subscribe(sub dto.Subscription) (models.Subscription, error) {
 	panic("implement me")
 }
 
-func (s subscriptionServer) Unsubscribe() error {
+func (s subscriptionService) Unsubscribe(id uint) error {
 	panic("implement me")
+}
+
+func NewSubscriptionService(db *gorm.DB, validate *validator.Validate) SubscriptionService {
+	return subscriptionService{
+		db:       db,
+		validate: validate,
+	}
 }

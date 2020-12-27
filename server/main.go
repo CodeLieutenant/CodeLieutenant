@@ -1,89 +1,171 @@
 package main
 
 import (
-	"crypto/rand"
-	"encoding/base64"
-	"log"
+	"context"
+	"flag"
+	"io"
 	"os"
-	"strconv"
+	"os/signal"
+	"path/filepath"
 
+	"github.com/go-playground/locales/en"
+	ut "github.com/go-playground/universal-translator"
+	"github.com/go-playground/validator/v10"
+	en_translations "github.com/go-playground/validator/v10/translations/en"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/viper"
+
+	"github.com/malusev998/dusanmalusev/api"
+	"github.com/malusev998/dusanmalusev/api/routes"
+	"github.com/malusev998/dusanmalusev/config"
+	"github.com/malusev998/dusanmalusev/container"
 	"github.com/malusev998/dusanmalusev/database"
 	"github.com/malusev998/dusanmalusev/handlers"
-	"github.com/malusev998/dusanmalusev/validator"
-
-	"github.com/gofiber/cors"
-	"github.com/gofiber/fiber"
-	"github.com/gofiber/fiber/middleware"
-	"github.com/gofiber/helmet"
+	"github.com/malusev998/dusanmalusev/logging"
+	"github.com/malusev998/dusanmalusev/services"
+	"github.com/malusev998/dusanmalusev/validators"
 )
 
-func generateUniqueId() string {
-	bytes := make([]byte, 64)
+func createLogFile(path string) (file io.WriteCloser, err error) {
+	if !filepath.IsAbs(path) {
+		path, err = filepath.Abs(path)
+		if err != nil {
+			return nil, err
+		}
+	}
 
-	read, err := rand.Read(bytes)
+	directory := filepath.Dir(path)
+	if err := os.MkdirAll(directory, 0744); err != nil {
+		return nil, err
+	}
+
+	file, err = os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0744)
 
 	if err != nil {
-		return ""
+		return nil, err
 	}
 
-	if read != 64 {
-		return ""
-	}
-
-	return base64.RawURLEncoding.EncodeToString(bytes)
-}
-
-func connectToDatabase() {
-	err := database.Connect(os.Getenv("POSTGRES_DSN"))
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = database.RunMigrations()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func setupFiberAppMiddleware(app *fiber.App) *fiber.App {
-	app.Use(middleware.RequestID(middleware.RequestIDConfig{
-		Generator: generateUniqueId,
-	}))
-
-	app.Use(middleware.Logger())
-
-	app.Use(helmet.New())
-
-	return app
+	return
 }
 
 func main() {
+	loggingLevel := flag.String("logging", "debug", "Global logging level")
+	flag.Parse()
 
-	port, err := strconv.Atoi(os.Getenv("PORT"))
+	logging.DefaultLogger(*loggingLevel)
+
+	ctx, cancel := context.WithCancel(context.Background())
+
+	signalCh := make(chan os.Signal, 1)
+	signal.Notify(signalCh, os.Interrupt)
+
+	cfg, err := config.New("config", ".")
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err).Msg("Error while loading configuration")
 	}
 
-	validator.SetupValidator()
+	logFile, err := createLogFile(cfg.Logging.File)
 
-	connectToDatabase()
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error while opening log file")
+	}
 
-	app := setupFiberAppMiddleware(fiber.New(&fiber.Settings{
-		ErrorHandler: validator.ErrorHandler,
-	}))
+	dbLogFile, err := createLogFile(cfg.Database.LogFile)
 
-	app.Get("/", func(c *fiber.Ctx) {
-		c.Send("Hello, World 👋!")
-	})
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error while opening database log file")
+	}
 
-	api := app.Group("/api/v1")
+	logger := logging.New(
+		cfg.Logging.Level,
+		cfg.Logging.Console,
+		logFile,
+	)
 
-	api.Use(cors.New(cors.Config{}))
+	english := en.New()
+	uni := ut.New(english, english)
 
-	handlers.AddContactRoutes(api)
+	trans, _ := uni.GetTranslator(viper.GetString("locale"))
+	validate := validator.New()
 
-	log.Fatalf("Cannot start server on port %d: %v", port, app.Listen(port))
+	if err := en_translations.RegisterDefaultTranslations(validate, trans); err != nil {
+		logger.Fatal().Err(err).Msg("Error while registering english translations")
+	}
+
+	if err := validators.Register(&logger, validate, trans); err != nil {
+		logger.Fatal().Err(err).Msg("Error while registering custom validators")
+	}
+
+	db, err := database.ConnectDB(database.Config{
+		Host:     cfg.Database.Host,
+		User:     cfg.Database.User,
+		Password: cfg.Database.Password,
+		DbName:   cfg.Database.DBName,
+		Port:     uint16(cfg.Database.Port),
+		SslMode:  cfg.Database.SSLMode,
+		TimeZone: cfg.Database.TimeZone,
+	}, dbLogFile, cfg.Debug)
+
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error while connecting to database")
+	}
+
+	diContainer := container.Container{
+		Ctx:                 ctx,
+		Logger:              &logger,
+		DB:                  db,
+		Validator:           validate,
+		ContactService:      services.NewContactService(db, validate),
+		SubscriptionService: services.NewSubscriptionService(db, validate),
+	}
+
+	go func(cancel *context.CancelFunc) {
+		s := <-signalCh
+		logger.Info().Msgf("Shutting down... Signal: %s\n", s)
+		(*cancel)()
+	}(&cancel)
+
+	logger.Debug().Msg("Starting HTTP Api")
+
+	provider := api.NewFiberAPI(
+		cfg.HTTP.Address,
+		cfg.HTTP.Prefork,
+		cfg.Debug,
+		handlers.Error(diContainer.Logger, trans),
+		routes.RegisterRouter,
+	)
+
+	go func() {
+		<-ctx.Done()
+
+		if err := provider.Close(); err != nil {
+			logger.Error().
+				Err(err).
+				Msg("Error while shutting down application\n")
+		}
+
+		if err := database.Close(); err != nil {
+			diContainer.Logger.Err(err).Msg("Error while closing sql database file")
+		}
+
+		if err := logFile.Close(); err != nil {
+			diContainer.Logger.Err(err).Msg("Error while closing log file")
+		}
+
+		if err := dbLogFile.Close(); err != nil {
+			diContainer.Logger.Err(err).Msg("Error while closing database log file")
+		}
+
+	}()
+
+	if err := provider.Register(&diContainer); err != nil {
+		logger.Fatal().
+			Err(err).
+			Msg("Error while configuring http server")
+	}
+
+	if err := provider.Listen(); err != nil {
+		log.Fatal().Err(err).Msg("Error while starting the server")
+	}
 }

@@ -1,4 +1,4 @@
-package services
+package utils
 
 import (
 	"crypto/hmac"
@@ -6,16 +6,14 @@ import (
 	"encoding/base64"
 	"fmt"
 	"net/url"
-
-	"github.com/gofiber/utils"
 )
 
-func SignUrl(format string, key []byte, values ...interface{}) (string, error) {
+func SignURL(format string, key []byte, values ...interface{}) (string, error) {
 	str := fmt.Sprintf(format, values...)
 
 	hash := hmac.New(sha512.New512_256, key)
 
-	hashEncoded := base64.RawURLEncoding.EncodeToString(hash.Sum(utils.GetBytes(str)))
+	hashEncoded := base64.RawURLEncoding.EncodeToString(hash.Sum(UnsafeBytes(str)))
 
 	u, err := url.Parse(str)
 
@@ -32,7 +30,7 @@ func SignUrl(format string, key []byte, values ...interface{}) (string, error) {
 	return u.String(), nil
 }
 
-func Verify(urlStr string, key []byte) bool {
+func VerifyURL(urlStr string, key []byte) bool {
 	u, err := url.Parse(urlStr)
 
 	if err != nil {
@@ -59,5 +57,5 @@ func Verify(urlStr string, key []byte) bool {
 		return false
 	}
 
-	return hmac.Equal(hash.Sum(utils.GetBytes(u.String())), bytes)
+	return hmac.Equal(hash.Sum(UnsafeBytes(u.String())), bytes)
 }

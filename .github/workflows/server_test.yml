@@ -1,0 +1,50 @@
+name: 'Testing'
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    paths:
+      - 'server/**'
+  pull_request:
+    branches:
+      - master
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    services:
+      postres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: dusanmalusev
+        ports:
+          - 5432:5432
+    strategy:
+      fail-fast: true
+      matrix:
+        go: ['1.15']
+    name: Test
+    steps:
+      - uses: actions/setup-go@v1
+        with:
+          go-version: ${{matrix.go}}
+      - uses: actions/checkout@v2
+        name: 'Checkout'
+      - run: go test ./... -race -covermode=atomic -coverprofile=coverage.txt
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_NAME: dusanmalusev
+          DATABASE_PORT: 5432
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.txt
+          flags: tests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
