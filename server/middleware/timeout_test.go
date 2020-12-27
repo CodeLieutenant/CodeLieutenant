@@ -1,3 +1,5 @@
+// +build !race
+
 package middleware_test
 
 import (
