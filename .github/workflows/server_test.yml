@@ -34,6 +34,7 @@ jobs:
       - uses: actions/checkout@v2
         name: 'Checkout'
       - run: go test ./... -race -covermode=atomic -coverprofile=coverage.txt
+        working-directory: server
         env:
           DATABASE_HOST: localhost
           DATABASE_USER: postgres
@@ -43,7 +44,7 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.txt
+          file: ./server/coverage.txt
           flags: tests
           name: codecov-umbrella
           fail_ci_if_error: true
