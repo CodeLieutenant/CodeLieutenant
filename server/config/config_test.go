@@ -43,6 +43,7 @@ http:
 	assert.NotZero(cfg)
 
 	assert.True(cfg.Debug)
+	assert.Equal("en", cfg.Locale)
 
 	assert.Empty(cfg.Database.URI)
 	assert.Equal("localhost", cfg.Database.Host)
@@ -71,6 +72,7 @@ func TestConfigFile(t *testing.T) {
 	assert.NotZero(cfg)
 
 	assert.True(cfg.Debug)
+	assert.Equal("en", cfg.Locale)
 
 	assert.Empty(cfg.Database.URI)
 	assert.Equal("localhost", cfg.Database.Host)

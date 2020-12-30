@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-main-dark-900 {
+  background-color: #10121b;
+}
+
+.bg-main-dark-700 {
+  background-color: #191d2b;
+}
+
+.bg-blue-nav {
+  background-color: #143055;
+}
+
+.hover\:bg-blue-nav:hover {
+  background-color: #143055;
+}
+
+.active {
+  @apply text-white;
+  @apply bg-blue-nav;
+}
+
+.facebook:hover {
+  cursor: pointer;
+}
+
+.facebook:hover .facebook-outline {
+  stroke: #037FFF;
+}
+
+.facebook:hover .facebook-inner {
+  fill: #037FFF;
+}

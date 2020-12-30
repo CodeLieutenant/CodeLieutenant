@@ -1,4 +1,0 @@
-{"level":"debug","message":"Starting HTTP Api"}
-{"level":"debug","message":"Running in DEBUG mode, PProf and Monitor (GET /monitor) are enabled"}
-{"level":"debug","message":"Starting the main application"}
-{"level":"debug","message":"Loading the routes"}

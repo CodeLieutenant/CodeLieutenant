@@ -7,3 +7,5 @@ build/
 _debug_bin
 vendor/
 dist/
+log/
+out/

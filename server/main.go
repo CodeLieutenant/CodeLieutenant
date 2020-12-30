@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 
 	"github.com/go-playground/locales/en"
+
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_translations "github.com/go-playground/validator/v10/translations/en"
 	"github.com/rs/zerolog/log"
-	"github.com/spf13/viper"
 
 	"github.com/malusev998/dusanmalusev/api"
 	"github.com/malusev998/dusanmalusev/api/routes"
@@ -22,7 +22,6 @@ import (
 	"github.com/malusev998/dusanmalusev/database"
 	"github.com/malusev998/dusanmalusev/handlers"
 	"github.com/malusev998/dusanmalusev/logging"
-	"github.com/malusev998/dusanmalusev/services"
 	"github.com/malusev998/dusanmalusev/validators"
 )
 
@@ -86,7 +85,7 @@ func main() {
 	english := en.New()
 	uni := ut.New(english, english)
 
-	trans, _ := uni.GetTranslator(viper.GetString("locale"))
+	trans, _ := uni.GetTranslator(cfg.Locale)
 	validate := validator.New()
 
 	if err := en_translations.RegisterDefaultTranslations(validate, trans); err != nil {
@@ -112,12 +111,10 @@ func main() {
 	}
 
 	diContainer := container.Container{
-		Ctx:                 ctx,
-		Logger:              &logger,
-		DB:                  db,
-		Validator:           validate,
-		ContactService:      services.NewContactService(db, validate),
-		SubscriptionService: services.NewSubscriptionService(db, validate),
+		Ctx:       ctx,
+		Logger:    &logger,
+		DB:        db,
+		Validator: validate,
 	}
 
 	go func(cancel *context.CancelFunc) {

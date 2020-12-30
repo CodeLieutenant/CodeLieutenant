@@ -35,6 +35,7 @@ type (
 		Logging  Logging `json:"logging" yaml:"logging"`
 		HTTP     HTTP    `json:"http" yaml:"http"`
 		Debug    bool    `json:"debug" yaml:"debug"`
+		Locale   string  `json:"locale" yaml:"locale"`
 	}
 )
 

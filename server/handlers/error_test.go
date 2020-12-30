@@ -1,4 +1,4 @@
-package handlers
+package handlers_test
 
 import (
 	"encoding/json"
@@ -14,6 +14,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 	"gorm.io/gorm"
+
+	"github.com/malusev998/dusanmalusev/handlers"
 )
 
 func setupErrorHandlerApp() (*fiber.App, *validator.Validate) {
@@ -22,70 +24,80 @@ func setupErrorHandlerApp() (*fiber.App, *validator.Validate) {
 	uni := ut.New(english, english)
 	englishTranslations, _ := uni.GetTranslator("en")
 	app := fiber.New(fiber.Config{
-		ErrorHandler: Error(&log.Logger, englishTranslations),
+		ErrorHandler: handlers.Error(&log.Logger, englishTranslations),
 	})
 	return app, v
 }
 
+func TestErrorHandler_ReturnFiberError(t *testing.T) {
+	t.Parallel()
+	assert := require.New(t)
+
+	app, _ := setupErrorHandlerApp()
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return fiber.ErrBadGateway
+	})
+	m := struct {
+		Message string `json:"message"`
+	}{}
+	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
+
+	assert.Nil(err)
+	assert.EqualValues(fiber.StatusBadGateway, res.StatusCode)
+	assert.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
+	assert.Nil(json.NewDecoder(res.Body).Decode(&m))
+	assert.NotEmpty(m.Message)
+}
+
+func TestErrorHandler_ValidationError(t *testing.T) {
+	t.Parallel()
+	assert := require.New(t)
+	app, _ := setupErrorHandlerApp()
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return validator.ValidationErrors{}
+	})
+	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
+	assert.Nil(err)
+	assert.EqualValues(fiber.StatusUnprocessableEntity, res.StatusCode)
+	assert.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
+}
+
+func TestErrorHandler_InvalidValidationError(t *testing.T) {
+	t.Parallel()
+	assert := require.New(t)
+
+	app, _ := setupErrorHandlerApp()
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return &validator.InvalidValidationError{}
+	})
+	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
+	assert.Nil(err)
+	assert.EqualValues(fiber.StatusUnprocessableEntity, res.StatusCode)
+	assert.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
+}
+
 func TestErrorHandler(t *testing.T) {
 	t.Parallel()
-	asserts := require.New(t)
-
-	t.Run("ReturnFiberError", func(t *testing.T) {
-		app, _ := setupErrorHandlerApp()
-		app.Get("/", func(ctx *fiber.Ctx) error {
-			return fiber.ErrBadGateway
-		})
-		m := message{}
-		res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
-
-		asserts.Nil(err)
-		asserts.EqualValues(fiber.StatusBadGateway, res.StatusCode)
-		asserts.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
-		asserts.Nil(json.NewDecoder(res.Body).Decode(&m))
-		asserts.NotEmpty(m.Message)
+	assert := require.New(t)
+	app, _ := setupErrorHandlerApp()
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return gorm.ErrRecordNotFound
 	})
+	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
+	assert.Nil(err)
+	assert.EqualValues(fiber.StatusNotFound, res.StatusCode)
+	assert.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
+}
 
-	t.Run("ValidationError", func(t *testing.T) {
-		app, _ := setupErrorHandlerApp()
-		app.Get("/", func(ctx *fiber.Ctx) error {
-			return validator.ValidationErrors{}
-		})
-		res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
-		asserts.Nil(err)
-		asserts.EqualValues(fiber.StatusUnprocessableEntity, res.StatusCode)
-		asserts.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
+func TestErrorHandler_AnyError(t *testing.T) {
+	t.Parallel()
+	assert := require.New(t)
+	app, _ := setupErrorHandlerApp()
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return errors.New("any other error")
 	})
-
-	t.Run("ValidationError", func(t *testing.T) {
-		app, _ := setupErrorHandlerApp()
-		app.Get("/", func(ctx *fiber.Ctx) error {
-			return &validator.InvalidValidationError{}
-		})
-		res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
-		asserts.Nil(err)
-		asserts.EqualValues(fiber.StatusUnprocessableEntity, res.StatusCode)
-		asserts.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
-	})
-
-	t.Run("NotFound", func(t *testing.T) {
-		app, _ := setupErrorHandlerApp()
-		app.Get("/", func(ctx *fiber.Ctx) error {
-			return gorm.ErrRecordNotFound
-		})
-		res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
-		asserts.Nil(err)
-		asserts.EqualValues(fiber.StatusNotFound, res.StatusCode)
-		asserts.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
-	})
-	t.Run("AnyOtherError", func(t *testing.T) {
-		app, _ := setupErrorHandlerApp()
-		app.Get("/", func(ctx *fiber.Ctx) error {
-			return errors.New("any other error")
-		})
-		res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
-		asserts.Nil(err)
-		asserts.EqualValues(fiber.StatusInternalServerError, res.StatusCode)
-		asserts.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
-	})
+	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
+	assert.Nil(err)
+	assert.EqualValues(fiber.StatusInternalServerError, res.StatusCode)
+	assert.EqualValues(fiber.MIMEApplicationJSON, res.Header.Get(fiber.HeaderContentType))
 }

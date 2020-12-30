@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/pprof"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
+	"github.com/gofiber/template/html"
 	"github.com/pkg/errors"
 
 	"github.com/malusev998/dusanmalusev/container"
@@ -23,11 +24,18 @@ type Fiber struct {
 	debug          bool
 }
 
-func NewFiberAPI(address string, prefork, debug bool, errorHandler fiber.ErrorHandler, register RegisterRoutesHandler) Interface {
+func NewFiberAPI(
+	address string,
+	prefork,
+	debug bool,
+	errorHandler fiber.ErrorHandler,
+	register RegisterRoutesHandler,
+) Interface {
 	return Fiber{
 		app: fiber.New(fiber.Config{
 			Prefork:      prefork,
 			ErrorHandler: errorHandler,
+			Views:        html.New("views", ".html"),
 		}),
 		debug:          debug,
 		address:        address,
