@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: dusanmalusev
+      POSTGRES_DB: dusanmalusev
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    networks:
+      - dusanmalusev
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data/pgdata
+networks:
+  dusanmalusev:
+    driver: bridge
+volumes:
+  postgres_volume:
