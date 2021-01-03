@@ -25,6 +25,8 @@ import (
 	"github.com/malusev998/dusanmalusev/validators"
 )
 
+var Version = "dev"
+
 func createLogFile(path string) (file io.WriteCloser, err error) {
 	if !filepath.IsAbs(path) {
 		path, err = filepath.Abs(path)
