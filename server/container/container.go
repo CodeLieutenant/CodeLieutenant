@@ -2,18 +2,17 @@ package container
 
 import (
 	"context"
+	"github.com/jackc/pgx/v4/pgxpool"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/rs/zerolog"
-	"gorm.io/gorm"
-
 	"github.com/malusev998/dusanmalusev/services"
+	"github.com/rs/zerolog"
 )
 
 type Container struct {
 	Ctx                 context.Context
 	Logger              *zerolog.Logger
-	DB                  *gorm.DB
+	DB                  *pgxpool.Pool
 	Validator           *validator.Validate
 	contactService      services.ContactService
 	subscriptionService services.SubscriptionService

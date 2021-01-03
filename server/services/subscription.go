@@ -2,8 +2,7 @@ package services
 
 import (
 	"github.com/go-playground/validator/v10"
-	"gorm.io/gorm"
-
+	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/malusev998/dusanmalusev/dto"
 	"github.com/malusev998/dusanmalusev/models"
 )
@@ -14,7 +13,7 @@ type SubscriptionService interface {
 }
 
 type subscriptionService struct {
-	db       *gorm.DB
+	db       *pgxpool.Pool
 	validate *validator.Validate
 }
 
@@ -26,7 +25,7 @@ func (s subscriptionService) Unsubscribe(id uint) error {
 	panic("implement me")
 }
 
-func NewSubscriptionService(db *gorm.DB, validate *validator.Validate) SubscriptionService {
+func NewSubscriptionService(db *pgxpool.Pool, validate *validator.Validate) SubscriptionService {
 	return subscriptionService{
 		db:       db,
 		validate: validate,

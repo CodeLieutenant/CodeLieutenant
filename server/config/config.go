@@ -1,22 +1,30 @@
 package config
 
 import (
+	"fmt"
 	"io"
+	"time"
 
 	"github.com/spf13/viper"
 )
 
 type (
 	DB struct {
-		URI      string `json:"uri,omitempty" yaml:"uri,omitempty"`
-		Host     string `json:"host,omitempty" yaml:"host,omitempty"`
-		User     string `json:"user,omitempty" yaml:"user,omitempty"`
-		Password string `json:"password,omitempty" yaml:"password,omitempty"`
-		DBName   string `json:"dbname,omitempty" yaml:"dbname,omitempty"`
-		TimeZone string `json:"timezone,omitempty" yaml:"timezone,omitempty"`
-		LogFile  string `json:"logfile,omitempty" yaml:"logfile,omitempty"`
-		SSLMode  bool   `json:"sslmode,omitempty" yaml:"sslmode,omitempty"`
-		Port     int32  `json:"port,omitempty" yaml:"port,omitempty"`
+		URI                   string        `json:"uri,omitempty" yaml:"uri,omitempty"`
+		Host                  string        `json:"host,omitempty" yaml:"host,omitempty"`
+		User                  string        `json:"user,omitempty" yaml:"user,omitempty"`
+		Password              string        `json:"password,omitempty" yaml:"password,omitempty"`
+		DBName                string        `json:"dbname,omitempty" yaml:"dbname,omitempty"`
+		TimeZone              string        `json:"timezone,omitempty" yaml:"timezone,omitempty"`
+		LogFile               string        `json:"logfile,omitempty" yaml:"logfile,omitempty"`
+		MaxConns              int32         `json:"max_conns,omitempty" yaml:"max_conns,omitempty"`
+		MinConns              int32         `json:"min_conns,omitempty" yaml:"min_conns,omitempty"`
+		Port                  int32         `json:"port,omitempty" yaml:"port,omitempty"`
+		SSLMode               bool          `json:"sslmode,omitempty" yaml:"sslmode,omitempty"`
+		Lazy                  bool          `json:"lazy,omitempty" yaml:"lazy,omitempty"`
+		HealthCheck           time.Duration `json:"health_check,omitempty" yaml:"health_check,omitempty"`
+		MaxConnectionIdleTime time.Duration `json:"max_connection_idle_time,omitempty" yaml:"max_connection_idle_time,omitempty"`
+		MaxConnectionLifetime time.Duration `json:"max_connection_lifetime,omitempty" yaml:"max_connection_lifetime,omitempty"`
 	}
 
 	Logging struct {
@@ -60,13 +68,31 @@ func New(name string, paths ...interface{}) (config Config, err error) {
 		}
 	}
 
+	fmt.Println(viperInstance.GetString("postgres.uri"))
+
 	err = viperInstance.Unmarshal(&config)
 
 	if err != nil {
 		return
 	}
 
-	err = viperInstance.UnmarshalKey("postgres", &config.Database)
+	config.Database = DB{
+		URI:                   viperInstance.GetString("postgres.uri"),
+		Host:                  viperInstance.GetString("postgres.host"),
+		User:                  viperInstance.GetString("postgres.user"),
+		Password:              viperInstance.GetString("postgres.password"),
+		Port:                  viperInstance.GetInt32("postgres.port"),
+		DBName:                viperInstance.GetString("postgres.dbname"),
+		TimeZone:              viperInstance.GetString("postgres.timezone"),
+		SSLMode:               viperInstance.GetBool("postgres.sslmode"),
+		LogFile:               viperInstance.GetString("postgres.logfile"),
+		MaxConnectionLifetime: viperInstance.GetDuration("postgres.max_connection_lifetime"),
+		MaxConnectionIdleTime: viperInstance.GetDuration("postgres.max_connection_idle_time"),
+		HealthCheck:           viperInstance.GetDuration("postgres.health_check"),
+		MaxConns:              viperInstance.GetInt32("postgres.max_conns"),
+		MinConns:              viperInstance.GetInt32("postgres.min_conns"),
+		Lazy:                  viperInstance.GetBool("postgres.lazy"),
+	}
 
 	return
 }

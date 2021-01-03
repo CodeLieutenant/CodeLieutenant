@@ -1,10 +1,10 @@
 package config_test
 
 import (
+	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/require"
+	"time"
 
 	"github.com/malusev998/dusanmalusev/config"
 )
@@ -17,7 +17,6 @@ debug: true # Debug enables PProf
 locale: en
 
 postgres:
-  uri: ''
   host: localhost
   user: gofiber-boilerplate
   password: gofiber-boilerplate
@@ -26,6 +25,12 @@ postgres:
   timezone: UTC
   sslmode: false
   logfile: ./log/db.log
+  max_connection_lifetime: 1h
+  max_connection_idle_time: 24h
+  health_check: 15m
+  max_conns: 20
+  min_conns: 5
+  lazy: true
 
 # supported logging - debug, info, warning, error
 logging:
@@ -38,6 +43,7 @@ http:
   address: :4000 # HTTP Address
 `)
 	cfg, err := config.New("config", reader)
+
 
 	assert.Nil(err)
 	assert.NotZero(cfg)
@@ -54,6 +60,12 @@ http:
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
 	assert.Equal("./log/db.log", cfg.Database.LogFile)
+	assert.Equal(24 * time.Hour, cfg.Database.MaxConnectionIdleTime)
+	assert.Equal(1 * time.Hour, cfg.Database.MaxConnectionLifetime)
+	assert.Equal(15 * time.Minute, cfg.Database.HealthCheck)
+	assert.Equal(int32(20), cfg.Database.MaxConns)
+	assert.Equal(int32(5), cfg.Database.MinConns)
+	assert.Equal(true, cfg.Database.Lazy)
 
 	assert.Equal("./log/server.log", cfg.Logging.File)
 	assert.Equal(true, cfg.Logging.Console)
@@ -83,6 +95,12 @@ func TestConfigFile(t *testing.T) {
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
 	assert.Equal("./log/db.log", cfg.Database.LogFile)
+	assert.Equal(24 * time.Hour, cfg.Database.MaxConnectionIdleTime)
+	assert.Equal(1 * time.Hour, cfg.Database.MaxConnectionLifetime)
+	assert.Equal(15 * time.Minute, cfg.Database.HealthCheck)
+	assert.Equal(int32(20), cfg.Database.MaxConns)
+	assert.Equal(int32(5), cfg.Database.MinConns)
+	assert.Equal(true, cfg.Database.Lazy)
 
 	assert.Equal("./log/server.log", cfg.Logging.File)
 	assert.Equal(true, cfg.Logging.Console)

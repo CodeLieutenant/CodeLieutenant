@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	"flag"
+	"github.com/rs/zerolog"
 	"io"
 	"os"
 	"os/signal"
 	"path/filepath"
 
 	"github.com/go-playground/locales/en"
-
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_translations "github.com/go-playground/validator/v10/translations/en"
@@ -25,7 +25,10 @@ import (
 	"github.com/malusev998/dusanmalusev/validators"
 )
 
-var Version = "dev"
+const (
+	Version = "dev"
+	Author  = "Dusan Malusev <malusevd99@gmail.com>"
+)
 
 func createLogFile(path string) (file io.WriteCloser, err error) {
 	if !filepath.IsAbs(path) {
@@ -51,6 +54,7 @@ func createLogFile(path string) (file io.WriteCloser, err error) {
 
 func main() {
 	loggingLevel := flag.String("logging", "debug", "Global logging level")
+	configPath := flag.String("config", ".", "Path to configuration file")
 	flag.Parse()
 
 	logging.DefaultLogger(*loggingLevel)
@@ -60,7 +64,7 @@ func main() {
 	signalCh := make(chan os.Signal, 1)
 	signal.Notify(signalCh, os.Interrupt)
 
-	cfg, err := config.New("config", ".")
+	cfg, err := config.New("config", *configPath)
 
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while loading configuration")
@@ -77,6 +81,9 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while opening database log file")
 	}
+
+	log.Info().Msgf("Version: %s", Version)
+	log.Info().Msgf("Author: %s", Author)
 
 	logger := logging.New(
 		cfg.Logging.Level,
@@ -98,15 +105,23 @@ func main() {
 		logger.Fatal().Err(err).Msg("Error while registering custom validators")
 	}
 
-	db, err := database.ConnectDB(database.Config{
-		Host:     cfg.Database.Host,
-		User:     cfg.Database.User,
-		Password: cfg.Database.Password,
-		DbName:   cfg.Database.DBName,
-		Port:     uint16(cfg.Database.Port),
-		SslMode:  cfg.Database.SSLMode,
-		TimeZone: cfg.Database.TimeZone,
-	}, dbLogFile, cfg.Debug)
+	db, err := database.ConnectDB(ctx, database.Config{
+		URL:                   cfg.Database.URI,
+		Host:                  cfg.Database.Host,
+		User:                  cfg.Database.User,
+		Password:              cfg.Database.Password,
+		DbName:                cfg.Database.DBName,
+		TimeZone:              cfg.Database.TimeZone,
+		MaxConnectionLifetime: cfg.Database.MaxConnectionIdleTime,
+		MaxConnectionIdleTime: cfg.Database.MaxConnectionIdleTime,
+		HealthCheck:           cfg.Database.HealthCheck,
+		MaxConns:              cfg.Database.MaxConns,
+		MinConns:              cfg.Database.MinConns,
+		Port:                  uint16(cfg.Database.Port),
+		SslMode:               cfg.Database.SSLMode,
+		Lazy:                  cfg.Database.Lazy,
+	}, zerolog.New(dbLogFile).
+		Level(logging.Parse(cfg.Logging.Level)))
 
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while connecting to database")

@@ -2,7 +2,6 @@ debug: true # Debug enables PProf
 locale: en
 
 postgres:
-  uri: ''
   host: localhost
   user: gofiber-boilerplate
   password: gofiber-boilerplate
@@ -11,6 +10,12 @@ postgres:
   timezone: UTC
   sslmode: false
   logfile: ./log/db.log
+  max_connection_lifetime: 1h
+  max_connection_idle_time: 24h
+  health_check: 15m
+  max_conns: 20
+  min_conns: 5
+  lazy: true
 
 # supported logging - debug, info, warning, error
 logging:

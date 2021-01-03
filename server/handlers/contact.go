@@ -27,7 +27,7 @@ func (c Contact) Message(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	contact, err := c.ContactService.AddMessage(contactDto)
+	contact, err := c.ContactService.AddMessage(ctx.Context(), contactDto)
 
 	if err != nil {
 		return err
@@ -37,5 +37,11 @@ func (c Contact) Message(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusCreated).JSON(contact)
 	}
 
-	return ctx.Redirect(utils.UnsafeString(ctx.Context().Referer()))
+	redirect := ctx.Context().Referer()
+
+	if len(redirect) == 0 {
+		redirect = []byte("/contact")
+	}
+
+	return ctx.Redirect(utils.UnsafeString(redirect))
 }

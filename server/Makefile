@@ -8,7 +8,7 @@ VERSION ?= dev
 .PHONY: build
 build: copy-files
 ifeq ($(ENVIRONMENT),production)
-	@CGO_ENABLED=0 go build -ldflags="-s -w -X 'main.Version=${VERSION}'" -o ../bin/dusanmalusev main.go
+	@CGO_ENABLED=0 go build -tags "binary_log" -ldflags="-s -w -X 'main.Version=${VERSION}'" -o ../bin/dusanmalusev main.go
 else ifeq ($(ENVIRONMENT),development)
 	@go build -o ../bin/dusanmalusev main.go
 else
@@ -17,9 +17,23 @@ endif
 
 .PHONY: copy-files
 copy-files:
-	@cp -r ./database/migrations ../bin/migrations
+ifeq ($(ENVIRONMENT),production)
+	@mkdir -p ../bin/migrations
+	@mkdir -p ../bin/public
+	@mkdir -p ../bin/view
+	@cp -r ./database/migrations/ ../bin/migrations/
 	@cp -r ./public ../bin/public
 	@cp -r ./views ../bin/views
+else ifeq ($(ENVIRONMENT),development)
+	@mkdir -p ./bin/migrations
+	@mkdir -p ./bin/public
+	@mkdir -p ./bin/view
+	@cp -r ./database/migrations ./bin/migrations
+	@cp -r ./public ./bin/public
+	@cp -r ./views ./bin/views
+else
+	@echo "Target ${ENVIRONMENT} is not supported"
+endif
 
 .PHONY: test
 test:
@@ -49,7 +63,7 @@ migration-create: migrate-install
 	@${GOPATH}/bin/migrate -database ${DATABASE_URL} create -dir ./database/migrations -seq -ext sql ${M_NAME}
 
 .PHONY: migrate-install
-migrate-install:
+migrate-install:/
 ifneq ($(findstring migrate,$(shell ls ${GOPATH}/bin)),migrate)
 	@cd ${GOPATH} && \
 	rm -rf ${GOPATH}/src/github.com/golang-migrate/migrate && \
@@ -62,5 +76,10 @@ endif
 
 .PHONY: clean
 clean:
+ifeq ($(ENVIRONMENT),production)
+	@rm -rf ../bin
+else ifeq ($(ENVIRONMENT),development)
 	@rm -rf ./bin
-
+else
+	@echo "Target ${ENVIRONMENT} is not supported"
+endif
