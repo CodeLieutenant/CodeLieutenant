@@ -132,6 +132,7 @@ func main() {
 		Logger:    &logger,
 		DB:        db,
 		Validator: validate,
+		Config:    &cfg,
 	}
 
 	go func(cancel *context.CancelFunc) {

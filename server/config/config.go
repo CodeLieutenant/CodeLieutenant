@@ -38,12 +38,25 @@ type (
 		Prefork bool   `json:"prefork" yaml:"prefork"`
 	}
 
+	Subscription struct {
+		SendEmail bool `json:"send_email,omitempty" yaml:"send_email,omitempty"`
+	}
+
+	SMTP struct {
+		Address  string `json:"address,omitempty" yaml:"address,omitempty"`
+		From     string `json:"from,omitempty" yaml:"from,omitempty"`
+		PoolSize int    `json:"pool_size,omitempty" yaml:"pool_size,omitempty"`
+		Senders  int    `json:"senders,omitempty" yaml:"senders,omitempty"`
+	}
+
 	Config struct {
 		Database DB      `json:"postgres" yaml:"postgres"`
 		Logging  Logging `json:"logging" yaml:"logging"`
 		HTTP     HTTP    `json:"http" yaml:"http"`
-		Debug    bool    `json:"debug" yaml:"debug"`
-		Locale   string  `json:"locale" yaml:"locale"`
+
+		Locale       string       `json:"locale" yaml:"locale"`
+		Subscription Subscription `json:"subscription,omitempty" yaml:"subscription,omitempty"`
+		Debug        bool         `json:"debug" yaml:"debug"`
 	}
 )
 

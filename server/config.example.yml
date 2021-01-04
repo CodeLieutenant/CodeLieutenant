@@ -17,6 +17,10 @@ postgres:
   min_conns: 5
   lazy: true
 
+subscription:
+  send_email_on_subscription: true
+  send_email_on_unsubscription: true
+
 # supported logging - debug, info, warning, error
 logging:
   level: info # Logger instance used in API
