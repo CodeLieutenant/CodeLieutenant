@@ -18,7 +18,9 @@ func main() {
 	app.Static("/public", "./dist/")
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Render("index", fiber.Map{}, "layouts/main")
+		return c.Render("index", fiber.Map{
+			"Title": "Dusan Malusev - Index Page",
+		}, "layouts/main")
 	})
 
 	log.Fatalf("Error while starting the fiber application: %v", app.Listen(":3000"))
