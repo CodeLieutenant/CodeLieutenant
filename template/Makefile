@@ -10,14 +10,14 @@ build-prod:
 	@npm install
 	@npm run build:prod
 	@cp -r ./img/ ./dist/img/
-	@cp -r ./views ./views_copy
+	@cp -r ./views/ ./views_copy/
 	@node assets.js
 
 .PHONY: copy
 copy:
 	@rm -rf ../server/views
 	@rm -rf ../server/public
-	@cp -r ./views_copy ../server/views
+	@cp -r ./views_copy/ ../server/views/
 	@cp -r ./dist ../server/public
 
 install-fiber:
