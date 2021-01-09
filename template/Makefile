@@ -29,3 +29,5 @@ endif
 clean:
 	@rm -rf ./views_copy
 	@rm -rf ./dist
+
+include ../Makefile

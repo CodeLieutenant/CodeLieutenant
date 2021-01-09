@@ -3,8 +3,8 @@ locale: en
 
 postgres:
   host: localhost
-  user: dusanmalusev
-  password: password
+  user: postgres
+  password: postgres
   dbname: dusanmalusev
   port: 5432
   timezone: UTC

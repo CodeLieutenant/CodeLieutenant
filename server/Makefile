@@ -1,5 +1,5 @@
 MIGRATE_TAG = v4.14.1
-DATABASE_URL ?= "postgres://dusanmalusev:password@localhost:5432/dusanmalusev?sslmode=disable"
+DATABASE_URL ?= "postgres://postgres:postgres@localhost:5432/dusanmalusev?sslmode=disable"
 RACE ?= 0
 ENVIRONMENT ?= development
 VERSION ?= dev
@@ -38,9 +38,9 @@ endif
 .PHONY: test
 test:
 ifeq ($(RACE), 1)
-	@go test ./... -race
+	@DB_CONN=${DATABASE_URL} go test ./... -race -covermode=atomic -coverprofile=coverage.txt
 else
-	@go test ./...
+	@DB_CONN=${DATABASE_URL} go test ./... -covermode=atomic -coverprofile=coverage.txt
 endif
 
 config.yml:
@@ -74,6 +74,11 @@ ifneq ($(findstring migrate,$(shell ls ${GOPATH}/bin)),migrate)
 	go build -tags 'postgres github' -ldflags="-X main.Version=${MIGRATE_TAG}" -o ${GOPATH}/bin/migrate ${GOPATH}/src/github.com/golang-migrate/migrate/cmd/migrate
 endif
 
+.PHONY: tidy
+tidy:
+	@rm -f go.sum
+	@go mod tidy
+
 .PHONY: clean
 clean:
 ifeq ($(ENVIRONMENT),production)
@@ -83,3 +88,5 @@ else ifeq ($(ENVIRONMENT),development)
 else
 	@echo "Target ${ENVIRONMENT} is not supported"
 endif
+
+include ../Makefile
