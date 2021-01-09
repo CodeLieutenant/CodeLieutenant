@@ -1,5 +1,5 @@
 .PHONY: all
-all: clean build-prod copy
+all: build-prod copy
 
 .PHONY: dev
 dev: install-fiber
