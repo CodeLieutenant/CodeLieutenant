@@ -21,8 +21,8 @@ copy:
 	rm -rf ../server/public
 	mkdir -p ../server/public
 	mkdir -p ../server/views
-	cp -r ./views_copy/* ../server/views/
-	cp -r ./dist/* ../server/public
+	cp -r views_copy/* ../server/views/
+	cp -r dist/* ../server/public
 
 install-fiber:
 ifeq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
