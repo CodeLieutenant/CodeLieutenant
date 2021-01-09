@@ -7,19 +7,22 @@ dev: install-fiber
 
 .PHONY: build-prod
 build-prod:
-	# @npm install
-	# @npm run build:prod
-	cp -r ./img/ ./dist/img/
-	mkdir -p ./views_copy
-	cp -r ./views/ ./views_copy/
+	npm install
+	npm run build:prod
+	mkdir -p dist/img
+	mkdir -p views_copy
+	cp -r img/* dist/img/
+	cp -r views/* ./views_copy/
 	node assets.js
 
 .PHONY: copy
 copy:
 	rm -rf ../server/views
 	rm -rf ../server/public
-	cp -r ./views_copy/ ../server/views/
-	cp -r ./dist ../server/public
+	mkdir -p ../server/public
+	mkdir -p ../server/views
+	cp -r ./views_copy/* ../server/views/
+	cp -r ./dist/* ../server/public
 
 install-fiber:
 ifeq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
@@ -27,7 +30,7 @@ ifeq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
 endif
 
 clean:
-	@rm -rf ./views_copy
-	@rm -rf ./dist
+	rm -rf ./views_copy
+	rm -rf ./dist
 
 include ../Makefile
