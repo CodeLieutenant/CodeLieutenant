@@ -10,7 +10,6 @@ build-prod:
 	@npm install
 	@npm run build:prod
 	@cp -r ./img/ ./dist/img/
-	@rm -rf ./views_copy
 	@cp -r ./views ./views_copy
 	@node assets.js
 
