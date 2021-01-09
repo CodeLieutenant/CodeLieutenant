@@ -8,7 +8,7 @@ import (
 )
 
 func RegisterRouter(c *container.Container, app *fiber.App) {
-	app.Static("assets", "/public", fiber.Static{
+	app.Static("/public", "./public", fiber.Static{
 		Browse:    false,
 		Compress:  true,
 		ByteRange: true,

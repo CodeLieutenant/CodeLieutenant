@@ -7,8 +7,6 @@ module.exports = {
   entry: {
     index: './ts/index.ts',
   },
-  
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -25,7 +23,8 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: process.env.NODE_ENV === 'development' ? '[name].css' : '[name].[contenthash].css',
-      chunkFilename: process.env.NODE_ENV === 'development' ? '[name].css' : '[id].[contenthash].css',
+      chunkFilename:
+        process.env.NODE_ENV === 'development' ? '[name].css' : '[id].[contenthash].css',
     }),
   ],
   resolve: {
