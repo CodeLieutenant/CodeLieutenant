@@ -3,7 +3,7 @@
 git-setup:
 	@git config user.name GitHub
 	@git config user.email noreply@github.com
-	@git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/dusanmalusev.git
+	@git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/malusev998/dusanmalusev.git
 
 
 .PHONY: commit
