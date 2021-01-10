@@ -1,10 +1,10 @@
-# GoFiber - Boilerplate
+# Website Backend
 
+![Testing](https://github.com/malusev998/dusanmalusev/workflows/Testing/badge.svg)
 # Features
     -   Fiber v2
-    -   Gorm (PostgreSQL)
     -   Viper
     -   GoPlaygroundValidation
-    -   Taskfile   
+    -   Taskfile
     -   Mailing
 
