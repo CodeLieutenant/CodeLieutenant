@@ -24,14 +24,12 @@ jobs:
             ${{ runner.os }}-node-
       - name: Set up Git
         run: make git-setup
-        working-directory: template
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: make
         working-directory: template
       - name: Commit and push changes
         run: make commit
-        working-directory: template
         env:
           MESSAGE: UI Build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
