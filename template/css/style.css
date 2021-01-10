@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../node_modules/@sweetalert2/theme-dark/dark.css';
-
 .bg-main-dark-900 {
   background-color: #10121b;
 }

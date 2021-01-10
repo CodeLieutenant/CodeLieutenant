@@ -77,36 +77,42 @@ const subscribeFormHandler = (
   const nameError = document.getElementById(nameErrorEl);
   const emailError = document.getElementById(emailErrorEl);
 
-  // //@ts-ignore
-  // const res = await subscribe(name.value, email.value);
-  // // Server error
-  // if ('message' in res) {
-  //   return;
-  // }
+  //@ts-ignore
+  const res = await subscribe(name.value, email.value);
+  // Server error
+  if ('message' in res) {
+    Swal.fire({
+      title: 'Error',
+      text: res.message,
+      icon: 'error',
+      timerProgressBar: true,
+    });
+    return;
+  }
 
-  // // Validation Error
-  // if ('nameError' in res && 'emailError' in res) {
-  //   if (res.nameError !== '') {
-  //     name.classList.add('input-error');
+  // Validation Error
+  if ('nameError' in res && 'emailError' in res) {
+    if (res.nameError !== '') {
+      name.classList.add('input-error');
 
-  //     nameError.classList.remove('hidden');
-  //     nameError.innerText = res.nameError;
-  //   }
+      nameError.classList.remove('hidden');
+      nameError.innerText = res.nameError;
+    }
 
-  //   if (res.emailError !== '') {
-  //     email.classList.add('input-error');
-  //     emailError.classList.remove('hidden');
-  //     emailError.innerText = res.emailError;
-  //   }
+    if (res.emailError !== '') {
+      email.classList.add('input-error');
+      emailError.classList.remove('hidden');
+      emailError.innerText = res.emailError;
+    }
 
-  //   setTimeout(() => {
-  //     nameError.classList.add('hidden');
-  //     emailError.classList.add('hidden');
-  //     email.classList.remove('input-error');
-  //     name.classList.remove('input-error');
-  //   }, 4000);
-  //   return;
-  // }
+    setTimeout(() => {
+      nameError.classList.add('hidden');
+      emailError.classList.add('hidden');
+      email.classList.remove('input-error');
+      name.classList.remove('input-error');
+    }, 4000);
+    return;
+  }
 
   Swal.fire({
     title: 'Success',
@@ -114,8 +120,6 @@ const subscribeFormHandler = (
     icon: 'success',
     timerProgressBar: true,
   });
-
-  // TODO: Handle Success
 };
 
 export { subscribeFormHandler };
