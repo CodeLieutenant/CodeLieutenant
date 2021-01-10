@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, initial-scale=1.0" />
-    <title>{{ .Title }}</title>
-    {{template "styles"}}
-  </head>
-  <body class="h-screen text-white bg-main-dark-900 flex">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>{{ .Title }}</title>
+  {{template "styles"}}
+</head>
+<body class="h-screen text-white bg-main-dark-900">
+  <section class="flex h-screen">
     {{template "sidebar"}}
     <main class="flex w-full">
-        {{embed}}
+      {{embed}}
     </main>
-    {{template "scripts"}}
-  </body>
+  </section>
+  {{template "scripts"}}
+</body>
+
 </html>
