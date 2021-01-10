@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
@@ -9,6 +10,7 @@ import (
 
 func main() {
 	engine := html.New("./views", ".html")
+	engine.AddFunc("now", time.Now)
 
 	app := fiber.New(fiber.Config{
 		Views: engine,

@@ -1,6 +1,8 @@
 package api
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -31,11 +33,14 @@ func NewFiberAPI(
 	errorHandler fiber.ErrorHandler,
 	register RegisterRoutesHandler,
 ) Interface {
+	engine := html.New("views", ".html")
+	engine.AddFunc("now", time.Now)
+
 	return Fiber{
 		app: fiber.New(fiber.Config{
 			Prefork:      prefork,
 			ErrorHandler: errorHandler,
-			Views:        html.New("views", ".html"),
+			Views:        engine,
 		}),
 		debug:          debug,
 		address:        address,

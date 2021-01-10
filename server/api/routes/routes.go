@@ -13,8 +13,18 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 		Compress:  true,
 		ByteRange: true,
 	})
+
+
+	registerHomeRoutes(c, app.Group(""))
 	registerContactRoutes(c, app.Group("/contact"))
 }
+
+func registerHomeRoutes(c *container.Container, app fiber.Router) {
+	home := handlers.Home{}
+
+	app.Get("/", home.Home)
+}
+
 
 func registerContactRoutes(c *container.Container, router fiber.Router) {
 	contact := handlers.Contact{
