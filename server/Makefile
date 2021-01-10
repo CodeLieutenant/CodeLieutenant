@@ -3,7 +3,7 @@ DATABASE_URL ?= "postgres://postgres:postgres@localhost:5432/dusanmalusev?sslmod
 RACE ?= 0
 ENVIRONMENT ?= development
 VERSION ?= dev
-
+GOPATH ?= ${HOME}/go
 
 .PHONY: build
 build: copy-files
@@ -51,33 +51,27 @@ setup: config.yml
 	docker-compose up -d
 
 .PHONY: migrate
-migrate: migrate-install
+migrate: install-migrate-cli
 	${GOPATH}/bin/migrate -source file://${shell pwd}/database/migrations -database ${DATABASE_URL} up
 
 .PHONY: migrate-down
-migrate-down: migrate-install
+migrate-down: install-migrate-cli
 	${GOPATH}/bin/migrate -source file://${shell pwd}/database/migrations -database ${DATABASE_URL} down
 
 .PHONY: migrate-create
-migration-create: migrate-install
+migration-create: install-migrate-cli
 	${GOPATH}/bin/migrate -database ${DATABASE_URL} create -dir ./database/migrations -seq -ext sql ${M_NAME}
-
-.PHONY: migrate-install
-migrate-install:/
-ifneq ($(findstring migrate,$(shell ls ${GOPATH}/bin)),migrate)
-	cd ${GOPATH} && \
-	rm -rf ${GOPATH}/src/github.com/golang-migrate/migrate && \
-	go get -u -d github.com/golang-migrate/migrate/cmd/migrate && \
-	cd ${GOPATH}/src/github.com/golang-migrate/migrate && \
-	git checkout ${MIGRATE_TAG} && \
-	cd cmd/migrate && \
-	go build -tags 'postgres github' -ldflags="-X main.Version=${MIGRATE_TAG}" -o ${GOPATH}/bin/migrate ${GOPATH}/src/github.com/golang-migrate/migrate/cmd/migrate
-endif
 
 .PHONY: tidy
 tidy:
 	rm -f go.sum
 	go mod tidy
+
+.PHONY: dev
+dev: install-fiber-cli install-migrate-cli config.yml
+	docker-compose up -d
+	make migrate
+	fiber dev
 
 .PHONY: clean
 clean:

@@ -1,19 +1,27 @@
+ENVIRONMENT ?= development
+
 .PHONY: all
-all: build-prod copy
+all: build copy
 
 .PHONY: dev
-dev: install-fiber
+dev: install-fiber-cli
 	fiber dev
 
 .PHONY: build-prod
-build-prod:
+build:
 	npm install
-	npm run build:prod
 	mkdir -p dist/img
 	mkdir -p views_copy
 	cp -r img/* dist/img/
 	cp -r views/* ./views_copy/
+ifeq ($(ENVIRONMENT),production)
+	npm run production
 	node assets.js
+else ifeq ($(ENVIRONMENT),development)
+	npm run development
+else
+	echo "Target ${ENVIRONMENT} is not supported"
+endif
 
 .PHONY: copy
 copy:
@@ -23,11 +31,6 @@ copy:
 	mkdir -p ../server/views
 	cp -r views_copy/* ../server/views/
 	cp -r dist/* ../server/public
-
-install-fiber:
-ifeq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
-	go get -u github.com/gofiber/cli/fiber
-endif
 
 clean:
 	rm -rf ./views_copy

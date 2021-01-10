@@ -27,6 +27,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: make
+        env:
+          ENVIRONMENT: production
         working-directory: template
       - name: Commit and push changes
         run: make commit
