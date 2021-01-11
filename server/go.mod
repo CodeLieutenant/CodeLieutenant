@@ -11,7 +11,6 @@ require (
 	github.com/gofiber/fiber/v2 v2.3.2
 	github.com/gofiber/template v1.6.6
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
-	github.com/golangci/golangci-lint v1.35.2 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/jackc/pgmock v0.0.0-20201204152224-4fe30f7445fd // indirect
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
