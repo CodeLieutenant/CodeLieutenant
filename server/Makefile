@@ -39,9 +39,9 @@ endif
 test:
 	make migrate
 ifeq ($(RACE), 1)
-	DB_CONN=${DATABASE_URL} go test ./... -race -covermode=atomic -coverprofile=coverage.txt
+	DB_CONN=${DATABASE_URL} go test ./... -race -covermode=atomic -coverprofile=coverage.txt -timeout 5m
 else
-	DB_CONN=${DATABASE_URL} go test ./... -covermode=atomic -coverprofile=coverage.txt
+	DB_CONN=${DATABASE_URL} go test ./... -covermode=atomic -coverprofile=coverage.txt -timeout 1m
 endif
 
 config.yml:

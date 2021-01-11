@@ -156,9 +156,8 @@ func main() {
 				Msg("Error while shutting down application\n")
 		}
 
-		if err := database.Close(); err != nil {
-			diContainer.Logger.Err(err).Msg("Error while closing sql database file")
-		}
+		db.Close()
+
 
 		if err := logFile.Close(); err != nil {
 			diContainer.Logger.Err(err).Msg("Error while closing log file")

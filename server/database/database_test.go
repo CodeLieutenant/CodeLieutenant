@@ -56,8 +56,6 @@ func TestConnectToDB_Success(t *testing.T) {
 
 	assert.NoError(err)
 	assert.NotNil(pool)
-
-	assert.NoError(database.Close())
 }
 
 func TestConnectToDB_ConnectionStringError(t *testing.T) {
