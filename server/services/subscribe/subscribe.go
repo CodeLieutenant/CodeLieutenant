@@ -12,7 +12,7 @@ import (
 	"github.com/malusev998/dusanmalusev/models"
 )
 
-type SubscriptionService interface {
+type Service interface {
 	Subscribe(context.Context, dto.Subscription) (models.Subscription, error)
 	Unsubscribe(context.Context, uint64) error
 }
@@ -121,7 +121,7 @@ func (s subscriptionService) Unsubscribe(ctx context.Context, id uint64) error {
 	return tx.Commit(newCtx)
 }
 
-func NewSubscriptionService(db *pgxpool.Pool, validate *validator.Validate) SubscriptionService {
+func NewSubscriptionService(db *pgxpool.Pool, validate *validator.Validate) Service {
 	return subscriptionService{
 		db:       db,
 		validate: validate,

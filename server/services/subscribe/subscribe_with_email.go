@@ -12,7 +12,7 @@ import (
 )
 
 type subscriptionWithEmail struct {
-	service      SubscriptionService
+	service      Service
 	emailService email.Interface
 }
 
@@ -27,7 +27,7 @@ func (s subscriptionWithEmail) Unsubscribe(ctx context.Context, id uint64) error
 	return s.service.Unsubscribe(ctx, id)
 }
 
-func NewSubscriptionWithEmail(email email.Interface, db *pgxpool.Pool, validate *validator.Validate) SubscriptionService {
+func NewSubscriptionWithEmail(email email.Interface, db *pgxpool.Pool, validate *validator.Validate) Service {
 	return subscriptionWithEmail{
 		service:      NewSubscriptionService(db, validate),
 		emailService: email,

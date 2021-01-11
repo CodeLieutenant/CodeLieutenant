@@ -2,6 +2,7 @@ package container
 
 import (
 	"context"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/malusev998/dusanmalusev/config"
@@ -19,7 +20,7 @@ type Container struct {
 	Config    *config.Config
 
 	contactService      services.ContactService
-	subscriptionService subscribe.SubscriptionService
+	subscriptionService subscribe.Service
 }
 
 func (c *Container) GetEmailService() email.Interface {
@@ -48,7 +49,7 @@ func (c *Container) GetContactService() services.ContactService {
 	return c.contactService
 }
 
-func (c *Container) GetSubscriptionService() subscribe.SubscriptionService {
+func (c *Container) GetSubscriptionService() subscribe.Service {
 	if c.contactService == nil {
 		if c.Config.Subscription.SendEmail {
 			c.subscriptionService = subscribe.NewSubscriptionWithEmail(c.GetEmailService(), c.DB, c.Validator)

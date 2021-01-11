@@ -9,7 +9,7 @@ import (
 )
 
 type Contact struct {
-	ContactService services.ContactService
+	Service services.ContactService
 }
 
 func (c Contact) Index(ctx *fiber.Ctx) error {
@@ -27,7 +27,7 @@ func (c Contact) Message(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	contact, err := c.ContactService.AddMessage(ctx.Context(), contactDto)
+	contact, err := c.Service.AddMessage(ctx.Context(), contactDto)
 
 	if err != nil {
 		return err
