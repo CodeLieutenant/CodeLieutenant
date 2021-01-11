@@ -17,7 +17,7 @@ endif
 
 .PHONY: install-fiber-cli
 install-fiber-cli:
-ifeq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
+ifneq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
 	cd ${GOPATH} && go get -u github.com/gofiber/cli/fiber
 endif
 

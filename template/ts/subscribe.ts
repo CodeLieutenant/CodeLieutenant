@@ -1,4 +1,5 @@
 import { object, string, ValidationError } from 'yup';
+import { http } from './http';
 
 const Swal = require('sweetalert2');
 
@@ -40,13 +41,11 @@ const subscribe = async (
 
     await schema.validate(subscription, { recursive: true, abortEarly: false });
 
-    const res = await fetch('/subscribe', {
-      method: 'POST',
-      body: JSON.stringify(subscription),
-    });
+    const res = await http('/subscribe', 'POST', subscription);
 
     return await res.json();
   } catch (err) {
+    console.error(err);
     if (err instanceof ValidationError) {
       let validationError: SubscriptionValidationError = { nameError: '', emailError: '' };
       err.inner.forEach((item) => {
