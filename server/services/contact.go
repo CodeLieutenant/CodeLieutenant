@@ -2,10 +2,11 @@ package services
 
 import (
 	"context"
+	"time"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/leebenson/conform"
-	"time"
 
 	"github.com/malusev998/dusanmalusev/dto"
 	"github.com/malusev998/dusanmalusev/models"
@@ -17,7 +18,7 @@ type ContactService interface {
 
 type contactService struct {
 	db        *pgxpool.Pool
-	validator *validator.Validate
+	validate *validator.Validate
 }
 
 func (c contactService) AddMessage(ctx context.Context, contactDto dto.Contact) (models.Contact, error) {
@@ -36,7 +37,7 @@ func (c contactService) AddMessage(ctx context.Context, contactDto dto.Contact) 
 		return models.Contact{}, err
 	}
 
-	if err := c.validator.Struct(c); err != nil {
+	if err := c.validate.Struct(contactDto); err != nil {
 		return models.Contact{}, err
 	}
 
@@ -93,6 +94,6 @@ func (c contactService) AddMessage(ctx context.Context, contactDto dto.Contact) 
 func NewContactService(db *pgxpool.Pool, validate *validator.Validate) ContactService {
 	return contactService{
 		db:        db,
-		validator: validate,
+		validate: validate,
 	}
 }

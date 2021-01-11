@@ -106,14 +106,14 @@ func (s subscriptionService) Unsubscribe(ctx context.Context, id uint64) error {
 
 	sql := "DELETE FROM subscriptions WHERE id = $1;"
 
-	row, err := tx.Query(newCtx, sql, id)
+	tag, err := tx.Exec(newCtx, sql, id)
 
 	if err != nil {
 		_ = tx.Rollback(newCtx)
 		return err
 	}
 
-	if err := row.Err(); err != nil {
+	if tag.RowsAffected() != 1 {
 		_ = tx.Rollback(newCtx)
 		return err
 	}

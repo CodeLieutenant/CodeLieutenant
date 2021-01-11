@@ -33,7 +33,7 @@ func (c Contact) Message(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	if ctx.XHR() && ctx.Accepts(fiber.MIMEApplicationJSON) != "" {
+	if ctx.Accepts(fiber.MIMEApplicationJSON) != "" {
 		return ctx.Status(fiber.StatusCreated).JSON(contact)
 	}
 

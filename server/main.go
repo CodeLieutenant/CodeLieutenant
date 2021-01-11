@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/rs/zerolog"
 	"io"
 	"os"
 	"os/signal"
@@ -13,6 +12,7 @@ import (
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_translations "github.com/go-playground/validator/v10/translations/en"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
 	"github.com/malusev998/dusanmalusev/api"
@@ -65,19 +65,16 @@ func main() {
 	signal.Notify(signalCh, os.Interrupt)
 
 	cfg, err := config.New("config", *configPath)
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while loading configuration")
 	}
 
 	logFile, err := createLogFile(cfg.Logging.File)
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while opening log file")
 	}
 
 	dbLogFile, err := createLogFile(cfg.Database.LogFile)
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while opening database log file")
 	}
@@ -101,7 +98,7 @@ func main() {
 		logger.Fatal().Err(err).Msg("Error while registering english translations")
 	}
 
-	if err := validators.Register(&logger, validate, trans); err != nil {
+	if err := validators.Register(validate, trans); err != nil {
 		logger.Fatal().Err(err).Msg("Error while registering custom validators")
 	}
 
@@ -122,14 +119,13 @@ func main() {
 		Lazy:                  cfg.Database.Lazy,
 	}, zerolog.New(dbLogFile).
 		Level(logging.Parse(cfg.Logging.Level)))
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while connecting to database")
 	}
 
 	diContainer := container.Container{
 		Ctx:       ctx,
-		Logger:    &logger,
+		Logger:    logger,
 		DB:        db,
 		Validator: validate,
 		Config:    &cfg,
@@ -171,7 +167,6 @@ func main() {
 		if err := dbLogFile.Close(); err != nil {
 			diContainer.Logger.Err(err).Msg("Error while closing database log file")
 		}
-
 	}()
 
 	if err := provider.Register(&diContainer); err != nil {

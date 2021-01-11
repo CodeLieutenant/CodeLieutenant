@@ -1,7 +1,10 @@
 package handlers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
+
 	"github.com/malusev998/dusanmalusev/dto"
 	"github.com/malusev998/dusanmalusev/services/subscribe"
 	"github.com/malusev998/dusanmalusev/utils"
@@ -16,6 +19,7 @@ func (s Subscribe) Unsubscribe(c *fiber.Ctx) error {
 }
 
 func (s Subscribe) Subscribe(c *fiber.Ctx) error {
+	fmt.Println("Hello World")
 	var subDto dto.Subscription
 
 	if err := c.BodyParser(&subDto); err != nil {
@@ -27,7 +31,7 @@ func (s Subscribe) Subscribe(c *fiber.Ctx) error {
 		return err
 	}
 
-	if c.XHR() && c.Accepts(fiber.MIMEApplicationJSON) != "" {
+	if c.Accepts(fiber.MIMEApplicationJSON) != "" {
 		return c.Status(fiber.StatusCreated).JSON(subscription)
 	}
 

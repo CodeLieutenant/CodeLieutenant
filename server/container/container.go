@@ -14,7 +14,7 @@ import (
 
 type Container struct {
 	Ctx       context.Context
-	Logger    *zerolog.Logger
+	Logger    zerolog.Logger
 	DB        *pgxpool.Pool
 	Validator *validator.Validate
 	Config    *config.Config

@@ -9,3 +9,4 @@ vendor/
 dist/
 log/
 out/
+*.fiber.gz

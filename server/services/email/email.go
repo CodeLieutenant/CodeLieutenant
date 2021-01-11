@@ -17,7 +17,7 @@ type (
 		From     string
 		Auth     smtp.Auth
 		TLS      *tls.Config
-		Logger   *zerolog.Logger
+		Logger   zerolog.Logger
 		PoolSize int
 		Senders  int
 	}

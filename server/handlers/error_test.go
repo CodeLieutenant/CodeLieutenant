@@ -24,7 +24,7 @@ func setupErrorHandlerApp() (*fiber.App, *validator.Validate) {
 	uni := ut.New(english, english)
 	englishTranslations, _ := uni.GetTranslator("en")
 	app := fiber.New(fiber.Config{
-		ErrorHandler: handlers.Error(&log.Logger, englishTranslations),
+		ErrorHandler: handlers.Error(log.Logger, englishTranslations),
 	})
 	return app, v
 }
