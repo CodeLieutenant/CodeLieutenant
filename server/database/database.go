@@ -10,7 +10,6 @@ import (
 	"github.com/rs/zerolog"
 )
 
-var pool *pgxpool.Pool
 
 type ConfigInterface interface {
 	fmt.Stringer
@@ -86,7 +85,7 @@ func (c Config) String() string {
 	)
 }
 
-func ConnectDB(ctx context.Context, c ConfigInterface, logger zerolog.Logger) (_ *pgxpool.Pool, err error) {
+func ConnectDB(ctx context.Context, c ConfigInterface, logger zerolog.Logger) (pool *pgxpool.Pool, err error) {
 	config, err := pgxpool.ParseConfig(c.String())
 	if err != nil {
 		return nil, err
@@ -107,11 +106,4 @@ func ConnectDB(ctx context.Context, c ConfigInterface, logger zerolog.Logger) (_
 	}
 
 	return pool, err
-}
-
-func Close() error {
-	if pool != nil {
-		pool.Close()
-	}
-	return nil
 }

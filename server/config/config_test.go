@@ -44,7 +44,6 @@ http:
 `)
 	cfg, err := config.New("config", reader)
 
-
 	assert.Nil(err)
 	assert.NotZero(cfg)
 
@@ -60,9 +59,9 @@ http:
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
 	assert.Equal("./log/db.log", cfg.Database.LogFile)
-	assert.Equal(24 * time.Hour, cfg.Database.MaxConnectionIdleTime)
-	assert.Equal(1 * time.Hour, cfg.Database.MaxConnectionLifetime)
-	assert.Equal(15 * time.Minute, cfg.Database.HealthCheck)
+	assert.Equal(24*time.Hour, cfg.Database.MaxConnectionIdleTime)
+	assert.Equal(1*time.Hour, cfg.Database.MaxConnectionLifetime)
+	assert.Equal(15*time.Minute, cfg.Database.HealthCheck)
 	assert.Equal(int32(20), cfg.Database.MaxConns)
 	assert.Equal(int32(5), cfg.Database.MinConns)
 	assert.Equal(true, cfg.Database.Lazy)
@@ -95,9 +94,9 @@ func TestConfigFile(t *testing.T) {
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
 	assert.Equal("./log/db.log", cfg.Database.LogFile)
-	assert.Equal(24 * time.Hour, cfg.Database.MaxConnectionIdleTime)
-	assert.Equal(1 * time.Hour, cfg.Database.MaxConnectionLifetime)
-	assert.Equal(15 * time.Minute, cfg.Database.HealthCheck)
+	assert.Equal(24*time.Hour, cfg.Database.MaxConnectionIdleTime)
+	assert.Equal(1*time.Hour, cfg.Database.MaxConnectionLifetime)
+	assert.Equal(15*time.Minute, cfg.Database.HealthCheck)
 	assert.Equal(int32(20), cfg.Database.MaxConns)
 	assert.Equal(int32(5), cfg.Database.MinConns)
 	assert.Equal(true, cfg.Database.Lazy)

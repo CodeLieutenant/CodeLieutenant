@@ -46,7 +46,6 @@ func (c contactService) AddMessage(ctx context.Context, contactDto dto.Contact) 
 		return models.Contact{}, err
 	}
 
-
 	createdAt, updatedAt := time.Now().UTC(), time.Now().UTC()
 	sql := `
 		INSERT INTO contacts(name, email, subject, message, created_at, updated_at)

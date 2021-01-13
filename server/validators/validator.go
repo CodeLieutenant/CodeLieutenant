@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-func Register(logger *zerolog.Logger, v *validator.Validate, trans ut.Translator) (err error) {
+func Register(logger zerolog.Logger, v *validator.Validate, trans ut.Translator) (err error) {
 	err = AlphaNumericUnicodeSpaceTranslationRegister(logger, v, trans)
 
 	return

@@ -37,7 +37,7 @@ func TestFiberRegister(t *testing.T) {
 		}
 
 		c := container.Container{
-			Logger: &logger,
+			Logger: logger,
 		}
 
 		f := &Fiber{

@@ -14,7 +14,7 @@ type message struct {
 	Message string `json:"message"`
 }
 
-func Error(logger *zerolog.Logger, translator ut.Translator) fiber.ErrorHandler {
+func Error(logger zerolog.Logger, translator ut.Translator) fiber.ErrorHandler {
 	return func(ctx *fiber.Ctx, err error) error {
 		ctx.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSONCharsetUTF8)
 		code := fiber.StatusInternalServerError

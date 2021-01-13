@@ -1,6 +1,9 @@
 package utils
 
 import (
+	"io"
+	"os"
+	"path/filepath"
 	"reflect"
 	"unsafe"
 )
@@ -20,4 +23,27 @@ func UnsafeBytes(s string) (bs []byte) {
 // GetString returns a string pointer without allocation
 func UnsafeString(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
+}
+
+
+func CreateFile(path string) (file io.WriteCloser, err error) {
+	if !filepath.IsAbs(path) {
+		path, err = filepath.Abs(path)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	directory := filepath.Dir(path)
+	if err := os.MkdirAll(directory, 0744); err != nil {
+		return nil, err
+	}
+
+	file, err = os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0744)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return
 }

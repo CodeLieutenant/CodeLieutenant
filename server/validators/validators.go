@@ -9,7 +9,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-func AlphaNumericUnicodeSpaceTranslationRegister(logger *zerolog.Logger, v *validator.Validate, trans ut.Translator) error {
+func AlphaNumericUnicodeSpaceTranslationRegister(logger zerolog.Logger, v *validator.Validate, trans ut.Translator) error {
 	alphaNumericUnicodeSpace := regexp.MustCompile("^[\\p{L}\\p{N}\\s]+$")
 
 	validate := func(field validator.FieldLevel) bool {
