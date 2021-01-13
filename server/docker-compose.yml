@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 services:
   postgres:
     image: postgres:12-alpine
@@ -12,9 +12,39 @@ services:
     networks:
       - dusanmalusev
     volumes:
-      - postgres_volume:/var/lib/postgresql/data/pgdata
+      - postgres:/var/lib/postgresql/data/pgdata
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - dusanmalusev
+    environment:
+        PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
+        PGADMIN_DEFAULT_PASSWORD: "test123!"
+    ports:
+        - "5000:80"
+    depends_on:
+        - postgres
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 6379:6379
+    networks:
+      - dusanmalusev
+  redislabs:
+    image: redislabs/redisinsight:1.8.3
+    ports:
+      -  8001:8001
+    depends_on:
+      - redis
+    volumes:
+      - redis:/db
+    networks:
+      - dusanmalusev
 networks:
   dusanmalusev:
     driver: bridge
 volumes:
-  postgres_volume:
+  postgres:
+  redis:

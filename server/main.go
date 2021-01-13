@@ -58,7 +58,6 @@ func main() {
 		if err := logFile.Close(); err != nil {
 			logger.Err(err).Msg("Error while closing log file")
 		}
-
 	}()
 
 	if err := cmd.Execute(ctx, Version, &cfg, logger); err != nil {

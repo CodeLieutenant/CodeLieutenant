@@ -12,7 +12,7 @@ import (
 	"github.com/malusev998/dusanmalusev/models"
 )
 
-type SubscriptionService interface {
+type Service interface {
 	Subscribe(context.Context, dto.Subscription) (models.Subscription, error)
 	Unsubscribe(context.Context, uint64) error
 }
@@ -106,14 +106,14 @@ func (s subscriptionService) Unsubscribe(ctx context.Context, id uint64) error {
 
 	sql := "DELETE FROM subscriptions WHERE id = $1;"
 
-	row, err := tx.Query(newCtx, sql, id)
+	tag, err := tx.Exec(newCtx, sql, id)
 
 	if err != nil {
 		_ = tx.Rollback(newCtx)
 		return err
 	}
 
-	if err := row.Err(); err != nil {
+	if tag.RowsAffected() != 1 {
 		_ = tx.Rollback(newCtx)
 		return err
 	}
@@ -121,7 +121,7 @@ func (s subscriptionService) Unsubscribe(ctx context.Context, id uint64) error {
 	return tx.Commit(newCtx)
 }
 
-func NewSubscriptionService(db *pgxpool.Pool, validate *validator.Validate) SubscriptionService {
+func NewSubscriptionService(db *pgxpool.Pool, validate *validator.Validate) Service {
 	return subscriptionService{
 		db:       db,
 		validate: validate,

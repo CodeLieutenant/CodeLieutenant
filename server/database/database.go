@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
+	"github.com/pkg/errors"
 	"time"
 
 	"github.com/jackc/pgx/v4/log/zerologadapter"
@@ -10,6 +11,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
+var ErrNotFound = errors.New("item is not found")
 
 type ConfigInterface interface {
 	fmt.Stringer

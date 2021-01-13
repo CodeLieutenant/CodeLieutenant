@@ -9,3 +9,5 @@ vendor/
 dist/
 log/
 out/
+*.fiber.gz
+coverage.txt

@@ -1,10 +1,11 @@
 package config_test
 
 import (
-	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/require"
 
 	"github.com/malusev998/dusanmalusev/config"
 )

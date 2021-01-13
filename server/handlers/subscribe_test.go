@@ -19,52 +19,53 @@ import (
 	"github.com/malusev998/dusanmalusev/models"
 )
 
-type contactServiceMock struct {
+type subscribeServiceMock struct {
 	mock.Mock
 }
 
-func (c *contactServiceMock) AddMessage(ctx context.Context, contactDto dto.Contact) (models.Contact, error) {
-	args := c.Called(ctx, contactDto)
+func (c *subscribeServiceMock) Subscribe(ctx context.Context, subscribeDto dto.Subscription) (models.Subscription, error) {
+	args := c.Called(ctx, subscribeDto)
 
-	return args.Get(0).(models.Contact), args.Error(1)
+	return args.Get(0).(models.Subscription), args.Error(1)
 }
 
-func TestMessageSuccess(t *testing.T) {
+func (c *subscribeServiceMock) Unsubscribe(ctx context.Context, id uint64) error {
+	args := c.Called(ctx, id)
+	return args.Error(0)
+}
+
+func TestSubscribeSuccess(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 	app := fiber.New()
 
-	service := &contactServiceMock{}
+	service := &subscribeServiceMock{}
 
-	contact := handlers.Contact{
+	subscribe := handlers.Subscribe{
 		Service: service,
 	}
 
-	contactDto := dto.Contact{
+	subscribeDto := dto.Subscription{
 		Name:    "Test",
 		Email:   "test@test.com",
-		Subject: "Test Subject",
-		Message: "Test Message",
 	}
 
-	ct := models.Contact{
+	subscription := models.Subscription{
 		Model: models.Model{
 			ID: 1,
 		},
 		Name:    "Test",
 		Email:   "test@test.com",
-		Subject: "Test Subject",
-		Message: "Test Message",
 	}
 
-	service.On("AddMessage", mock.Anything, contactDto).Return(ct, nil).Times(2)
+	service.On("Subscribe", mock.Anything, subscribeDto).Return(subscription, nil).Times(2)
 
-	app.Post("/contact", contact.Message)
+	app.Post("/subscribe", subscribe.Subscribe)
 
-	body, _ := json.Marshal(ct)
+	body, _ := json.Marshal(subscription)
 
 	t.Run("ReturnJSON", func(t *testing.T) {
-		req := httptest.NewRequest(http.MethodPost, "/contact", bytes.NewReader(body))
+		req := httptest.NewRequest(http.MethodPost, "/subscribe", bytes.NewReader(body))
 		req.Header.Add(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
 		req.Header.Add(fiber.HeaderAccept, fiber.MIMEApplicationJSON)
 		req.Header.Add(fiber.HeaderXRequestedWith, "XMLHttpRequest")
@@ -77,13 +78,13 @@ func TestMessageSuccess(t *testing.T) {
 
 		assert.Equal(http.StatusCreated, res.StatusCode)
 
-		var contactFromResponse models.Contact
+		var contactFromResponse models.Subscription
 		assert.NoError(json.Unmarshal(body, &contactFromResponse))
-		assert.EqualValues(ct, contactFromResponse)
+		assert.EqualValues(subscription, contactFromResponse)
 	})
 
 	t.Run("Redirect", func(t *testing.T) {
-		req := httptest.NewRequest(http.MethodPost, "/contact", bytes.NewReader(body))
+		req := httptest.NewRequest(http.MethodPost, "/subscribe", bytes.NewReader(body))
 		req.Header.Add(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
 		req.Header.Add(fiber.HeaderAccept, fiber.MIMETextHTML)
 		res, err := app.Test(req)
@@ -97,28 +98,26 @@ func TestMessageSuccess(t *testing.T) {
 	service.AssertExpectations(t)
 }
 
-func TestMessageInternalError(t *testing.T) {
+func TestSubscribeInternalError(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 	app := fiber.New()
 
-	service := &contactServiceMock{}
+	service := &subscribeServiceMock{}
 
-	contact := handlers.Contact{
+	subscribe := handlers.Subscribe{
 		Service: service,
 	}
 
-	contactDto := dto.Contact{
+	subscribeDto := dto.Subscription{
 		Name:    "Test",
 		Email:   "test@test.com",
-		Subject: "Test Subject",
-		Message: "Test Message",
 	}
 
-	service.On("AddMessage", mock.Anything, contactDto).Return(models.Contact{}, errors.New("Server error")).Once()
-	app.Post("/contact", contact.Message)
-	body, _ := json.Marshal(contactDto)
-	req := httptest.NewRequest(http.MethodPost, "/contact", bytes.NewReader(body))
+	service.On("Subscribe", mock.Anything, subscribeDto).Return(models.Subscription{}, errors.New("Server error")).Once()
+	app.Post("/subscribe", subscribe.Subscribe)
+	body, _ := json.Marshal(subscribeDto)
+	req := httptest.NewRequest(http.MethodPost, "/subscribe", bytes.NewReader(body))
 	req.Header.Add(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
 	req.Header.Add(fiber.HeaderAccept, fiber.MIMEApplicationJSON)
 	req.Header.Add(fiber.HeaderXRequestedWith, "XMLHttpRequest")
@@ -130,20 +129,20 @@ func TestMessageInternalError(t *testing.T) {
 	assert.Equal(http.StatusInternalServerError, res.StatusCode)
 }
 
-func TestMessageInvalidPayload(t *testing.T) {
+func TestSubscribeInvalidPayload(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 	app := fiber.New()
 
-	service := &contactServiceMock{}
+	service := &subscribeServiceMock{}
 
-	contact := handlers.Contact{
+	subscribe := handlers.Subscribe{
 		Service: service,
 	}
 
-	app.Post("/contact", contact.Message)
+	app.Post("/subscribe", subscribe.Subscribe)
 
-	req := httptest.NewRequest(http.MethodPost, "/contact", bytes.NewReader([]byte{1}))
+	req := httptest.NewRequest(http.MethodPost, "/subscribe", bytes.NewReader([]byte{1}))
 	req.Header.Add(fiber.HeaderAccept, fiber.MIMEApplicationJSON)
 	res, err := app.Test(req)
 

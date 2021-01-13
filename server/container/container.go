@@ -27,7 +27,7 @@ type Container struct {
 	contactService      services.ContactService
 	validator           *validator.Validate
 	translator          ut.Translator
-	subscriptionService subscribe.SubscriptionService
+	subscriptionService subscribe.Service
 }
 
 func (c *Container) GetDatabasePool() *pgxpool.Pool {
@@ -85,7 +85,7 @@ func (c *Container) GetContactService() services.ContactService {
 	return c.contactService
 }
 
-func (c *Container) GetSubscriptionService() subscribe.SubscriptionService {
+func (c *Container) GetSubscriptionService() subscribe.Service {
 	if c.contactService == nil {
 		if c.Config.Subscription.SendEmail {
 			c.subscriptionService = subscribe.NewSubscriptionWithEmail(c.GetEmailService(), c.GetDatabasePool(), c.GetValidator())
@@ -109,7 +109,7 @@ func (c *Container) GetValidator() *validator.Validate {
 			c.Logger.Fatal().Err(err).Msg("Error while registering english translations")
 		}
 
-		if err := validators.Register(c.Logger, c.validator, c.translator); err != nil {
+		if err := validators.Register(c.validator, c.translator); err != nil {
 			c.Logger.Fatal().Err(err).Msg("Error while registering custom validators")
 		}
 	}

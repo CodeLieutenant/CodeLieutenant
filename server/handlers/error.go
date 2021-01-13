@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"errors"
+	"github.com/malusev998/dusanmalusev/database"
 
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
-	"gorm.io/gorm"
 )
 
 type message struct {
@@ -37,7 +37,7 @@ func Error(logger zerolog.Logger, translator ut.Translator) fiber.ErrorHandler {
 			return ctx.Status(fiber.StatusUnprocessableEntity).JSON(err.Translate(translator))
 		}
 
-		if errors.Is(err, gorm.ErrRecordNotFound) {
+		if errors.Is(err, database.ErrNotFound) {
 			return ctx.Status(fiber.StatusNotFound).JSON(message{Message: "Data not found!"})
 		}
 

@@ -23,14 +23,86 @@
   @apply bg-blue-nav;
 }
 
-.facebook:hover {
-  cursor: pointer;
+.icon path {
+  fill: #ccc;
+  transition: fill 0.6ms ease-in;
 }
 
-.facebook:hover .facebook-outline {
-  stroke: #037FFF;
+.icon:hover path {
+  fill: #fff;
 }
 
-.facebook:hover .facebook-inner {
-  fill: #037FFF;
+#psnow-effect {
+  background: linear-gradient(
+      to bottom,
+      rgba(117, 114, 113, 0.8) 10%,
+      rgba(40, 49, 77, 0.8) 30%,
+      rgba(29, 35, 71, 0.8) 50%,
+      rgba(19, 25, 28, 0.8) 80%,
+      rgba(15, 14, 14, 0.8) 100%
+    ),
+    url(https://38.media.tumblr.com/tumblr_m00c3czJkM1qbukryo1_500.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.input {
+  @apply border;
+  @apply border-gray-700;
+  @apply transition-all;
+  @apply pl-3;
+  @apply py-2;
+  @apply bg-transparent;
+}
+
+.form-group:hover .input {
+  @apply border-blue-400;
+  @apply bg-gray-900;
+}
+
+.submit {
+  @apply border;
+  @apply border-blue-500;
+  @apply bg-blue-500;
+  @apply transition-all;
+  @apply py-2;
+  @apply px-2;
+  @apply uppercase;
+  @apply cursor-pointer;
+}
+
+.submit:hover {
+  @apply bg-blue-800;
+  @apply border-blue-800;
+}
+
+
+.label {
+  @apply absolute;
+  @apply left-4;
+  @apply bg-main-dark-900;
+  @apply text-gray-500;
+  @apply uppercase;
+  @apply px-3;
+  @apply transition-all;
+
+  top: -13px;
+}
+
+.form-group:hover .label {
+  @apply text-blue-400;
+}
+
+.input-error {
+  @apply border;
+  @apply border-red-500;
+}
+
+.error {
+  @apply text-red-600;
+  @apply absolute;
+
+  top: -40px;
+  left: 0;
 }

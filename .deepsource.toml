@@ -1,0 +1,27 @@
+version = 1
+
+test_patterns = [
+    "server/**/test_*.go",
+    "template/tests/**/*.test.js"
+]
+
+exclude_patterns = [
+    "database/migrations/**",
+    "public/**"
+]
+
+[[analyzers]]
+name = "go"
+enabled = true
+
+  [analyzers.meta]
+  import_paths = ["github.com/malusev998/dusanmalusev/server"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  environment = ["browser"]
+  style_guide = "airbnb"
+  dialect = "typescript"

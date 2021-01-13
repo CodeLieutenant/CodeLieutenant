@@ -9,7 +9,7 @@ import (
 )
 
 type Contact struct {
-	ContactService services.ContactService
+	Service services.ContactService
 }
 
 func (c Contact) Index(ctx *fiber.Ctx) error {
@@ -27,13 +27,13 @@ func (c Contact) Message(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	contact, err := c.ContactService.AddMessage(ctx.Context(), contactDto)
+	contact, err := c.Service.AddMessage(ctx.Context(), contactDto)
 
 	if err != nil {
 		return err
 	}
 
-	if ctx.XHR() && ctx.Accepts(fiber.MIMEApplicationJSON) != "" {
+	if ctx.Accepts(fiber.MIMEApplicationJSON) != "" {
 		return ctx.Status(fiber.StatusCreated).JSON(contact)
 	}
 

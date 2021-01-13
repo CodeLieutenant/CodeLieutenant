@@ -13,8 +13,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
-	"gorm.io/gorm"
 
+	"github.com/malusev998/dusanmalusev/database"
 	"github.com/malusev998/dusanmalusev/handlers"
 )
 
@@ -81,7 +81,7 @@ func TestErrorHandler(t *testing.T) {
 	assert := require.New(t)
 	app, _ := setupErrorHandlerApp()
 	app.Get("/", func(ctx *fiber.Ctx) error {
-		return gorm.ErrRecordNotFound
+		return database.ErrNotFound
 	})
 	res, err := app.Test(httptest.NewRequest(http.MethodGet, "/", nil))
 	assert.Nil(err)
