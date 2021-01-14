@@ -4,13 +4,10 @@ go 1.15
 
 require (
 	github.com/andybalholm/brotli v1.0.1 // indirect
-	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-playground/locales v0.13.0
 	github.com/go-playground/universal-translator v0.17.0
 	github.com/go-playground/validator/v10 v10.4.1
-	github.com/gofiber/fiber v1.14.6
 	github.com/gofiber/fiber/v2 v2.3.2
-	github.com/gofiber/storage v0.0.3 // indirect
 	github.com/gofiber/storage/redis v0.0.0-20201214031209-9829073dd76f
 	github.com/gofiber/template v1.6.6
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
@@ -44,5 +41,4 @@ require (
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	gorm.io/gorm v1.20.11
 )
