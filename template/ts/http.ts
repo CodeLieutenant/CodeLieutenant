@@ -27,7 +27,7 @@ async function http<T extends { [x: string]: any }>(url: string, method: 'GET' |
             case 'multipart/form-data':
                 const data = new FormData();
 
-                for (let item in body) {
+                for (const item in body) {
                     data.append(item, body[item]);
                 }
 
