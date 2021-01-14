@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -21,7 +22,7 @@ var (
 
 func init() {
 	rootCmd.PersistentFlags().StringVar(&loggingLevel, "level", "debug", "Global logging level")
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", ".", "Config file location")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", ".", "Config file location")
 
 	_ = viper.BindPFlag("global_logging_level", rootCmd.PersistentFlags().Lookup("level"))
 	_ = viper.BindPFlag("config_file", rootCmd.PersistentFlags().Lookup("config"))
@@ -36,6 +37,7 @@ func Execute(ctx context.Context, version string, cfg *config.Config, logger zer
 		Config: cfg,
 	}
 
+	rootCmd.AddCommand(newGenerateKeyCommand())
 	rootCmd.AddCommand(newServerCommand(c))
 
 	return rootCmd.Execute()

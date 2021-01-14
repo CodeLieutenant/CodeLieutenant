@@ -22,13 +22,14 @@ func newServerCommand(c *container.Container) *cobra.Command {
 	}
 
 	command := &cobra.Command{
-		Use:  "server",
-		RunE: s.Execute,
+		Use:   "server",
+		Short: "Start the http server serving Dusan's Website",
+		RunE:  s.Execute,
 	}
 
-	command.Flags().BoolVar(&s.debug, "debug", false, "Run server in debug mode")
-	command.Flags().BoolVar(&s.prefork, "prefork", false, "Run server with prefork")
-	command.Flags().StringVar(&s.address, "address", "", "Address on which server will run")
+	command.Flags().BoolVarP(&s.debug, "debug", "d", false, "Run server in debug mode")
+	command.Flags().BoolVarP(&s.prefork, "prefork", "p", false, "Run server with prefork")
+	command.Flags().StringVarP(&s.address, "address", "a", "", "Address on which server will run")
 
 	return command
 }

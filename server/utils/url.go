@@ -2,21 +2,34 @@ package utils
 
 import (
 	"crypto/hmac"
-	"crypto/sha512"
 	"encoding/base64"
+	"errors"
 	"fmt"
+	"hash"
 	"net/url"
 )
 
-func SignURL(format string, key []byte, values ...interface{}) (string, error) {
+type URLSigner interface {
+	Sign(string, ...interface{}) (string, error)
+	Verify(string) error
+}
+
+type signer struct {
+	h hash.Hash
+}
+
+func NewURLSigner(h hash.Hash) signer {
+	return signer{
+		h: h,
+	}
+}
+
+func (s signer) Sign(format string, values ...interface{}) (string, error) {
 	str := fmt.Sprintf(format, values...)
 
-	hash := hmac.New(sha512.New512_256, key)
-
-	hashEncoded := base64.RawURLEncoding.EncodeToString(hash.Sum(UnsafeBytes(str)))
+	hashEncoded := base64.RawURLEncoding.EncodeToString(s.h.Sum(UnsafeBytes(str)))
 
 	u, err := url.Parse(str)
-
 	if err != nil {
 		return "", err
 	}
@@ -30,32 +43,35 @@ func SignURL(format string, key []byte, values ...interface{}) (string, error) {
 	return u.String(), nil
 }
 
-func VerifyURL(urlStr string, key []byte) bool {
+func (s signer) Verify(urlStr string) error {
 	u, err := url.Parse(urlStr)
-
 	if err != nil {
-		return false
+		return err
 	}
 
 	query := u.Query()
 
-	signature := query["signature"]
+	signature, ok := query["signature"]
 
-	if len(signature) != 0 {
-		return false
+	if !ok || (len(signature) > 0 && signature[0] == "") {
+		return errors.New("signature not found")
 	}
 
 	delete(query, "signature")
 
 	u.RawQuery = query.Encode()
 
-	hash := hmac.New(sha512.New512_256, key)
-
 	bytes, err := base64.RawURLEncoding.DecodeString(signature[0])
-
 	if err != nil {
-		return false
+		return err
 	}
 
-	return hmac.Equal(hash.Sum(UnsafeBytes(u.String())), bytes)
+	str, _ := url.QueryUnescape(u.String())
+	calculated := s.h.Sum(UnsafeBytes(str))
+
+	if !hmac.Equal(calculated, bytes) {
+		return errors.New("signature is invalid")
+	}
+
+	return nil
 }

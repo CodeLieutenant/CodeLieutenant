@@ -27,13 +27,11 @@ func main() {
 	signal.Notify(signalCh, os.Interrupt)
 
 	cfg, err := config.New("config", viper.GetString("config_file"))
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while loading configuration")
 	}
 
 	logFile, err := utils.CreateFile(cfg.Logging.File)
-
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error while opening log file")
 	}
@@ -50,8 +48,6 @@ func main() {
 		(*cancel)()
 	}(&cancel)
 
-	logger.Debug().Msg("Starting HTTP Api")
-
 	go func() {
 		<-ctx.Done()
 
@@ -61,7 +57,6 @@ func main() {
 	}()
 
 	if err := cmd.Execute(ctx, Version, &cfg, logger); err != nil {
-		logger.Fatal().Err(err).Msg("An error has occurred while starting the application")
+		os.Exit(1)
 	}
-
 }

@@ -59,7 +59,6 @@ http:
 	assert.Equal(int32(5432), cfg.Database.Port)
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
-	assert.Equal("./log/db.log", cfg.Database.LogFile)
 	assert.Equal(24*time.Hour, cfg.Database.MaxConnectionIdleTime)
 	assert.Equal(1*time.Hour, cfg.Database.MaxConnectionLifetime)
 	assert.Equal(15*time.Minute, cfg.Database.HealthCheck)
@@ -88,13 +87,12 @@ func TestConfigFile(t *testing.T) {
 
 	assert.Empty(cfg.Database.URI)
 	assert.Equal("localhost", cfg.Database.Host)
-	assert.Equal("gofiber-boilerplate", cfg.Database.User)
-	assert.Equal("gofiber-boilerplate", cfg.Database.Password)
-	assert.Equal("gofiber-boilerplate", cfg.Database.DBName)
+	assert.Equal("postgres", cfg.Database.User)
+	assert.Equal("postgres", cfg.Database.Password)
+	assert.Equal("dusanmalusev", cfg.Database.DBName)
 	assert.Equal(int32(5432), cfg.Database.Port)
 	assert.Equal("UTC", cfg.Database.TimeZone)
 	assert.Equal(false, cfg.Database.SSLMode)
-	assert.Equal("./log/db.log", cfg.Database.LogFile)
 	assert.Equal(24*time.Hour, cfg.Database.MaxConnectionIdleTime)
 	assert.Equal(1*time.Hour, cfg.Database.MaxConnectionLifetime)
 	assert.Equal(15*time.Minute, cfg.Database.HealthCheck)
@@ -102,10 +100,25 @@ func TestConfigFile(t *testing.T) {
 	assert.Equal(int32(5), cfg.Database.MinConns)
 	assert.Equal(true, cfg.Database.Lazy)
 
+	assert.Equal("localhost", cfg.Redis.Host)
+	assert.Equal(6379, cfg.Redis.Port)
+	assert.Equal("", cfg.Redis.Password)
+	assert.Equal("", cfg.Redis.Username)
+
+	assert.Equal("dusanmalusev_session", cfg.Session.CookieName)
+	assert.Equal("localhost", cfg.Session.CookieDomain)
+	assert.Equal("", cfg.Session.CookiePath)
+	assert.Equal(false, cfg.Session.Secure)
+	assert.Equal(24*time.Hour, cfg.Session.Expiration)
+
+	assert.Equal("localhost", cfg.Csrf.CookieDomain)
+	assert.Equal(false, cfg.Csrf.Secure)
+
 	assert.Equal("./log/server.log", cfg.Logging.File)
 	assert.Equal(true, cfg.Logging.Console)
 	assert.Equal("info", cfg.Logging.Level)
 
 	assert.Equal(false, cfg.HTTP.Prefork)
 	assert.Equal(":4000", cfg.HTTP.Address)
+	assert.Equal(2*time.Second, cfg.HTTP.Timeout)
 }

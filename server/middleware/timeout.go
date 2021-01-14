@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"context"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,10 +8,7 @@ import (
 
 func Timeout(d time.Duration, h ...fiber.Handler) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		ctx, cancel := context.WithTimeout(c.Context(), d)
 		ch := make(chan error, 1)
-
-		defer cancel()
 		defer close(ch)
 
 		go func() {
@@ -26,7 +22,7 @@ func Timeout(d time.Duration, h ...fiber.Handler) fiber.Handler {
 		select {
 		case err := <-ch:
 			return err
-		case <-ctx.Done():
+		case <-time.After(d):
 			return fiber.ErrRequestTimeout
 		}
 	}

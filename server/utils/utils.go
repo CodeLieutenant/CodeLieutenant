@@ -1,11 +1,15 @@
 package utils
 
 import (
+	"encoding/base64"
 	"io"
 	"os"
 	"path/filepath"
 	"reflect"
 	"unsafe"
+
+	"github.com/gofiber/fiber/v2"
+	"golang.org/x/crypto/blake2b"
 )
 
 // #nosec G103
@@ -24,7 +28,6 @@ func UnsafeBytes(s string) (bs []byte) {
 func UnsafeString(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
 }
-
 
 func CreateFile(path string) (file io.WriteCloser, err error) {
 	if !filepath.IsAbs(path) {
@@ -46,4 +49,23 @@ func CreateFile(path string) (file io.WriteCloser, err error) {
 	}
 
 	return
+}
+
+func LimiterKeyGenerator(key []byte) func(c *fiber.Ctx) string {
+	blakeHash, err := blake2b.New256(key)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return func(c *fiber.Ctx) string {
+		userAgent := c.Context().UserAgent()
+		ip := UnsafeBytes(c.IP())
+
+		data := make([]byte, 0, len(userAgent)+len(ip))
+
+		copy(data, userAgent)
+		copy(data, ip)
+
+		return base64.RawStdEncoding.EncodeToString(blakeHash.Sum(data))
+	}
 }

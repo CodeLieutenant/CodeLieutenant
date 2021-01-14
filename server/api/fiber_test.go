@@ -49,25 +49,6 @@ func TestFiberRegister(t *testing.T) {
 
 		assert.Nil(f.Register(&c))
 
-		logs := writer.String()
-		if item.debug {
-			assert.Contains(
-				logs,
-				"Running in DEBUG mode, PProf and Monitor (GET /monitor) are enabled",
-			)
-			if item.register != nil {
-				assert.Contains(
-					logs,
-					"Loading the routes",
-				)
-			}
-			// TODO: Test Routes and middleware
-		} else {
-			assert.Contains(
-				logs,
-				"Running in production mode, recover and compression middleware are enabled",
-			)
-		}
 	}
 }
 

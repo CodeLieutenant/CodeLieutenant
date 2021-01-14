@@ -1,21 +1,42 @@
 debug: true # Debug enables PProf
 locale: en
+key: ZahOQ7DL6hVLYV8YQGlG2dYbDGwkocwR
 
 postgres:
   host: localhost
-  user: gofiber-boilerplate
-  password: gofiber-boilerplate
-  dbname: gofiber-boilerplate
+  user: postgres
+  password: postgres
+  dbname: dusanmalusev
   port: 5432
   timezone: UTC
   sslmode: false
-  logfile: ./log/db.log
   max_connection_lifetime: 1h
   max_connection_idle_time: 24h
   health_check: 15m
   max_conns: 20
   min_conns: 5
   lazy: true
+
+subscription:
+  send_email_on_subscription: true
+  send_email_on_unsubscription: true
+
+redis:
+  host: localhost
+  port: 6379
+  username:
+  password:
+
+session:
+  cookie_name: dusanmalusev_session
+  cookie_domain: localhost
+  cookie_path:
+  secure: false
+  expiration: 24h
+
+csrf:
+  cookie_domain: localhost
+  secure: false
 
 # supported logging - debug, info, warning, error
 logging:
@@ -26,3 +47,4 @@ logging:
 http:
   prefork: false
   address: :4000 # HTTP Address
+  timeout: 2s

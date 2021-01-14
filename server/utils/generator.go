@@ -5,9 +5,15 @@ import (
 	"encoding/base64"
 )
 
+const DefaultBytes = 32
+
+func DefaultStringGenerator() string {
+	return UniqueStringGenerator(DefaultBytes)
+}
+
 // UniqueStringGenerator - Generates crypto secure base64 encoded string
 func UniqueStringGenerator(len int) string {
-	return base64.RawStdEncoding.EncodeToString(UniqueBytesGenerator(len))
+	return base64.RawURLEncoding.EncodeToString(UniqueBytesGenerator(len))
 }
 
 // UniqueBytesGenerator generates crypto random bytes

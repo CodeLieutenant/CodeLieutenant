@@ -10,30 +10,20 @@ build: copy-files
 ifeq ($(ENVIRONMENT),production)
 	CGO_ENABLED=0 go build -tags "binary_log" -ldflags="-s -w -X 'main.Version=${VERSION}'" -o ../bin/dusanmalusev main.go
 else ifeq ($(ENVIRONMENT),development)
-	go build -o ../bin/dusanmalusev main.go
+	go build -o ./bin/dusanmalusev main.go
 else
 	echo "Target ${ENVIRONMENT} is not supported"
 endif
 
 .PHONY: copy-files
-copy-files:
-ifeq ($(ENVIRONMENT),production)
-	mkdir -p ../bin/migrations
-	mkdir -p ../bin/public
-	mkdir -p ../bin/view
-	cp -r ./database/migrations/ ../bin/migrations/
-	cp -r ./public ../bin/public
-	cp -r ./views ../bin/views
-else ifeq ($(ENVIRONMENT),development)
+copy-files: config.yml
 	mkdir -p ./bin/migrations
 	mkdir -p ./bin/public
-	mkdir -p ./bin/view
-	cp -r ./database/migrations ./bin/migrations
-	cp -r ./public ./bin/public
-	cp -r ./views ./bin/views
-else
-	echo "Target ${ENVIRONMENT} is not supported"
-endif
+	mkdir -p ./bin/views
+	cp config.yml ./bin/
+	cp -r ./database/migrations ./bin
+	cp -r ./public ./bin/
+	cp -r ./views ./bin/
 
 .PHONY: test
 test:

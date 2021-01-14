@@ -2,19 +2,25 @@ package container
 
 import (
 	"context"
+
 	"github.com/go-playground/locales/en"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_translations "github.com/go-playground/validator/v10/translations/en"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
+	"github.com/gofiber/storage/redis"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"golang.org/x/crypto/blake2b"
 
 	"github.com/malusev998/dusanmalusev/config"
 	"github.com/malusev998/dusanmalusev/database"
 	"github.com/malusev998/dusanmalusev/services"
 	"github.com/malusev998/dusanmalusev/services/email"
 	"github.com/malusev998/dusanmalusev/services/subscribe"
+	"github.com/malusev998/dusanmalusev/utils"
 	"github.com/malusev998/dusanmalusev/validators"
 )
 
@@ -28,6 +34,8 @@ type Container struct {
 	validator           *validator.Validate
 	translator          ut.Translator
 	subscriptionService subscribe.Service
+	session             *session.Store
+	urlSigner           utils.URLSigner
 }
 
 func (c *Container) GetDatabasePool() *pgxpool.Pool {
@@ -63,13 +71,12 @@ func (c *Container) GetEmailService() email.Interface {
 	service, err := email.NewEmailService(email.Config{
 		Addr: "",
 		From: "",
-		//Auth:     smtp.PlainAuth(),
+		// Auth:     smtp.PlainAuth(),
 		TLS:      nil,
 		Logger:   c.Logger,
 		PoolSize: 0,
 		Senders:  0,
 	})
-
 	if err != nil {
 		panic(err.Error())
 	}
@@ -95,6 +102,19 @@ func (c *Container) GetSubscriptionService() subscribe.Service {
 	}
 
 	return c.subscriptionService
+}
+
+func (c *Container) GetURLSigner() utils.URLSigner {
+	if c.urlSigner == nil {
+		h, err := blake2b.New512(c.Config.Key)
+		if err != nil {
+			c.Logger.Fatal().Err(err).Msg("Cannot create blake2b algorithm")
+		}
+
+		c.urlSigner = utils.NewURLSigner(h)
+	}
+
+	return c.urlSigner
 }
 
 func (c *Container) GetValidator() *validator.Validate {
@@ -123,6 +143,34 @@ func (c *Container) GetTranslator() ut.Translator {
 	}
 
 	return c.translator
+}
+
+func (c *Container) GetStorage(database int) fiber.Storage {
+	return redis.New(redis.Config{
+		Host:     c.Config.Redis.Host,
+		Port:     c.Config.Redis.Port,
+		Username: c.Config.Redis.Username,
+		Password: c.Config.Redis.Password,
+		Database: database,
+	})
+}
+
+func (c *Container) GetSession() *session.Store {
+	if c.session == nil {
+		c.session = session.New(session.Config{
+			Storage:        c.GetStorage(0),
+			CookieHTTPOnly: true,
+			Expiration:     c.Config.Session.Expiration,
+			CookieName:     c.Config.Session.CookieName,
+			CookieDomain:   c.Config.Session.CookieDomain,
+			CookiePath:     c.Config.Session.CookiePath,
+			CookieSecure:   c.Config.Session.Secure,
+			CookieSameSite: "Lax",
+			KeyGenerator:   utils.DefaultStringGenerator,
+		})
+	}
+
+	return c.session
 }
 
 func (c *Container) Close() error {
