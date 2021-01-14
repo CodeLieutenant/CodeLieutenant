@@ -55,7 +55,7 @@ const contact = async (dto: ContactDto): Promise<Contact | Err | ContactValidati
         }
     } catch (err) {
         if (err instanceof ValidationError) {
-            let validationError: ContactValidationError = {
+            const validationError: ContactValidationError = {
                 nameError: '',
                 emailError: '',
                 messageError: '',

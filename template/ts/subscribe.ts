@@ -44,7 +44,7 @@ const subscribe = async (dto: SubscriptionDTO): Promise<Subscription | Err | Sub
     };
   } catch (err) {
     if (err instanceof ValidationError) {
-      let validationError: SubscriptionValidationError = { nameError: '', emailError: '' };
+      const validationError: SubscriptionValidationError = { nameError: '', emailError: '' };
       err.inner.forEach((item) => {
         if (item.path === 'name') {
           validationError.nameError = item.errors[0];
