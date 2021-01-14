@@ -3,9 +3,9 @@ package handlers
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/services"
-	"github.com/malusev998/dusanmalusev/utils"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/services"
+	"github.com/malusev998/malusev998/utils"
 )
 
 type Contact struct {

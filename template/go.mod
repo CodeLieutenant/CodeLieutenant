@@ -1,4 +1,4 @@
-module github.com/malusev998/dusanmalusev/template
+module github.com/malusev998/malusev998/template
 
 go 1.15
 

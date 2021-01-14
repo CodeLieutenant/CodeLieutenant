@@ -11,7 +11,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/malusev998/dusanmalusev/middleware"
+	"github.com/malusev998/malusev998/middleware"
 )
 
 type TimeoutTest struct {

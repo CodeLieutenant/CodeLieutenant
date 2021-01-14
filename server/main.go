@@ -8,10 +8,10 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 
-	"github.com/malusev998/dusanmalusev/cmd"
-	"github.com/malusev998/dusanmalusev/config"
-	"github.com/malusev998/dusanmalusev/logging"
-	"github.com/malusev998/dusanmalusev/utils"
+	"github.com/malusev998/malusev998/cmd"
+	"github.com/malusev998/malusev998/config"
+	"github.com/malusev998/malusev998/logging"
+	"github.com/malusev998/malusev998/utils"
 )
 
 const (

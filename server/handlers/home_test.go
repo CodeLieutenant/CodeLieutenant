@@ -12,7 +12,7 @@ import (
 	"github.com/gofiber/template/html"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/dusanmalusev/handlers"
+	"github.com/malusev998/malusev998/handlers"
 )
 
 func TestHome(t *testing.T) {

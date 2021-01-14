@@ -6,9 +6,9 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/models"
-	"github.com/malusev998/dusanmalusev/services/email"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/models"
+	"github.com/malusev998/malusev998/services/email"
 )
 
 type subscriptionWithEmail struct {

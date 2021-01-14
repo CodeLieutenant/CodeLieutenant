@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/tests"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/tests"
 )
 
 type SubscribeServiceTest struct {

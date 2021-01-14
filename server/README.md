@@ -1,6 +1,6 @@
 # Website Backend
 
-![Testing](https://github.com/malusev998/dusanmalusev/workflows/Testing/badge.svg)
+![Testing](https://github.com/malusev998/malusev998/workflows/Testing/badge.svg)
 # Features
     -   Fiber v2
     -   Viper

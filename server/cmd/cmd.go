@@ -7,8 +7,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/malusev998/dusanmalusev/config"
-	"github.com/malusev998/dusanmalusev/container"
+	"github.com/malusev998/malusev998/config"
+	"github.com/malusev998/malusev998/container"
 )
 
 var (

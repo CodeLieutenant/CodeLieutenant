@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/tests"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/tests"
 	"github.com/stretchr/testify/suite"
 )
 

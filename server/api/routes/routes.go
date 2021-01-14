@@ -10,9 +10,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 
-	"github.com/malusev998/dusanmalusev/container"
-	"github.com/malusev998/dusanmalusev/handlers"
-	"github.com/malusev998/dusanmalusev/utils"
+	"github.com/malusev998/malusev998/container"
+	"github.com/malusev998/malusev998/handlers"
+	"github.com/malusev998/malusev998/utils"
 )
 
 func RegisterRouter(c *container.Container, app *fiber.App) {

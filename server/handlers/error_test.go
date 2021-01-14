@@ -14,8 +14,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/dusanmalusev/database"
-	"github.com/malusev998/dusanmalusev/handlers"
+	"github.com/malusev998/malusev998/database"
+	"github.com/malusev998/malusev998/handlers"
 )
 
 func setupErrorHandlerApp() (*fiber.App, *validator.Validate) {

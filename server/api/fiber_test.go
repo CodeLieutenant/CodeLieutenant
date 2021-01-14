@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/dusanmalusev/container"
+	"github.com/malusev998/malusev998/container"
 )
 
 func TestFiberRegister(t *testing.T) {

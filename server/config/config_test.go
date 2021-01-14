@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/dusanmalusev/config"
+	"github.com/malusev998/malusev998/config"
 )
 
 func TestConfigWithIOReader(t *testing.T) {

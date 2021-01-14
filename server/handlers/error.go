@@ -2,7 +2,8 @@ package handlers
 
 import (
 	"errors"
-	"github.com/malusev998/dusanmalusev/database"
+
+	"github.com/malusev998/malusev998/database"
 
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"

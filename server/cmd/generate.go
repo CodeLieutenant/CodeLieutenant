@@ -3,8 +3,9 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/malusev998/dusanmalusev/utils"
 	"github.com/spf13/cobra"
+
+	"github.com/malusev998/malusev998/utils"
 )
 
 const (

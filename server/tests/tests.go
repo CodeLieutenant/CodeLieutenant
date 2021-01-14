@@ -11,7 +11,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/malusev998/dusanmalusev/validators"
+	"github.com/malusev998/malusev998/validators"
 )
 
 type DBTestCase struct {

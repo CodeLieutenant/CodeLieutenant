@@ -14,9 +14,9 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/handlers"
-	"github.com/malusev998/dusanmalusev/models"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/handlers"
+	"github.com/malusev998/malusev998/models"
 )
 
 type subscribeServiceMock struct {

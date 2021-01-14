@@ -1,4 +1,4 @@
-module github.com/malusev998/dusanmalusev
+module github.com/malusev998/malusev998
 
 go 1.15
 

@@ -8,8 +8,8 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/leebenson/conform"
 
-	"github.com/malusev998/dusanmalusev/dto"
-	"github.com/malusev998/dusanmalusev/models"
+	"github.com/malusev998/malusev998/dto"
+	"github.com/malusev998/malusev998/models"
 )
 
 type ContactService interface {

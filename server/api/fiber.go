@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/template/html"
 	"github.com/pkg/errors"
 
-	"github.com/malusev998/dusanmalusev/container"
+	"github.com/malusev998/malusev998/container"
 )
 
 type RegisterRoutesHandler func(*container.Container, *fiber.App)

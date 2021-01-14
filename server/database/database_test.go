@@ -5,10 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/malusev998/dusanmalusev/database"
-	"github.com/malusev998/dusanmalusev/tests"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
+
+	"github.com/malusev998/malusev998/database"
+	"github.com/malusev998/malusev998/tests"
 )
 
 type Cfg struct {
