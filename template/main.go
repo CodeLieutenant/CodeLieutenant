@@ -25,5 +25,17 @@ func main() {
 		}, "layouts/main")
 	})
 
+	app.Get("/contact", func(c *fiber.Ctx) error {
+		return c.Render("contact", fiber.Map{
+			"Title": "Dusan Malusev - Contact Page",
+		}, "layouts/main")
+	})
+
+	app.Get("/about", func(c *fiber.Ctx) error {
+		return c.Render("about", fiber.Map{
+			"Title": "Dusan Malusev - About me",
+		}, "layouts/main")
+	})
+
 	log.Fatalf("Error while starting the fiber application: %v", app.Listen(":3000"))
 }

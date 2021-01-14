@@ -1,11 +1,9 @@
 import { object, string, ValidationError } from 'yup';
+import { Err } from './error';
 import { http } from './http';
 
 const Swal = require('sweetalert2');
 
-interface Err {
-  message: string;
-}
 
 interface SubscriptionValidationError {
   nameError: string;
@@ -29,23 +27,22 @@ const schema = object().shape({
   email: string().required().email().max(150),
 });
 
-const subscribe = async (
-  name: string,
-  email: string
-): Promise<Subscription | Err | SubscriptionValidationError> => {
+const subscribe = async (dto: SubscriptionDTO): Promise<Subscription | Err | SubscriptionValidationError> => {
   try {
-    const subscription: SubscriptionDTO = {
-      name,
-      email,
+
+    await schema.validate(dto, { recursive: true, abortEarly: false });
+
+    const res = await http('/subscribe', 'POST', dto);
+
+    const data = await res.json();
+
+    return {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      createdAt: new Date(data.createdAt),
     };
-
-    await schema.validate(subscription, { recursive: true, abortEarly: false });
-
-    const res = await http('/subscribe', 'POST', subscription);
-
-    return await res.json();
   } catch (err) {
-    console.error(err);
     if (err instanceof ValidationError) {
       let validationError: SubscriptionValidationError = { nameError: '', emailError: '' };
       err.inner.forEach((item) => {
@@ -77,7 +74,7 @@ const subscribeFormHandler = (
   const emailError = document.getElementById(emailErrorEl);
 
   //@ts-ignore
-  const res = await subscribe(name.value, email.value);
+  const res = await subscribe({ name: name.value, email: email.value });
   // Server error
   if ('message' in res) {
     Swal.fire({
@@ -112,6 +109,12 @@ const subscribeFormHandler = (
     }, 4000);
     return;
   }
+
+  //@ts-ignore
+  gtag('event', 'subscribe', {
+    event_category: 'subscription',
+    event_label: 'New user subscribed to news letters',
+  })
 
   Swal.fire({
     title: 'Success',
