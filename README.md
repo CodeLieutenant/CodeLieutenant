@@ -15,28 +15,28 @@ building various backend systems including payments, advertizment and other web 
 ## Technology stack:
 
 ### Frontend:
+
+<img alt="React" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />&nbsp;
+<img alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png" />
+
+
+#### Backend:
+
+
+<img alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
+<img alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/c/c.png" />
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
+<img alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/laravel/laravel.png" />
+<img alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />
+<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />
+
+
 <br/>
-<img align="left" alt="React" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />&nbsp;
-<img align="left" alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />
-<img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
-<img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png" />
+</div>
 
-<br />
-
-
-### Backend:
-<br/>
-<img align="left" alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
-<img align="left" alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/c/c.png" />
-<img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
-<img align="left" alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/laravel/laravel.png" />
-<img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />
-<img align="left" alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />
-
-
-<br/>
-
-#### Databases:
+### Databases:
 <br/>
 <img align="left" alt="PostgreSQL" width="48px" src="https://avatars0.githubusercontent.com/u/177543?s=200&v=4" />
 <img align="left" alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />
@@ -48,5 +48,6 @@ building various backend systems including payments, advertizment and other web 
 <br/>
 <br/>
 <br/>
-![](https://github-readme-stats.vercel.app/api?username=malusev998&count_private=true&show_icons=true&theme=onedark&line_height=27)
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=malusev998&hide=css,java,html&theme=tokyonight)
+
+![Github Stats](https://github-readme-stats.vercel.app/api?username=malusev998&count_private=true&show_icons=true&theme=onedark&line_height=27)
+![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=malusev998&hide=css,java,html&theme=tokyonight)
