@@ -1,6 +1,6 @@
 {{define "sidebar"}}
     <aside
-      class="h-screen hidden 2xl:flex flex-col justify-between 2xl:w-1/6 border-r-2 bg-main-dark-700 border-gray-800"
+      class="h-screen z-10 bg-transparent fixed hidden 2xl:flex flex-col justify-between 2xl:w-1/6 border-r-2 border-gray-800"
     >
       <section
         class="flex border-b-2 border-gray-800 flex-col mt-5 pb-4 items-center justify-center"
@@ -15,7 +15,7 @@
           <li class="h-12 hover:bg-blue-nav">
             <a
               class="flex w-full h-full text-gray-400 uppercase text-xl active hover:text-white justify-center items-center"
-              href="#"
+              href="/"
             >
               Home
             </a>
@@ -23,7 +23,7 @@
           <li class="h-12 hover:bg-blue-nav">
             <a
               class="flex w-full h-full text-gray-400 uppercase text-xl hover:text-white justify-center items-center"
-              href="#"
+              href="/about"
             >
               About</a
             >
@@ -45,7 +45,7 @@
           <li class="h-12 hover:bg-blue-nav">
             <a
               class="flex w-full h-full text-gray-400 uppercase text-xl hover:text-white justify-center items-center"
-              href="#"
+              href="/contact"
               >Contact</a
             >
           </li>
