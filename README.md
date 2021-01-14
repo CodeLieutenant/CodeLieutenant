@@ -29,7 +29,7 @@ building various backend systems including payments, advertizment and other web 
 <img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
 <img align="left" alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/laravel/laravel.png" />
 <img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />
-<img alt="Golang" width="48px" src="https://www.huymai.fi/img/featured/golang.png" />
+<img alt="Golang" width="48px" src="https://miro.medium.com/max/500/0*5TChMOpqjoswD1j1.png" />
 
 <br/>
 </div>
