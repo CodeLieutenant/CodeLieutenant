@@ -6,6 +6,7 @@
   --main-dark-900: #10121b;
   --main-dark-700: #191d2b;
   --main-blue: #143055;
+  --main-blue-300: #0863da;
 }
 
 .bg-main-dark-900 {
@@ -38,10 +39,14 @@
   transition: fill 0.6ms ease-in;
 }
 
+.icon-blue path {
+  fill: var(--main-blue-300);
+  transition: fill 0.6ms ease-in;
+}
+
 .icon:hover path {
   fill: #fff;
 }
-
 
 .input {
   @apply border;

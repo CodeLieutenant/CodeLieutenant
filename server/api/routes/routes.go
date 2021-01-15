@@ -34,10 +34,6 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 		ByteRange: true,
 	})
 
-	app.Get("/monitor", monitor.New())
-
-	// app.Use(middleware.Timeout(c.Config.HTTP.Timeout))
-
 	globalGroup := app.Group("")
 
 	globalGroup.Use(csrf.New(csrf.Config{
@@ -50,6 +46,8 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 		CookieHTTPOnly: true,
 		KeyGenerator:   utils.DefaultStringGenerator,
 	}))
+
+	globalGroup.Get("/monitor", monitor.New())
 
 	registerHomeRoutes(c, globalGroup)
 	registerSubscribeRoutes(c, globalGroup)
