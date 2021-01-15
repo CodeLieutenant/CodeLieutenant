@@ -60,23 +60,51 @@
 
         <div class="flex justify-between mt-10 mb-20">
             <div
-                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 w-auto mr-12 p-5 bg-main-dark-700">
-                <h4 class="mt-7 text-xl">Backend Web Development</h4>
+                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 mr-12 p-5 bg-main-dark-700">
+                <svg class="icon-blue" width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>Webpack icon</title>
+                    <path
+                        d="M22.1987 18.498l-9.7699 5.5022v-4.2855l6.0872-3.3338 3.6826 2.117zm.6683-.6026V6.3884l-3.5752 2.0544v7.396zm-21.0657.6026l9.7699 5.5022v-4.2855L5.484 16.3809l-3.6826 2.117zm-.6683-.6026V6.3884l3.5751 2.0544v7.396zm.4183-12.2515l10.0199-5.644v4.1434L5.152 7.6586l-.0489.028zm20.8975 0l-10.02-5.644v4.1434l6.4192 3.5154.0489.028 3.5518-2.0427zm-10.8775 13.096l-6.0056-3.2873V8.9384l6.0054 3.4525v6.349zm.8575 0l6.0053-3.2873V8.9384l-6.0053 3.4525zM5.9724 8.1845l6.0287-3.3015L18.03 8.1845l-6.0288 3.4665z" />
+                </svg>
+                <h4 class="mt-7 text-xl">Backend Development</h4>
                 <div class="w-9 mt-4 mb-9 border border-gray-400"></div>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, quod.</p>
             </div>
             <div
-                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 w-auto mr-12 p-5 bg-main-dark-700">
-                <h4 class="mt-7 text-xl">Mobile App Development</h4>
+                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 mr-12 p-5 bg-main-dark-700">
+                <svg class="icon-blue" width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g data-name="Layer 2">
+                        <g data-name="code">
+                            <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0" />
+                            <path
+                                d="M8.64 5.23a1 1 0 0 0-1.41.13l-5 6a1 1 0 0 0 0 1.27l4.83 6a1 1 0 0 0 .78.37 1 1 0 0 0 .78-1.63L4.29 12l4.48-5.36a1 1 0 0 0-.13-1.41z" />
+                            <path
+                                d="M21.78 11.37l-4.78-6a1 1 0 0 0-1.41-.15 1 1 0 0 0-.15 1.41L19.71 12l-4.48 5.37a1 1 0 0 0 .13 1.41A1 1 0 0 0 16 19a1 1 0 0 0 .77-.36l5-6a1 1 0 0 0 .01-1.27z" />
+                        </g>
+                    </g>
+                </svg>
+                <h4 class="mt-7 text-xl">Frontend Development</h4>
                 <div class="w-9 mt-4 mb-9 border border-gray-400"></div>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, quod.</p>
             </div>
             <div
-                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 w-auto mr-12 p-5 bg-main-dark-700">
+                class="border-t-4 hover:border-blue-500 transition-all border-gray-700 mr-12 p-5 bg-main-dark-700">
+                <svg class="icon-blue" width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16H11V18H13V16Z" fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5 4C5 2.89543 5.89543 2 7 2H17C18.1046 2 19 2.89543 19 4V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V4ZM7 4H17V20H7L7 4Z"
+                        fill="currentColor" />
+                </svg>
                 <h4 class="mt-7 text-xl">Mobile App Development</h4>
                 <div class="w-9 mt-4 mb-9 border border-gray-400"></div>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, quod.</p>
             </div>
         </div>
+        <div class="mt-20"></div>
+        {{template "title" "Technologies"}}
+        {{template "frontend"}}
+        {{template "backend"}}
+        {{template "databases"}}
+
     </section>
 </div>
