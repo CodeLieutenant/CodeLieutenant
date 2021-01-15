@@ -46,16 +46,16 @@ func TestSubscribeSuccess(t *testing.T) {
 	}
 
 	subscribeDto := dto.Subscription{
-		Name:    "Test",
-		Email:   "test@test.com",
+		Name:  "Test",
+		Email: "test@test.com",
 	}
 
 	subscription := models.Subscription{
 		Model: models.Model{
 			ID: 1,
 		},
-		Name:    "Test",
-		Email:   "test@test.com",
+		Name:  "Test",
+		Email: "test@test.com",
 	}
 
 	service.On("Subscribe", mock.Anything, subscribeDto).Return(subscription, nil).Times(2)
@@ -110,8 +110,8 @@ func TestSubscribeInternalError(t *testing.T) {
 	}
 
 	subscribeDto := dto.Subscription{
-		Name:    "Test",
-		Email:   "test@test.com",
+		Name:  "Test",
+		Email: "test@test.com",
 	}
 
 	service.On("Subscribe", mock.Anything, subscribeDto).Return(models.Subscription{}, errors.New("Server error")).Once()

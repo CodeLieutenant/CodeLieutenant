@@ -54,8 +54,8 @@ type (
 	}
 
 	HTTP struct {
-		Address string `json:"address" yaml:"address"`
-		Prefork bool   `json:"prefork" yaml:"prefork"`
+		Address string        `json:"address" yaml:"address"`
+		Prefork bool          `json:"prefork" yaml:"prefork"`
 		Timeout time.Duration `json:"timeout,omitempty" yaml:"timeout,omitempty"`
 	}
 
@@ -81,7 +81,7 @@ type (
 		Locale       string       `json:"locale" yaml:"locale"`
 		Subscription Subscription `json:"subscription,omitempty" yaml:"subscription,omitempty"`
 		Debug        bool         `json:"debug" yaml:"debug"`
-		Key          []byte `json:"-" yaml:"-" mapstructure:"-"`
+		Key          []byte       `json:"-" yaml:"-" mapstructure:"-"`
 	}
 )
 
@@ -147,9 +147,8 @@ func New(name string, paths ...interface{}) (config Config, err error) {
 
 	config.Csrf = Csrf{
 		CookieDomain: viperInstance.GetString("csrf.cookie_domain"),
-		Secure: viperInstance.GetBool("csrf.secure"),
+		Secure:       viperInstance.GetBool("csrf.secure"),
 	}
-
 
 	config.Key, err = base64.RawURLEncoding.DecodeString(viperInstance.GetString("key"))
 

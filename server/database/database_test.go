@@ -76,12 +76,12 @@ func TestConnectToDB_ConnectWithConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	cfg := database.Config{
-		URL:      tests.GetConnectionString(),
-		MinConns: 2,
-		MaxConns: 5,
+		URL:                   tests.GetConnectionString(),
+		MinConns:              2,
+		MaxConns:              5,
 		MaxConnectionLifetime: 2 * time.Millisecond,
 		MaxConnectionIdleTime: 2 * time.Millisecond,
-		HealthCheck: 2 * time.Millisecond,
+		HealthCheck:           2 * time.Millisecond,
 	}
 
 	pool, err := database.ConnectDB(ctx, cfg, log.Logger)

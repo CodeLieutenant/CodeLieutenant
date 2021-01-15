@@ -5,9 +5,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/malusev998/malusev998/config"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
+
+	"github.com/malusev998/malusev998/config"
 )
 
 func TestExecute(t *testing.T) {

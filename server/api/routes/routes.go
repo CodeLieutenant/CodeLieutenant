@@ -48,7 +48,7 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 		CookieDomain:   c.Config.Csrf.CookieDomain,
 		CookieSecure:   c.Config.Csrf.Secure,
 		CookieHTTPOnly: true,
-		KeyGenerator: utils.DefaultStringGenerator,
+		KeyGenerator:   utils.DefaultStringGenerator,
 	}))
 
 	registerHomeRoutes(c, globalGroup)

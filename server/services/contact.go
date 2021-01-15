@@ -17,7 +17,7 @@ type ContactService interface {
 }
 
 type contactService struct {
-	db        *pgxpool.Pool
+	db       *pgxpool.Pool
 	validate *validator.Validate
 }
 
@@ -92,7 +92,7 @@ func (c contactService) AddMessage(ctx context.Context, contactDto dto.Contact) 
 
 func NewContactService(db *pgxpool.Pool, validate *validator.Validate) ContactService {
 	return contactService{
-		db:        db,
+		db:       db,
 		validate: validate,
 	}
 }

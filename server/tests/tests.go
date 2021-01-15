@@ -16,7 +16,7 @@ import (
 
 type DBTestCase struct {
 	Ctx              context.Context
-	DB              *pgxpool.Pool
+	DB               *pgxpool.Pool
 	ConnectionString string
 	suite.Suite
 }
@@ -47,8 +47,6 @@ func GetConnectionString() string {
 
 	return "postgres://postgres:postgres@localhost:5432/dusanmalusev?sslmode=disable"
 }
-
-
 
 func GetValidator() *validator.Validate {
 	english := en.New()
