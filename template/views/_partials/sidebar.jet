@@ -51,6 +51,6 @@
     </ul>
   </nav>
   <footer class="pt-4 pb-4 border-t-2 border-gray-800 text-center">
-    <span class="text-lg">&copy;</span> {{ int32(now().Year) }} Dusan Malusev
+    <span class="text-lg">&copy;</span> {{ now().Year() }} Dusan Malusev
   </footer>
 </aside>
