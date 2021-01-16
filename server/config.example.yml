@@ -49,3 +49,12 @@ http:
   prefork: false
   address: :4000 # HTTP Address
   timeout: 2s
+
+smtp:
+  host: localhost
+  port: 25
+  pool_size: 1
+  number_of_sender: 1
+  from:
+    name: Dusan
+    email: dusan@dusanmalusev.dev

@@ -1,12 +1,10 @@
-{{define "frontend"}}
 <h3 class="text-2xl mt-10">Frontend Technologies</h3>
 <div class="flex flex-wrap mt-10 mb-20">
-    {{template "technology"  "HTML" `<svg width="64" heigth="64" class="icon-blue" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" heigth="64" class="icon-blue" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>HTML5 icon</title>
         <path
             d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" />
-    </svg>`}}
-
+    </svg>
     <div
         class="w-2/12 flex items-center flex-col border-t-4 hover:border-blue-500 transition-all border-gray-700 mb-4 mr-12 p-5 bg-main-dark-700">
         <svg width="64" heigth="64" class="icon-blue" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -79,4 +77,3 @@
         <h4 class="mt-7 text-xl">Vue JS</h4>
     </div>
 </div>
-{{end}}

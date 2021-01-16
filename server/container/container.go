@@ -18,7 +18,6 @@ import (
 	"github.com/malusev998/malusev998/config"
 	"github.com/malusev998/malusev998/database"
 	"github.com/malusev998/malusev998/services"
-	"github.com/malusev998/malusev998/services/email"
 	"github.com/malusev998/malusev998/services/subscribe"
 	"github.com/malusev998/malusev998/utils"
 	"github.com/malusev998/malusev998/validators"
@@ -67,22 +66,22 @@ func (c *Container) GetDatabasePool() *pgxpool.Pool {
 	return c.DB
 }
 
-func (c *Container) GetEmailService() email.Interface {
-	service, err := email.NewEmailService(email.Config{
-		Addr: "",
-		From: "",
-		// Auth:     smtp.PlainAuth(),
-		TLS:      nil,
-		Logger:   c.Logger,
-		PoolSize: 0,
-		Senders:  0,
-	})
-	if err != nil {
-		panic(err.Error())
-	}
+// func (c *Container) GetEmailService() email.Interface {
+// 	service, err := email.NewEmailService(email.Config{
+// 		Addr:     fmt.Sprintf("%s:%d", c.Config.SMTP.Host, c.Config.SMTP.Port),
+// 		From:     fmt.Sprintf("%s <%s>", c.Config.SMTP.From.Name, c.Config.SMTP.From.Email),
+// 		Auth:     smtp.PlainAuth("", c.Config.SMTP.Username, c.Config.SMTP.Password, c.Config.SMTP.Host),
+// 		TLS:      &tls.Config{},
+// 		Logger:   c.Logger,
+// 		PoolSize: 0,
+// 		Senders:  0,
+// 	})
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
 
-	return service
-}
+// 	return service
+// }
 
 func (c *Container) GetContactService() services.ContactService {
 	if c.contactService == nil {
@@ -95,7 +94,7 @@ func (c *Container) GetContactService() services.ContactService {
 func (c *Container) GetSubscriptionService() subscribe.Service {
 	if c.contactService == nil {
 		if c.Config.Subscription.SendEmail {
-			c.subscriptionService = subscribe.NewSubscriptionWithEmail(c.GetEmailService(), c.GetDatabasePool(), c.GetValidator())
+			// c.subscriptionService = subscribe.NewSubscriptionWithEmail(c.GetEmailService(), c.GetDatabasePool(), c.GetValidator())
 		} else {
 			c.subscriptionService = subscribe.NewSubscriptionService(c.GetDatabasePool(), c.GetValidator())
 		}

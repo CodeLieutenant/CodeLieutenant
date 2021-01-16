@@ -1,4 +1,3 @@
-{{define "backend"}}
 <h3 class="text-2xl">Backend Technologies</h3>
 <div class="flex flex-wrap mt-10 mb-20">
     <div
@@ -78,4 +77,3 @@
         <h4 class="mt-7 text-xl">Docker</h4>
     </div>
 </div>
-{{end}}

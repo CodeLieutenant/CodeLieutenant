@@ -1,6 +1,9 @@
+{{extends "layouts/main.jet"}}
+
+{{block embed()}}
 <div class="flex-grow flex justify-center items-center">
     <section class="w-full h-full mt-16 px-5 sm:mt-0 sm:px-0 sm:w-9/12 sm:h-3/4">
-        {{template "title" "Contact me"}}
+        {{include "_partials/title.jet" "Contact me"}}
         <div class="w-full h-full flex flex-col lg:flex-row-reverse pt-20">
             <div class="w-full lg:w-1/2">
                 <div class="w-full h-36 bg-main-dark-700 p-4 mb-4 flex items-center">
@@ -31,8 +34,9 @@
             </div>
             <div class="w-full lg:w-1/2">
                 <h2 class="capitalize text-3xl mb-7">Get in touch</h2>
-                {{template "contact-form"}}
+                {{include "_partials/contact/form.jet"}}
             </div>
         </div>
     </section>
 </div>
+{{end}}

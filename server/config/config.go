@@ -64,8 +64,14 @@ type (
 	}
 
 	SMTP struct {
-		Address  string `json:"address,omitempty" yaml:"address,omitempty"`
-		From     string `json:"from,omitempty" yaml:"from,omitempty"`
+		Host string `json:"address,omitempty" yaml:"address,omitempty"`
+		Port    int    `json:"port,omitempty" yaml:"port,omitempty"`
+		From    struct {
+			Name  string `json:"name,omitempty" yaml:"name,omitempty"`
+			Email string `json:"email,omitempty" yaml:"email,omitempty"`
+		} `json:"from,omitempty" yaml:"from,omitempty"`
+		Username string `json:"username,omitempty" yaml:"username,omitempty"`
+		Password string `json:"password,omitempty" yaml:"password,omitempty"`
 		PoolSize int    `json:"pool_size,omitempty" yaml:"pool_size,omitempty"`
 		Senders  int    `json:"senders,omitempty" yaml:"senders,omitempty"`
 	}
@@ -77,6 +83,7 @@ type (
 		Redis    Redis   `json:"redis" yaml:"redis"`
 		Session  Session `json:"session" yaml:"session"`
 		Csrf     Csrf    `json:"csrf" yaml:"csrf"`
+		SMTP     SMTP    `json:"smtp" yaml:"smtp"`
 
 		Locale       string       `json:"locale" yaml:"locale"`
 		Subscription Subscription `json:"subscription,omitempty" yaml:"subscription,omitempty"`
