@@ -1,6 +1,9 @@
-<div class="flex-grow flex justify-center items-center">
-    <section class="w-full h-full mt-16 px-5 sm:mt-0 sm:px-0 sm:w-8/12 sm:h-3/4">
-        {{template "title" "About me"}}
+{{extends "layouts/main.jet"}}
+
+{{block embed()}}
+<div class="flex-grow flex justify-center pt-20">
+    <section class="w-full h-full px-5 sm:mt-0 sm:px-0 sm:w-9/12 sm:h-3/4">
+        {{include "_partials/title.jet" "About me"}}
         <section class="flex mt-10">
             <div class="w-1/2 mr-12">
                 <img src="/public/img/about-image.jpg" alt="Image">
@@ -56,7 +59,7 @@
         </section>
 
         <div class="mt-20"></div>
-        {{template "title" "Development services"}}
+        {{include "_partials/title.jet" "Development services"}}
 
         <div class="flex justify-between mt-10 mb-20">
             <div
@@ -101,10 +104,11 @@
             </div>
         </div>
         <div class="mt-20"></div>
-        {{template "title" "Technologies"}}
-        {{template "frontend"}}
-        {{template "backend"}}
-        {{template "databases"}}
+        {{include "_partials/title.jet" "Technologies"}}
 
+        {{include "_partials/tehnologies/front.jet"}}
+        {{include "_partials/tehnologies/back.jet"}}
+        {{include "_partials/tehnologies/database.jet"}}
     </section>
 </div>
+{{end}}

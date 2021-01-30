@@ -7,7 +7,7 @@ all: build copy
 dev: install-fiber-cli
 	fiber dev
 
-.PHONY: build-prod
+.PHONY: build
 build:
 	npm install
 	mkdir -p dist/img

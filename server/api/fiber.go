@@ -1,10 +1,11 @@
 package api
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/html"
+	"github.com/malusev998/template/jet"
 	"github.com/pkg/errors"
 
 	"github.com/malusev998/malusev998/container"
@@ -26,7 +27,7 @@ func NewFiberAPI(
 	errorHandler fiber.ErrorHandler,
 	register RegisterRoutesHandler,
 ) Interface {
-	engine := html.New("views", ".html")
+	engine := jet.NewFileSystem(http.Dir("./views"), ".jet")
 	engine.AddFunc("now", time.Now)
 
 	return Fiber{

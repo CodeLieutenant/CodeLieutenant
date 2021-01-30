@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/rs/zerolog"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/require"
 
@@ -68,5 +67,4 @@ func TestFiberListen(t *testing.T) {
 	})
 
 	assert.Nil(f.Listen())
-
 }
