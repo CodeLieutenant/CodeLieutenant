@@ -28,7 +28,9 @@ func NewFiberAPI(
 	register RegisterRoutesHandler,
 ) Interface {
 	engine := jet.NewFileSystem(http.Dir("./views"), ".jet")
-	engine.AddFunc("now", time.Now)
+	engine.
+		Debug(debug).
+		AddFunc("now", time.Now)
 
 	return Fiber{
 		app: fiber.New(fiber.Config{

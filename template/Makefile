@@ -1,5 +1,6 @@
 ENVIRONMENT ?= development
 
+
 .PHONY: all
 all: build copy
 
@@ -7,8 +8,12 @@ all: build copy
 dev: install-fiber-cli
 	fiber dev
 
+.PHONY: template
+template:
+	go run main.go -prerender=true
+
 .PHONY: build
-build:
+build: clean template
 	npm install
 	mkdir -p dist/img
 	mkdir -p views_copy
@@ -35,5 +40,6 @@ copy:
 clean:
 	rm -rf ./views_copy
 	rm -rf ./dist
+	rm -rf *.html
 
 include ../Makefile

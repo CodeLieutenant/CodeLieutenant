@@ -64,6 +64,14 @@ dev: install-fiber-cli install-migrate-cli config.yml
 	make migrate
 	fiber dev
 
+.PHONY: run
+run:
+	@go run main.go server -d true
+
+.PHONY: generate
+generate:
+	@go run main.go generate
+
 .PHONY: clean
 clean:
 ifeq ($(ENVIRONMENT),production)

@@ -1,8 +1,10 @@
 const { readdir, readFile, writeFile } = require('fs').promises;
 const { join } = require('path');
 
-const STYLES_FILE = join(__dirname, 'views_copy', '_partials', 'styles.html');
-const SCRIPTS_FILE = join(__dirname, 'views_copy', '_partials', 'scripts.html');
+const REGEX = /[a-zA-Z0-9]+\.[a-f0-9]+\.(css|js)/;
+
+const STYLES_FILE = join(__dirname, 'views_copy', '_partials', 'styles.jet');
+const SCRIPTS_FILE = join(__dirname, 'views_copy', '_partials', 'scripts.jet');
 
 (async () => {
   try {
@@ -17,7 +19,7 @@ const SCRIPTS_FILE = join(__dirname, 'views_copy', '_partials', 'scripts.html');
     let scripts = scriptsBuffer.toString();
 
     files.forEach((item) => {
-      if (!item.match(/[a-zA-Z0-9]+\.[a-f0-9]+\.(css|js)/)) {
+      if (!item.match(REGEX)) {
         return;
       }
 

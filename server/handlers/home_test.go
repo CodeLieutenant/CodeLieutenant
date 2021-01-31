@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/html"
+	"github.com/malusev998/template/jet"
 	"github.com/stretchr/testify/require"
 
 	"github.com/malusev998/malusev998/handlers"
@@ -19,7 +19,7 @@ func TestHome(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 
-	engine := html.New("../views", ".html")
+	engine := jet.NewFileSystem(http.Dir("../views"), ".jet")
 	engine.AddFunc("now", time.Now)
 
 	app := fiber.New(fiber.Config{
