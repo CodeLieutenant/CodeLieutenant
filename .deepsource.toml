@@ -15,7 +15,7 @@ name = "go"
 enabled = true
 
   [analyzers.meta]
-  import_paths = ["github.com/malusev998/dusanmalusev/server"]
+  import_paths = ["github.com/malusev998/malusev998/server"]
 
 [[analyzers]]
 name = "javascript"
