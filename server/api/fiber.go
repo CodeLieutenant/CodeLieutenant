@@ -5,10 +5,10 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/malusev998/template/jet"
 	"github.com/pkg/errors"
 
-	"github.com/malusev998/malusev998/container"
+	"github.com/malusev998/malusev998/server/container"
+	"github.com/malusev998/template/jet"
 )
 
 type RegisterRoutesHandler func(*container.Container, *fiber.App)

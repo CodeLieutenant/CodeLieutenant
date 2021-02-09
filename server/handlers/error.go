@@ -3,12 +3,12 @@ package handlers
 import (
 	"errors"
 
-	"github.com/malusev998/malusev998/database"
-
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
+
+	"github.com/malusev998/malusev998/server/database"
 )
 
 type message struct {

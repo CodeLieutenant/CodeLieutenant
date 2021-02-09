@@ -15,12 +15,12 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/crypto/blake2b"
 
-	"github.com/malusev998/malusev998/config"
-	"github.com/malusev998/malusev998/database"
-	"github.com/malusev998/malusev998/services"
-	"github.com/malusev998/malusev998/services/subscribe"
-	"github.com/malusev998/malusev998/utils"
-	"github.com/malusev998/malusev998/validators"
+	"github.com/malusev998/malusev998/server/config"
+	"github.com/malusev998/malusev998/server/database"
+	"github.com/malusev998/malusev998/server/services"
+	"github.com/malusev998/malusev998/server/services/subscribe"
+	"github.com/malusev998/malusev998/server/utils"
+	"github.com/malusev998/malusev998/server/validators"
 )
 
 type Container struct {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 const (

@@ -1,6 +1,5 @@
 ENVIRONMENT ?= development
 
-
 .PHONY: all
 all: build copy
 
@@ -40,6 +39,6 @@ copy:
 clean:
 	rm -rf ./views_copy
 	rm -rf ./dist
-	rm -rf *.html
+	rm -rf ./rendered
 
 include ../Makefile

@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/rs/zerolog"
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/malusev998/container"
+	"github.com/malusev998/malusev998/server/container"
 )
 
 func TestFiberRegister(t *testing.T) {

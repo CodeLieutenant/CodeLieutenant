@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 func TestGenerateDefaultLengthString(t *testing.T) {

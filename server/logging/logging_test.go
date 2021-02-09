@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/malusev998/logging"
+	"github.com/malusev998/malusev998/server/logging"
 )
 
 func TestParse(t *testing.T) {

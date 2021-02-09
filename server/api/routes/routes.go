@@ -10,9 +10,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 
-	"github.com/malusev998/malusev998/container"
-	"github.com/malusev998/malusev998/handlers"
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/container"
+	"github.com/malusev998/malusev998/server/handlers"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 func RegisterRouter(c *container.Container, app *fiber.App) {
@@ -62,6 +62,7 @@ func registerHomeRoutes(c *container.Container, app fiber.Router) {
 	home := handlers.Home{}
 
 	app.Get("/", home.Home)
+	app.Get("/about", home.About)
 }
 
 func registerSubscribeRoutes(c *container.Container, app fiber.Router) {
@@ -69,11 +70,13 @@ func registerSubscribeRoutes(c *container.Container, app fiber.Router) {
 		Service: c.GetSubscriptionService(),
 	}
 
-	app.Post("/subscribe", sub.Subscribe).Use(limiter.New(limiter.Config{
+	limitMiddleware := limiter.New(limiter.Config{
 		Max:          1,
 		Storage:      c.GetStorage(0),
 		KeyGenerator: utils.LimiterKeyGenerator(c.Config.Key),
-	}))
+	})
+
+	app.Post("/subscribe", limitMiddleware, sub.Subscribe)
 	app.Get("/unsubscribe", sub.Unsubscribe)
 }
 

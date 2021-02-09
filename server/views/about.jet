@@ -7,12 +7,12 @@
         <section class="flex mt-10">
             <div class="w-full">
                 <h2 class="text-3xl">My name is Dusan Malusev</h2>
-                <p class="text-lg mt-3">I'm backend software engineer from Serbia with relevant experience in
+                <p class="text-lg mt-3">I'm a backend software engineer from Serbia with relevant experience in
                     building various backend systems including payments, advertizment and other web applications. Maily
                     Go
-                    and PHP developer with proven track record in both of them. Proud member of github oranisation <a
+                    and PHP developer with a proven track record in both of them. Proud member of a github oranisation <a
                         class="text-blue-400 hover:text-blue-600 transition-all"
-                        href="https://github.com/BrosSquad">BrosSquad</a>, OpenSource lover and contributor to
+                        href="https://github.com/BrosSquad">BrosSquad</a>, OpenSource lover and a contributor to
                     several projects like <a class="text-blue-400 hover:text-blue-600 transition-all"
                         href="https://gofiber.io">Go Fiber</a> and <a class="text-blue-400"
                         href="https://github.com/malusev998/libsodium-core">Libsodium Core</a>.

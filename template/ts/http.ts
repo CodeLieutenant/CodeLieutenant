@@ -1,4 +1,17 @@
-async function http<T extends { [x: string]: any }>(url: string, method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE', body?: T, opt?: RequestInit): Promise<Response> {
+enum HttpMethod {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    PATCH = 'PATCH',
+    DELETE = 'DELETE',
+}
+
+interface Payload {
+    [x: string]: any;
+}
+
+
+async function http<T extends Payload>(url: string, method: HttpMethod, body?: T, opt?: RequestInit): Promise<Response> {
     if (!opt) {
         opt = {
             method: method,
@@ -40,4 +53,4 @@ async function http<T extends { [x: string]: any }>(url: string, method: 'GET' |
 }
 
 
-export { http };
+export { http, HttpMethod };

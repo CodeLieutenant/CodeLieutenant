@@ -62,7 +62,7 @@ tidy:
 dev: install-fiber-cli install-migrate-cli config.yml
 	docker-compose up -d
 	make migrate
-	fiber dev
+	@make run
 
 .PHONY: run
 run:
@@ -74,12 +74,6 @@ generate:
 
 .PHONY: clean
 clean:
-ifeq ($(ENVIRONMENT),production)
-	rm -rf ../bin
-else ifeq ($(ENVIRONMENT),development)
 	rm -rf ./bin
-else
-	echo "Target ${ENVIRONMENT} is not supported"
-endif
 
 include ../Makefile

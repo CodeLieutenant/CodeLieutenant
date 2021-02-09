@@ -3,7 +3,7 @@ package api
 import (
 	"io"
 
-	"github.com/malusev998/malusev998/container"
+	"github.com/malusev998/malusev998/server/container"
 )
 
 type (

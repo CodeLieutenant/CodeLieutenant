@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"path/filepath"
 	"strconv"
 	"testing"
 	"time"
@@ -12,14 +13,17 @@ import (
 	"github.com/malusev998/template/jet"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/malusev998/handlers"
+	"github.com/malusev998/malusev998/server/handlers"
 )
 
 func TestHome(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 
-	engine := jet.NewFileSystem(http.Dir("../views"), ".jet")
+	abs, _ := filepath.Abs("../views")
+
+	engine := jet.NewFileSystem(http.Dir(abs), ".jet")
+	engine.Debug(true)
 	engine.AddFunc("now", time.Now)
 
 	app := fiber.New(fiber.Config{
@@ -38,10 +42,10 @@ func TestHome(t *testing.T) {
 
 	defer res.Body.Close()
 
-	assert.Equal(http.StatusOK, res.StatusCode)
 	bytes, _ := ioutil.ReadAll(res.Body)
 	str := string(bytes)
 	assert.Contains(str, "Dusan Malusev - Home")
 	year := strconv.Itoa(time.Now().Year())
 	assert.Contains(str, year)
+	assert.Equal(http.StatusOK, res.StatusCode)
 }

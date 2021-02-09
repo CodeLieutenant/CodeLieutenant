@@ -2,10 +2,9 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
-
-	"github.com/malusev998/malusev998/dto"
-	"github.com/malusev998/malusev998/services"
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/dto"
+	"github.com/malusev998/malusev998/server/services"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 type Contact struct {
@@ -13,11 +12,7 @@ type Contact struct {
 }
 
 func (c Contact) Index(ctx *fiber.Ctx) error {
-	return ctx.Render("contact", struct {
-		Title string
-	}{
-		Title: "Contact Page",
-	}, "layouts/main")
+	return ctx.Render("contact", fiber.Map{"Title": "Dusan Malusev - Contact"})
 }
 
 func (c Contact) Message(ctx *fiber.Ctx) error {

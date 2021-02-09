@@ -8,8 +8,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
-	"github.com/malusev998/malusev998/database"
-	"github.com/malusev998/malusev998/tests"
+	"github.com/malusev998/malusev998/server/database"
+	"github.com/malusev998/malusev998/server/tests"
 )
 
 type Cfg struct {

@@ -8,10 +8,10 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 
-	"github.com/malusev998/malusev998/cmd"
-	"github.com/malusev998/malusev998/config"
-	"github.com/malusev998/malusev998/logging"
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/cmd"
+	"github.com/malusev998/malusev998/server/config"
+	"github.com/malusev998/malusev998/server/logging"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 const (
@@ -42,11 +42,11 @@ func main() {
 		logFile,
 	)
 
-	go func(cancel *context.CancelFunc) {
+	go func() {
 		s := <-signalCh
 		logger.Info().Msgf("Shutting down... Signal: %s\n", s)
-		(*cancel)()
-	}(&cancel)
+		cancel()
+	}()
 
 	go func() {
 		<-ctx.Done()

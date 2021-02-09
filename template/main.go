@@ -35,11 +35,17 @@ func renderTemplates(engine *jet.Engine) {
 	}
 
 	wg.Add(len(templates))
+
+	if err := os.Mkdir(filepath.Join(".", "rendered"), 0755); err != nil {
+		log.Fatalf("Error while creating directory: %v", err);
+	}
+
+
 	for _, t := range templates {
 		go func(wg *sync.WaitGroup, t string) {
 			defer wg.Done()
 
-			path := filepath.Join(".", fmt.Sprintf("%s.%s", t, Ext))
+			path := filepath.Join(".", "rendered", fmt.Sprintf("%s.%s", t, Ext))
 
 			f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0755)
 			if err != nil {
@@ -68,6 +74,7 @@ func main() {
 	flag.BoolVar(&render, "prerender", false, "Prerender Templates to HTML")
 	flag.Parse()
 	engine := jet.NewFileSystem(http.Dir("./views"), ".jet")
+	engine.Debug(true)
 	engine.AddFunc("now", time.Now)
 
 	app := fiber.New(fiber.Config{

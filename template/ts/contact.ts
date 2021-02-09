@@ -1,6 +1,6 @@
 import { ValidationError, object, string } from "yup";
 import { Err } from "./error";
-import { http } from "./http";
+import { http, HttpMethod } from "./http";
 
 const Swal = require('sweetalert2');
 
@@ -41,7 +41,7 @@ const contact = async (dto: ContactDto): Promise<Contact | Err | ContactValidati
 
         await schema.validate(dto, { recursive: true, abortEarly: false });
 
-        const res = await http('/contact', 'POST', dto);
+        const res = await http('/contact', HttpMethod.POST, dto);
 
         const data = await res.json();
 

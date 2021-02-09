@@ -11,69 +11,69 @@ import (
 
 type (
 	DB struct {
-		URI                   string        `json:"uri,omitempty" yaml:"uri,omitempty"`
-		Host                  string        `json:"host,omitempty" yaml:"host,omitempty"`
-		User                  string        `json:"user,omitempty" yaml:"user,omitempty"`
-		Password              string        `json:"password,omitempty" yaml:"password,omitempty"`
-		DBName                string        `json:"dbname,omitempty" yaml:"dbname,omitempty"`
-		TimeZone              string        `json:"timezone,omitempty" yaml:"timezone,omitempty"`
-		MaxConns              int32         `json:"max_conns,omitempty" yaml:"max_conns,omitempty"`
-		MinConns              int32         `json:"min_conns,omitempty" yaml:"min_conns,omitempty"`
-		Port                  int32         `json:"port,omitempty" yaml:"port,omitempty"`
-		SSLMode               bool          `json:"sslmode,omitempty" yaml:"sslmode,omitempty"`
-		Lazy                  bool          `json:"lazy,omitempty" yaml:"lazy,omitempty"`
-		HealthCheck           time.Duration `json:"health_check,omitempty" yaml:"health_check,omitempty"`
-		MaxConnectionIdleTime time.Duration `json:"max_connection_idle_time,omitempty" yaml:"max_connection_idle_time,omitempty"`
-		MaxConnectionLifetime time.Duration `json:"max_connection_lifetime,omitempty" yaml:"max_connection_lifetime,omitempty"`
+		URI                   string        `mapstructure:"uri" json:"uri,omitempty" yaml:"uri,omitempty"`
+		Host                  string        `mapstructure:"host" json:"host,omitempty" yaml:"host,omitempty"`
+		User                  string        `mapstructure:"user" json:"user,omitempty" yaml:"user,omitempty"`
+		Password              string        `mapstructure:"password" json:"password,omitempty" yaml:"password,omitempty"`
+		DBName                string        `mapstructure:"dbname" json:"dbname,omitempty" yaml:"dbname,omitempty"`
+		TimeZone              string        `mapstructure:"timezone" json:"timezone,omitempty" yaml:"timezone,omitempty"`
+		MaxConns              int32         `mapstructure:"max_conns" json:"max_conns,omitempty" yaml:"max_conns,omitempty"`
+		MinConns              int32         `mapstructure:"min_conns" json:"min_conns,omitempty" yaml:"min_conns,omitempty"`
+		Port                  int32         `mapstructure:"port" json:"port,omitempty" yaml:"port,omitempty"`
+		SSLMode               bool          `mapstructure:"sslmode" json:"sslmode,omitempty" yaml:"sslmode,omitempty"`
+		Lazy                  bool          `mapstructure:"lazy" json:"lazy,omitempty" yaml:"lazy,omitempty"`
+		HealthCheck           time.Duration `mapstructure:"health_check" json:"health_check,omitempty" yaml:"health_check,omitempty"`
+		MaxConnectionIdleTime time.Duration `mapstructure:"max_connection_idle_time" json:"max_connection_idle_time,omitempty" yaml:"max_connection_idle_time,omitempty"`
+		MaxConnectionLifetime time.Duration `mapstructure:"max_connection_lifetime" json:"max_connection_lifetime,omitempty" yaml:"max_connection_lifetime,omitempty"`
 	}
 
 	Logging struct {
-		Level   string `json:"level" yaml:"level"`
-		File    string `json:"file" yaml:"file"`
-		Console bool   `json:"console" yaml:"console"`
+		Level   string `mapstructure:"level" json:"level,omitempty" yaml:"level,omitempty"`
+		File    string `mapstructure:"file" json:"file,omitempty" yaml:"file,omitempty"`
+		Console bool   `mapstructure:"console" json:"console,omitempty" yaml:"console,omitempty"`
 	}
 
 	Redis struct {
-		Host     string `json:"host,omitempty" yaml:"host,omitempty"`
-		Username string `json:"username,omitempty" yaml:"username,omitempty"`
-		Password string `json:"password,omitempty" yaml:"password,omitempty"`
-		Port     int    `json:"port,omitempty" yaml:"port,omitempty"`
+		Host     string `mapstructure:"host" json:"host,omitempty" yaml:"host,omitempty"`
+		Username string `mapstructure:"username" json:"username,omitempty" yaml:"username,omitempty"`
+		Password string `mapstructure:"password" json:"password,omitempty" yaml:"password,omitempty"`
+		Port     int    `mapstructure:"port" json:"port,omitempty" yaml:"port,omitempty"`
 	}
 
 	Csrf struct {
-		CookieDomain string `json:"cookie_domain,omitempty" yaml:"cookie_domain,omitempty"`
-		Secure       bool   `json:"secure,omitempty" yaml:"secure,omitempty"`
+		CookieDomain string `mapstructure:"cookie_domain" json:"cookie_domain,omitempty" yaml:"cookie_domain,omitempty"`
+		Secure       bool   `mapstructure:"secure" json:"secure,omitempty" yaml:"secure,omitempty"`
 	}
 
 	Session struct {
-		CookieName   string        `json:"cookie_name,omitempty" yaml:"cookie_name,omitempty"`
-		CookieDomain string        `json:"cookie_domain,omitempty" yaml:"cookie_domain,omitempty"`
-		CookiePath   string        `json:"cookie_path,omitempty" yaml:"cookie_path,omitempty"`
-		Secure       bool          `json:"secure,omitempty" yaml:"secure,omitempty"`
-		Expiration   time.Duration `json:"expiration,omitempty" yaml:"expiration,omitempty"`
+		CookieName   string        `mapstructure:"cookie_name" json:"cookie_name,omitempty" yaml:"cookie_name,omitempty"`
+		CookieDomain string        `mapstructure:"cookie_domain" json:"cookie_domain,omitempty" yaml:"cookie_domain,omitempty"`
+		CookiePath   string        `mapstructure:"cookie_path" json:"cookie_path,omitempty" yaml:"cookie_path,omitempty"`
+		Secure       bool          `mapstructure:"secure" json:"secure,omitempty" yaml:"secure,omitempty"`
+		Expiration   time.Duration `mapstructure:"expiration" json:"expiration,omitempty" yaml:"expiration,omitempty"`
 	}
 
 	HTTP struct {
-		Address string        `json:"address" yaml:"address"`
-		Prefork bool          `json:"prefork" yaml:"prefork"`
-		Timeout time.Duration `json:"timeout,omitempty" yaml:"timeout,omitempty"`
+		Address string        `mapstructure:"address" json:"address" yaml:"address"`
+		Prefork bool          `mapstructure:"prefork" json:"prefork" yaml:"prefork"`
+		Timeout time.Duration `mapstructure:"timeout" json:"timeout,omitempty" yaml:"timeout,omitempty"`
 	}
 
 	Subscription struct {
-		SendEmail bool `json:"send_email,omitempty" yaml:"send_email,omitempty"`
+		SendEmail bool `mapstructure:"send_email" json:"send_email,omitempty" yaml:"send_email,omitempty"`
 	}
 
 	SMTP struct {
-		Host string `json:"address,omitempty" yaml:"address,omitempty"`
-		Port    int    `json:"port,omitempty" yaml:"port,omitempty"`
+		Host string `mapstructure:"address" json:"address,omitempty" yaml:"address,omitempty"`
+		Port    int    `mapstructure:"port" json:"port,omitempty" yaml:"port,omitempty"`
 		From    struct {
-			Name  string `json:"name,omitempty" yaml:"name,omitempty"`
-			Email string `json:"email,omitempty" yaml:"email,omitempty"`
-		} `json:"from,omitempty" yaml:"from,omitempty"`
-		Username string `json:"username,omitempty" yaml:"username,omitempty"`
-		Password string `json:"password,omitempty" yaml:"password,omitempty"`
-		PoolSize int    `json:"pool_size,omitempty" yaml:"pool_size,omitempty"`
-		Senders  int    `json:"senders,omitempty" yaml:"senders,omitempty"`
+			Name  string `mapstructure:"name" json:"name,omitempty" yaml:"name,omitempty"`
+			Email string `mapstructure:"email" json:"email,omitempty" yaml:"email,omitempty"`
+		} `mapstructure:"from" json:"from,omitempty" yaml:"from,omitempty"`
+		Username string `mapstructure:"username" json:"username,omitempty" yaml:"username,omitempty"`
+		Password string `mapstructure:"password" json:"password,omitempty" yaml:"password,omitempty"`
+		PoolSize int    `mapstructure:"pool_size" json:"pool_size,omitempty" yaml:"pool_size,omitempty"`
+		Senders  int    `mapstructure:"senders" json:"senders,omitempty" yaml:"senders,omitempty"`
 	}
 
 	Config struct {

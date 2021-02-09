@@ -4,3 +4,5 @@ dist/
 .vscode/
 views_copy
 *.html
+!*.jet.html
+rendered/

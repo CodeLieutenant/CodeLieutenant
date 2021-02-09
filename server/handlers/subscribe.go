@@ -5,9 +5,9 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/malusev998/malusev998/dto"
-	"github.com/malusev998/malusev998/services/subscribe"
-	"github.com/malusev998/malusev998/utils"
+	"github.com/malusev998/malusev998/server/dto"
+	"github.com/malusev998/malusev998/server/services/subscribe"
+	"github.com/malusev998/malusev998/server/utils"
 )
 
 type Subscribe struct {

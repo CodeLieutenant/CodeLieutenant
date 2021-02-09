@@ -3,10 +3,10 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/malusev998/malusev998/api"
-	"github.com/malusev998/malusev998/api/routes"
-	"github.com/malusev998/malusev998/container"
-	"github.com/malusev998/malusev998/handlers"
+	"github.com/malusev998/malusev998/server/api"
+	"github.com/malusev998/malusev998/server/api/routes"
+	"github.com/malusev998/malusev998/server/container"
+	"github.com/malusev998/malusev998/server/handlers"
 )
 
 type server struct {
