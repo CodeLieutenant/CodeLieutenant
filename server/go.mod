@@ -3,7 +3,6 @@ module github.com/malusev998/malusev998/server
 go 1.15
 
 require (
-	github.com/PuerkitoBio/goquery v1.6.1 // indirect
 	github.com/andybalholm/brotli v1.0.1 // indirect
 	github.com/go-playground/locales v0.13.0
 	github.com/go-playground/universal-translator v0.17.0
@@ -11,7 +10,7 @@ require (
 	github.com/go-redis/redis/v8 v8.5.0 // indirect
 	github.com/gofiber/fiber/v2 v2.5.0
 	github.com/gofiber/storage/redis v0.0.0-20201214031209-9829073dd76f
-	github.com/gofiber/template v1.6.6
+	github.com/gofiber/template v1.6.6 // indirect
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/jackc/pgmock v0.0.0-20201204152224-4fe30f7445fd // indirect
