@@ -16,6 +16,7 @@ enabled = true
 
   [analyzers.meta]
   import_paths = ["github.com/malusev998/malusev998/server"]
+  import_root = "github.com/malusev998/malusev998/"
 
 [[analyzers]]
 name = "javascript"
