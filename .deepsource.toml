@@ -1,13 +1,13 @@
 version = 1
 
 test_patterns = [
-    "server/**/test_*.go",
+    "server/**/*_test.go",
     "template/tests/**/*.test.js"
 ]
 
 exclude_patterns = [
-    "database/migrations/**",
-    "public/**"
+    "server/database/migrations/**",
+    "server/public/**"
 ]
 
 [[analyzers]]

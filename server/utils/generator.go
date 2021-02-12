@@ -12,16 +12,16 @@ func DefaultStringGenerator() string {
 }
 
 // UniqueStringGenerator - Generates crypto secure base64 encoded string
-func UniqueStringGenerator(len int) string {
-	return base64.RawURLEncoding.EncodeToString(UniqueBytesGenerator(len))
+func UniqueStringGenerator(length int) string {
+	return base64.RawURLEncoding.EncodeToString(UniqueBytesGenerator(length))
 }
 
 // UniqueBytesGenerator generates crypto random bytes
-func UniqueBytesGenerator(len int) []byte {
-	bytes := make([]byte, len)
+func UniqueBytesGenerator(length int) []byte {
+	bytes := make([]byte, length)
 	n, err := rand.Read(bytes)
 
-	if err != nil || n != len {
+	if err != nil || n != length {
 		return nil
 	}
 
