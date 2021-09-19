@@ -41,7 +41,7 @@ func TestConnectToDB_ConnectWithConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	cfg := database.Config{
-		URL:                   tests.GetConnectionString("dusanmalusev"),
+		URL:                   tests.GetURNConnectionString("dusanmalusev"),
 		MinConns:              2,
 		MaxConns:              5,
 		MaxConnectionLifetime: 2 * time.Millisecond,

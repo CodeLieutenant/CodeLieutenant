@@ -6,10 +6,13 @@ GOPATH ?= ${HOME}/go
 DOCKER ?= 0
 
 ifeq ($(DOCKER),0)
-DATABASE_URL ?= "postgres://postgres:postgres@localhost:5432/dusanmalusev?sslmode=disable"
+DATABASE_URL ?= "postgres://postgres:postgres@localhost:5432/?sslmode=disable"
+POSTGRES_URL ?= "user=postgres host=localhost password=postgres port=5432 sslmode=disable TimeZone=UTC"
 else
-DATABASE_URL ?= "postgres://postgres:postgres@postgres:5432/dusanmalusev?sslmode=disable"
+DATABASE_URL ?= "postgres://postgres:postgres@postgres:5432/?sslmode=disable"
+POSTGRES_URL ?= "user=postgres host=postgres password=postgres port=5432 sslmode=disable TimeZone=UTC"
 endif
+
 
 CC = gcc
 CXX = g++
@@ -39,9 +42,9 @@ endif
 .PHONY: test
 test:
 ifeq ($(RACE), 1)
-	DB_CONN=${DATABASE_URL} go test ./... -race -covermode=atomic -coverprofile=coverage.txt -timeout 5m
+	CC=gcc CXX=g++ DB_CONN_URN=$(DATABASE_URL) DB_CONN=$(POSTGRES_URL) go test ./... -race -covermode=atomic -coverprofile=coverage.txt -timeout 5m
 else
-	DB_CONN=${DATABASE_URL} go test ./... -covermode=atomic -coverprofile=coverage.txt -timeout 1m
+	CC=gcc CXX=g++ DB_CONN_URN=$(DATABASE_URL) DB_CONN=$(POSTGRES_URL) go test ./... -covermode=atomic -coverprofile=coverage.txt -timeout 1m
 endif
 
 config.yml:
@@ -108,4 +111,3 @@ install-fiber-cli:
 ifneq ($(findstring fiber,$(shell ls ${GOPATH}/bin)),fiber)
 	cd ${GOPATH} && go get -u github.com/gofiber/cli/fiber
 endif
-

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
+	"net/url"
 	"os"
 	ospath "path"
 	"path/filepath"
@@ -29,23 +30,21 @@ const (
 type DropDatabase func()
 
 func GetConnectionString(database string) string {
-	connectionString := os.Getenv("DB_CONN")
+	connectionString := os.Getenv(DBEnvironmentalVariable)
 
 	if connectionString != "" {
 		if database != "" {
-			config, err := pgxpool.ParseConfig(connectionString)
-			if err != nil {
-				return ""
-			}
-
-			config.ConnConfig.Database = database
-			return config.ConnString()
+			return fmt.Sprintf(
+				"%s dbname=%s",
+				connectionString,
+				database,
+			)
 		}
 
 		return connectionString
 	}
 
-	if database == "" {
+	if database != "" {
 		return fmt.Sprintf(
 			"user=postgres password=postgres host=localhost port=5432 dbname=%s",
 			database,
@@ -55,18 +54,26 @@ func GetConnectionString(database string) string {
 	return "user=postgres password=postgres host=localhost port=5432"
 }
 
+const (
+	DBURNEnvironmentalVariable        = "DB_CONN_URN"
+	MigrationDirEnvironmentalVariable = "MIGRATIONS_DIR"
+	DBEnvironmentalVariable           = "DB_CONN"
+)
+
 func GetURNConnectionString(database string) string {
-	connectionString := os.Getenv("DB_CONN")
+	connectionString := os.Getenv(DBURNEnvironmentalVariable)
 
 	if connectionString != "" {
 		if database != "" {
-			config, err := pgxpool.ParseConfig(connectionString)
+			u, err := url.Parse(connectionString)
+
 			if err != nil {
-				return ""
+				panic(err)
 			}
 
-			config.ConnConfig.Database = database
-			return config.ConnString()
+			u.Path = database
+
+			return u.String()
 		}
 
 		return connectionString
@@ -98,7 +105,7 @@ func createDatabaseName() string {
 }
 
 func findMigrations() string {
-	env := os.Getenv("MIGRATIONS_DIR")
+	env := os.Getenv(MigrationDirEnvironmentalVariable)
 
 	if env != "" {
 		return env
