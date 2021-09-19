@@ -38,7 +38,7 @@ func newGenerateKeyCommand() *cobra.Command {
 
 func (g *genkey) execute(cmd *cobra.Command, args []string) error {
 	if g.length < MinLength || g.length > MaxLength {
-		return fmt.Errorf("Length must be between %d and %d", MinLength, MaxLength)
+		return fmt.Errorf("length must be between %d and %d", MinLength, MaxLength)
 	}
 
 	str := utils.UniqueStringGenerator(int(g.length))

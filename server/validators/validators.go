@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-var alphaNumericUnicodeSpaceRegex = regexp.MustCompile("^[\\p{L}\\p{N}\\s]+$")
+var alphaNumericUnicodeSpaceRegex = regexp.MustCompile(`^[\p{L}\p{N}\s]+$`)
 
 func AlphaNumericUnicodeSpaceTranslationRegister(v *validator.Validate, trans ut.Translator) error {
 	validate := func(field validator.FieldLevel) bool {
