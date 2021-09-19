@@ -1,5 +1,5 @@
 GOPATH ?= ${HOME}/go
-
+MIGRATE_TAG ?= v4.14.1
 .PHONY: git-setup
 git-setup:
 	git config user.name GitHub

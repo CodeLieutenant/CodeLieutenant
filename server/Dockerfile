@@ -1,13 +1,22 @@
-FROM brossquad/fiber-dev:1.0.3 as builder
-COPY . /app
+FROM golang:1.17
+
+COPY . /build
+
+RUN cd /build \
+    && apt install gcc g++ make -y \
+    && make -j build DOCKER=1 \
+    && mkdir -p /var/log/app \
+    && mkdir -p /etc/app \
+    && rm -rf ./bin/migrations \
+    && rm -rf ./bin/views \
+    && mv config.yml /etc/app/config.yml \
+    && cp -r ./bin /app
+
 WORKDIR /app
-RUN task build-prod
 
+ENV DEBUG=false
+ENV LOG_LEVEL=debug
 
-FROM alpine:3.12 as production
-ARG PORT=4000
-COPY --from=builder /app/build /app
-WORKDIR /app
-EXPOSE ${PORT}
-CMD ["./app"]
+EXPOSE 8000
 
+CMD ["./dusanmalusev", "--level", "${LOG_LEVEL}", "--config", "/etc/app/config.yml", "server", "--debug", "${DEBUG}", "--address", "0.0.0.0:8000"]

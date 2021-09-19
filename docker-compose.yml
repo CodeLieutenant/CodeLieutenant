@@ -1,27 +1,42 @@
 version: '3.7'
 services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      DEBUG: 'true'
+      LOG_LEVEL: 'trace'
+    volumes:
+      - './server/log:/var/log/app'
+      - './server/config.docker.yml:/etc/app/config.yml'
+    restart: unless-stopped
+    ports:
+      - '8000:8000'
+    networks:
+      - net
   postgres:
-    image: postgres:12-alpine
+    image: postgres:13-alpine
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: dusanmalusev
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - 5432:5432
+      - '5432:5432'
     networks:
-      - dusanmalusev
+      - net
     volumes:
       - postgres:/var/lib/postgresql/data/pgdata
   pgadmin:
     image: dpage/pgadmin4
     networks:
-      - dusanmalusev
+      - net
     environment:
         PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
         PGADMIN_DEFAULT_PASSWORD: "test123!"
     ports:
-        - "5000:80"
+        - '5000:80'
     depends_on:
         - postgres
   redis:
@@ -29,21 +44,21 @@ services:
     volumes:
       - redis:/data
     ports:
-      - 6379:6379
+      - '6379:6379'
     networks:
-      - dusanmalusev
+      - net
   redislabs:
     image: redislabs/redisinsight:1.8.3
     ports:
-      -  8001:8001
+      -  '8001:8001'
     depends_on:
       - redis
     volumes:
       - redis:/db
     networks:
-      - dusanmalusev
+      - net
 networks:
-  dusanmalusev:
+  net:
     driver: bridge
 volumes:
   postgres:

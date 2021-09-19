@@ -1,0 +1,63 @@
+debug: true # Debug enables PProf
+locale: en
+
+key: ZahOQ7DL6hVLYV8YQGlG2dYbDGwkocwR
+
+frontend_redirect_url: http://localhost:4000/unsubscribe-front
+
+postgres:
+  host: postgres
+  user: postgres
+  password: postgres
+  dbname: dusanmalusev
+  port: 5432
+  timezone: UTC
+  sslmode: false
+  max_connection_lifetime: 1h
+  max_connection_idle_time: 24h
+  health_check: 15m
+  max_conns: 20
+  min_conns: 5
+  lazy: true
+
+subscription:
+  send_email_on_subscription: true
+  send_email_on_unsubscription: true
+
+redis:
+  host: redis
+  port: 6379
+  username:
+  password:
+
+session:
+  cookie_name: dusanmalusev_session
+  cookie_domain: localhost
+  cookie_path:
+  secure: false
+  expiration: 24h
+
+csrf:
+  cookie_domain: localhost
+  secure: false
+
+# supported logging - debug, info, warning, error
+logging:
+  level: info # Logger instance used in API
+  console: true # Console logging
+  file: /var/log/app/server.log
+
+http:
+  prefork: false
+  address: 0.0.0.0:4000 # HTTP Address
+  timeout: 2s
+  baseurl: http://localhost:4000
+
+smtp:
+  host: localhost
+  port: 25
+  pool_size: 1
+  number_of_sender: 1
+  from:
+    name: Dusan
+    email: dusan@dusanmalusev.dev

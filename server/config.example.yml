@@ -3,6 +3,8 @@ locale: en
 
 key: ZahOQ7DL6hVLYV8YQGlG2dYbDGwkocwR
 
+frontend_redirect_url: http://localhost:4000/unsubscribe-front
+
 postgres:
   host: localhost
   user: postgres
@@ -49,6 +51,7 @@ http:
   prefork: false
   address: :4000 # HTTP Address
   timeout: 2s
+  baseurl: http://localhost:4000
 
 smtp:
   host: localhost

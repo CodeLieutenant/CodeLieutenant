@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -37,7 +36,7 @@ func TestSignUrl(t *testing.T) {
 
 func TestVerify(t *testing.T) {
 	t.Parallel()
-	ass := assert.New(t)
+	assert := require.New(t)
 	key := []byte("Test Key")
 	h := hmac.New(sha512.New512_256, key)
 	tests := []struct {
@@ -60,11 +59,11 @@ func TestVerify(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			if test.valid {
-				ass.NoError(NewURLSigner(h).Verify(test.url))
+				assert.NoError(NewURLSigner(h).Verify(test.url))
 			} else {
 				err := NewURLSigner(h).Verify(test.url)
-				ass.Error(err)
-				ass.Contains(err.Error(), "signature is invalid")
+				assert.Error(err)
+				assert.Contains(err.Error(), "signature is invalid")
 			}
 		})
 	}

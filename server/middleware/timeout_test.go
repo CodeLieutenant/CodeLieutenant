@@ -1,76 +1,79 @@
+//go:build !race
 // +build !race
 
-package middleware_test
+package middleware
 
 import (
 	"net/http"
-	"net/http/httptest"
 	"testing"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/stretchr/testify/suite"
-
-	"github.com/malusev998/malusev998/server/middleware"
+	"github.com/stretchr/testify/require"
 )
 
-type TimeoutTest struct {
-	suite.Suite
-	duration, sleep time.Duration
-	httpStatus      int
-	app             *fiber.App
-}
+func TestTimeout_Excited(t *testing.T) {
+	t.Parallel()
+	assert := require.New(t)
+	app := fiber.New()
 
-func (t *TimeoutTest) SetupTest() {
-	t.app = fiber.New()
-	t.app.Get("/wrapper", middleware.Timeout(t.duration, func(c *fiber.Ctx) error {
-		time.Sleep(t.sleep)
-		c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "Everything ok"})
-		return nil
-	}))
-	t.app.Use(middleware.Timeout(t.duration))
-	t.app.Get("/", func(c *fiber.Ctx) error {
-		time.Sleep(t.sleep)
-		c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "Everything ok"})
+	app.Use(Timeout(2 * time.Millisecond))
+
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		time.Sleep(5 * time.Millisecond)
 		return nil
 	})
 
+	req, _ := http.NewRequest(fiber.MethodGet, "/", nil)
+
+	res, err := app.Test(req)
+
+	assert.NoError(err)
+	assert.Equal(fiber.StatusRequestTimeout, res.StatusCode)
 }
 
-func (t *TimeoutTest) TestMiddleware() {
-	t.T().Parallel()
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
-	res, err := t.app.Test(req)
-
-	t.Nil(err)
-	t.NotNil(res)
-	t.Equal(t.httpStatus, res.StatusCode)
-}
-
-func (t *TimeoutTest) TestHandlerWrapper() {
-	t.T().Parallel()
-	req := httptest.NewRequest(http.MethodGet, "/wrapper", nil)
-	res, err := t.app.Test(req)
-
-	t.Nil(err)
-	t.NotNil(res)
-	t.Equal(t.httpStatus, res.StatusCode)
-}
-
-func TestTimeoutSuccess(t *testing.T) {
+func TestTimeout_Expire(t *testing.T) {
 	t.Parallel()
-	suite.Run(t, &TimeoutTest{
-		duration:   20 * time.Millisecond,
-		sleep:      10 * time.Millisecond,
-		httpStatus: http.StatusOK,
+
+	assert := require.New(t)
+
+	app := fiber.New()
+
+	app.Use(Timeout(2 * time.Millisecond))
+
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return ctx.SendStatus(fiber.StatusOK)
 	})
+
+	req, _ := http.NewRequest(fiber.MethodGet, "/", nil)
+
+	res, err := app.Test(req)
+
+	assert.NoError(err)
+	assert.Equal(fiber.StatusOK, res.StatusCode)
 }
 
-func TestTimeoutExpired(t *testing.T) {
+func TestTimeout_Cancel(t *testing.T) {
 	t.Parallel()
-	suite.Run(t, &TimeoutTest{
-		duration:   20 * time.Millisecond,
-		sleep:      50 * time.Millisecond,
-		httpStatus: http.StatusRequestTimeout,
+	assert := require.New(t)
+	app := fiber.New()
+
+	app.Use(Context)
+	app.Use(Timeout(2 * time.Millisecond))
+
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		<-ctx.UserContext().Done()
+		assert.True(true)
+
+		<-time.After(5 * time.Millisecond)
+
+		return nil
 	})
+
+	req, _ := http.NewRequest(fiber.MethodGet, "/", nil)
+
+	res, err := app.Test(req)
+
+	assert.NoError(err)
+	assert.Equal(fiber.StatusRequestTimeout, res.StatusCode)
 }

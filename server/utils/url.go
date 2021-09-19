@@ -9,16 +9,20 @@ import (
 	"net/url"
 )
 
-type URLSigner interface {
-	Sign(string, ...interface{}) (string, error)
-	Verify(string) error
-}
+var ErrInvalidUrl = errors.New("signature is invalid")
+
+type (
+	URLSigner interface {
+		Sign(string, ...interface{}) (string, error)
+		Verify(string) error
+	}
+)
 
 type signer struct {
 	h hash.Hash
 }
 
-func NewURLSigner(h hash.Hash) signer {
+func NewURLSigner(h hash.Hash) URLSigner {
 	return signer{
 		h: h,
 	}
@@ -70,7 +74,7 @@ func (s signer) Verify(urlStr string) error {
 	calculated := s.h.Sum(UnsafeBytes(str))
 
 	if !hmac.Equal(calculated, bytes) {
-		return errors.New("signature is invalid")
+		return ErrInvalidUrl
 	}
 
 	return nil

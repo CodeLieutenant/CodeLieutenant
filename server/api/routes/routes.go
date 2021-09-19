@@ -9,18 +9,27 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/pprof"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
+	"github.com/malusev998/malusev998/server/middleware"
 
 	"github.com/malusev998/malusev998/server/container"
 	"github.com/malusev998/malusev998/server/handlers"
 	"github.com/malusev998/malusev998/server/utils"
 )
 
+const (
+	RequestIdKey    = "request_id"
+	CsrfTokenCookie = "csrf_cookie"
+	CsrfTokenKey    = "csrf_token"
+)
+
 func RegisterRouter(c *container.Container, app *fiber.App) {
+	app.Use(middleware.Context)
+
 	app.Use(requestid.New(requestid.Config{
 		Generator: func() string {
-			return utils.UniqueStringGenerator(64)
+			return utils.UniqueStringGenerator(32)
 		},
-		ContextKey: "request_id",
+		ContextKey: RequestIdKey,
 	}), recover.New(), compress.New(compress.Config{
 		Next:  nil,
 		Level: compress.LevelBestSpeed,
@@ -38,9 +47,9 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 
 	globalGroup.Use(csrf.New(csrf.Config{
 		KeyLookup:      "cookie:csrf_cookie",
-		ContextKey:     "csrf_token",
+		ContextKey:     CsrfTokenKey,
 		Storage:        c.GetStorage(0),
-		CookieName:     "csrf_cookie",
+		CookieName:     CsrfTokenCookie,
 		CookieDomain:   c.Config.Csrf.CookieDomain,
 		CookieSecure:   c.Config.Csrf.Secure,
 		CookieHTTPOnly: true,
@@ -49,7 +58,6 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 
 	globalGroup.Get("/monitor", monitor.New())
 
-	registerHomeRoutes(c, globalGroup)
 	registerSubscribeRoutes(c, globalGroup)
 	registerContactRoutes(c, globalGroup.Group("/contact"))
 
@@ -58,16 +66,12 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 	})
 }
 
-func registerHomeRoutes(c *container.Container, app fiber.Router) {
-	home := handlers.Home{}
-
-	app.Get("/", home.Home)
-	app.Get("/about", home.About)
-}
-
 func registerSubscribeRoutes(c *container.Container, app fiber.Router) {
 	sub := handlers.Subscribe{
-		Service: c.GetSubscriptionService(),
+		BaseURL: "",
+		Signer: c.GetURLSigner(),
+		FrontendRedirectURL: "",
+		SubscriptionService: c.GetSubscriptionService(),
 	}
 
 	limitMiddleware := limiter.New(limiter.Config{
@@ -85,6 +89,5 @@ func registerContactRoutes(c *container.Container, router fiber.Router) {
 		Service: c.GetContactService(),
 	}
 
-	router.Get("/", contact.Index)
 	router.Post("/", contact.Message)
 }

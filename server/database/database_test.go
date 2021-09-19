@@ -8,52 +8,17 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
+	dbconfigmock "github.com/malusev998/malusev998/server/__mocks__/database"
 	"github.com/malusev998/malusev998/server/database"
 	"github.com/malusev998/malusev998/server/tests"
 )
-
-type Cfg struct {
-	conn string
-}
-
-func (Cfg) LazyConnect() bool {
-	return true
-}
-
-func (Cfg) MaxConnLifetime() time.Duration {
-	return 2 * time.Millisecond
-}
-
-func (Cfg) MaxConnIdleTime() time.Duration {
-	return 2 * time.Millisecond
-}
-
-func (Cfg) HealthCheckPeriod() time.Duration {
-	return 2 * time.Millisecond
-}
-
-func (Cfg) MaxConnections() int32 {
-	return 5
-}
-
-func (Cfg) MinConnections() int32 {
-	return 2
-}
-
-func (c Cfg) String() string {
-	if c.conn == "" {
-		return tests.GetConnectionString()
-	}
-
-	return c.conn
-}
 
 func TestConnectToDB_Success(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	pool, err := database.ConnectDB(ctx, Cfg{}, log.Logger)
+	pool, err := database.ConnectDB(ctx, dbconfigmock.Cfg{}, log.Logger)
 
 	assert.NoError(err)
 	assert.NotNil(pool)
@@ -64,7 +29,7 @@ func TestConnectToDB_ConnectionStringError(t *testing.T) {
 	assert := require.New(t)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	pool, err := database.ConnectDB(ctx, Cfg{conn: "Error string"}, log.Logger)
+	pool, err := database.ConnectDB(ctx, dbconfigmock.Cfg{Conn: "Error string"}, log.Logger)
 
 	assert.Error(err)
 	assert.Nil(pool)
@@ -76,7 +41,7 @@ func TestConnectToDB_ConnectWithConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	cfg := database.Config{
-		URL:                   tests.GetConnectionString(),
+		URL:                   tests.GetConnectionString("dusanmalusev"),
 		MinConns:              2,
 		MaxConns:              5,
 		MaxConnectionLifetime: 2 * time.Millisecond,

@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/base64"
-	"fmt"
 	"io"
 	"time"
 
@@ -54,9 +53,10 @@ type (
 	}
 
 	HTTP struct {
-		Address string        `mapstructure:"address" json:"address" yaml:"address"`
-		Prefork bool          `mapstructure:"prefork" json:"prefork" yaml:"prefork"`
-		Timeout time.Duration `mapstructure:"timeout" json:"timeout,omitempty" yaml:"timeout,omitempty"`
+		Address string        `mapstructure:"address,omitempty" json:"address,omitempty" yaml:"address,omitempty"`
+		Prefork bool          `mapstructure:"prefork,omitempty" json:"prefork,omitempty" yaml:"prefork,omitempty"`
+		Timeout time.Duration `mapstructure:"timeout,omitempty" json:"timeout,omitempty" yaml:"timeout,omitempty"`
+		BaseURL string        `mapstructure:"base_url,omitempty" json:"base_url,omitempty" yaml:"base_url,omitempty"`
 	}
 
 	Subscription struct {
@@ -65,8 +65,8 @@ type (
 
 	SMTP struct {
 		Host string `mapstructure:"address" json:"address,omitempty" yaml:"address,omitempty"`
-		Port    int    `mapstructure:"port" json:"port,omitempty" yaml:"port,omitempty"`
-		From    struct {
+		Port int    `mapstructure:"port" json:"port,omitempty" yaml:"port,omitempty"`
+		From struct {
 			Name  string `mapstructure:"name" json:"name,omitempty" yaml:"name,omitempty"`
 			Email string `mapstructure:"email" json:"email,omitempty" yaml:"email,omitempty"`
 		} `mapstructure:"from" json:"from,omitempty" yaml:"from,omitempty"`
@@ -85,10 +85,11 @@ type (
 		Csrf     Csrf    `json:"csrf" yaml:"csrf"`
 		SMTP     SMTP    `json:"smtp" yaml:"smtp"`
 
-		Locale       string       `json:"locale" yaml:"locale"`
-		Subscription Subscription `json:"subscription,omitempty" yaml:"subscription,omitempty"`
-		Debug        bool         `json:"debug" yaml:"debug"`
-		Key          []byte       `json:"-" yaml:"-" mapstructure:"-"`
+		FrontendRedirectURL string       `json:"frontend_redirect_url,omitempty" yaml:"frontend_redirect_url,omitempty"`
+		Locale              string       `json:"locale" yaml:"locale"`
+		Subscription        Subscription `json:"subscription,omitempty" yaml:"subscription,omitempty"`
+		Debug               bool         `json:"debug" yaml:"debug"`
+		Key                 []byte       `json:"-" yaml:"-" mapstructure:"-"`
 	}
 )
 
@@ -113,8 +114,6 @@ func New(name string, paths ...interface{}) (config Config, err error) {
 		}
 	}
 
-	fmt.Println(viperInstance.GetString("postgres.uri"))
-
 	err = viperInstance.Unmarshal(&config)
 
 	if err != nil {
@@ -125,6 +124,7 @@ func New(name string, paths ...interface{}) (config Config, err error) {
 		Address: viperInstance.GetString("http.address"),
 		Prefork: viperInstance.GetBool("http.prefork"),
 		Timeout: viperInstance.GetDuration("http.timeout"),
+		BaseURL: viperInstance.GetString("http.baseurl"),
 	}
 
 	config.Database = DB{
@@ -158,6 +158,6 @@ func New(name string, paths ...interface{}) (config Config, err error) {
 	}
 
 	config.Key, err = base64.RawURLEncoding.DecodeString(viperInstance.GetString("key"))
-
+	config.FrontendRedirectURL = viperInstance.GetString("frontend_redirect_url")
 	return
 }

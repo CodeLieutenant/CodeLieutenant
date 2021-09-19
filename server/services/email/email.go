@@ -3,7 +3,7 @@ package email
 import (
 	"context"
 	"crypto/tls"
-	"io"
+	"github.com/malusev998/malusev998/server/services"
 	"net/smtp"
 	"time"
 
@@ -29,16 +29,9 @@ type (
 		pool    *email.Pool
 		emailCh chan *email.Email
 	}
-
-	Interface interface {
-		io.Closer
-		NewEmail() *email.Email
-		Send(to []string, subject string, body []byte) error
-		SendEmail(*email.Email) error
-	}
 )
 
-func NewEmailService(config Config) (Interface, error) {
+func NewEmailService(config Config) (services.EmailService, error) {
 	if config.Senders == 0 {
 		config.Senders = 1
 	}
