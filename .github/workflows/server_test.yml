@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        go: ['1.15']
+        go: ['1.17']
     name: Test
     steps:
       - uses: actions/setup-go@v2
