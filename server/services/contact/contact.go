@@ -19,8 +19,8 @@ type service struct {
 }
 
 func New(repo repositories.Contact, validate *validator.Validate) services.ContactService {
-	return service {
-		repo: repo,
+	return service{
+		repo:     repo,
 		validate: validate,
 	}
 }

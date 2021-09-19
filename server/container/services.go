@@ -30,7 +30,6 @@ func (c *Container) GetSubscriptionService() services.SubscribeService {
 	return c.subscriptionService
 }
 
-
 // func (c *Container) GetEmailService() email.Interface {
 // 	service, err := email.NewEmailService(email.Config{
 // 		Addr:     fmt.Sprintf("%s:%d", c.Config.SMTP.Host, c.Config.SMTP.Port),

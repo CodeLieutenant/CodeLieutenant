@@ -21,7 +21,7 @@ const (
 )
 
 type repo struct {
-	db       *pgxpool.Pool
+	db *pgxpool.Pool
 }
 
 func (s repo) Insert(ctx context.Context, sub dto.Subscription) (models.Subscription, error) {
@@ -104,6 +104,6 @@ func (s repo) Remove(ctx context.Context, id uint64) error {
 
 func New(db *pgxpool.Pool) repositories.Subscribe {
 	return repo{
-		db:       db,
+		db: db,
 	}
 }

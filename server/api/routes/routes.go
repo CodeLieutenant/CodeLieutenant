@@ -68,8 +68,8 @@ func RegisterRouter(c *container.Container, app *fiber.App) {
 
 func registerSubscribeRoutes(c *container.Container, app fiber.Router) {
 	sub := handlers.Subscribe{
-		BaseURL: "",
-		Signer: c.GetURLSigner(),
+		BaseURL:             "",
+		Signer:              c.GetURLSigner(),
 		FrontendRedirectURL: "",
 		SubscriptionService: c.GetSubscriptionService(),
 	}

@@ -35,7 +35,6 @@ type Container struct {
 	urlSigner  utils.URLSigner
 }
 
-
 func (c *Container) Close() error {
 	c.DB.Close()
 
