@@ -25,7 +25,7 @@ type Container struct {
 	postRepository         repositories.Post
 	contactRepository      repositories.Contact
 
-	contactService      services.ContactService
+	contactService services.ContactService
 	//postService         services.PostService
 	subscriptionService services.SubscribeService
 

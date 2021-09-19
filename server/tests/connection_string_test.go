@@ -47,7 +47,6 @@ func TestGetConnectionString(t *testing.T) {
 	t.Parallel()
 	assert := require.New(t)
 
-
 	t.Run("Env", func(t *testing.T) {
 		assert.NoError(os.Setenv(DBEnvironmentalVariable, "user=postgres password=postgres host=localhost port=5432"))
 
