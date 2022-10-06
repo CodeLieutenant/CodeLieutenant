@@ -17,7 +17,7 @@ building various backend systems including payments, advertizment and other web 
   <img src="https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png"
   width="32" height="32"
   >
-</picture></a>&nbsp;&nbsp;
+</picture></a>&nbsp;
 <a href="https://www.dusanmalusev.dev">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png">
@@ -25,7 +25,7 @@ building various backend systems including payments, advertizment and other web 
   <img src="https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png"
   width="32" height="32"
   >
-</picture></a>&nbsp;&nbsp;
+</picture></a>&nbsp;
 <a href="https://dev.to/malusev998">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png">
@@ -33,7 +33,7 @@ building various backend systems including payments, advertizment and other web 
   <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
   width="40" height="32"
   >
-</picture></a>&nbsp;&nbsp;
+</picture></a>&nbsp;
 <a href="https://medium.com/@malusevd99">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png">
@@ -60,17 +60,17 @@ building various backend systems including payments, advertizment and other web 
 ### Frontend:
 
 <br/>
-<img alt="Svelte" width="48px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/800px-Svelte_Logo.svg.png" />&nbsp;&nbsp;
-<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;&nbsp;
+<img alt="Svelte" width="48px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/800px-Svelte_Logo.svg.png" />&nbsp;
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;
 <img alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />&nbsp;
 
 #### Backend:
 
 <br/>
-<img alt="Rust" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png" />&nbsp;&nbsp;
-<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />&nbsp;&nbsp;
-<img alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />&nbsp;&nbsp;
-<img alt="PHP" width="48px" src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" />&nbsp;&nbsp;
+<img alt="Rust" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png" />&nbsp;
+<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />&nbsp;
+<img alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />&nbsp;
+<img alt="PHP" width="48px" src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" />&nbsp;
 <img alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/56a826d05cf762b2b50ecbe7d492a839b04f3fbf/topics/laravel/laravel.png" />&nbsp;
 <img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;
 <img alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />&nbsp;
@@ -83,11 +83,11 @@ building various backend systems including payments, advertizment and other web 
 
 <br/>
 
-<img alt="PostgreSQL" width="48px" src="https://avatars0.githubusercontent.com/u/177543?s=200&v=4" />&nbsp;&nbsp;
-<img alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />&nbsp;&nbsp;
-<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&nbsp;
-<img alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />&nbsp;&nbsp;&nbsp;
-<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&nbsp;&nbsp;
+<img alt="PostgreSQL" width="48px" src="https://avatars0.githubusercontent.com/u/177543?s=200&v=4" />&nbsp;
+<img alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />&nbsp;
+<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;
+<img alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />&nbsp;&n&nbsp;
+<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&n&nbsp;
 
 <br/>
 <br/>
@@ -96,10 +96,10 @@ building various backend systems including payments, advertizment and other web 
 
 <br/>
 
-<img alt="Ansible" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ansible/ansible.png" />&nbsp;&nbsp;
-<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />&nbsp;&nbsp;
-<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terraform/terraform.png" />&nbsp;&nbsp;
-<img alt="Vagrant" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" />&nbsp;&nbsp;
+<img alt="Ansible" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ansible/ansible.png" />&nbsp;
+<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />&nbsp;
+<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terraform/terraform.png" />&nbsp;
+<img alt="Vagrant" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" />&nbsp;
 
 
 <br/>
