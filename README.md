@@ -8,28 +8,30 @@ I'm backend software engineer from Serbia with relevant experience in
 building various backend systems including payments, advertizment and other web applications. Maily Go and PHP developer with proven track record in both of them. Proud member of github oranisation <a class="text-blue-400 hover:text-blue-600 transition-all" href="https://github.com/BrosSquad">BrosSquad</a>
 </p>
 
-- 🔭 I’m currently working on Go-JWT and Go-OAuth2-Server
-- 🔭 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
-
+- 🏢 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
+- ⛑️ Maintaining set of Go libraries for [NanoInteractive](https://github.com/nano-interactive)
+- ⛑️ Maintaining PHP Binding for LibCassandra/LibScylla [PHP Cassandra Driver](https://github.com/nano-interactive/ext-cassandra)
+- ⛑️ Maintaining PHP Binding for LibUV [PHP LibUV](https://github.com/nano-interactive/ext-uv)
+- 🧑‍💻 FON Hackathon 2021 Winner [relieveme](https://github.com/BrosSquad/relieveme)
+- 🏗️ GoFiber Boilerplate creator [Boilerplate](https://github.com/BrosSquad/GoFiber-Boilerplate)
 
 ## Technology stack:
 
 ### Frontend:
-
-<img alt="React" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />&nbsp;
-<img alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />
-<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
-<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png" />
-
+<img alt="Svelte" width="48px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/800px-Svelte_Logo.svg.png" />&nbsp;
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;
+<img alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />&nbsp;
 
 #### Backend:
-
+<img align="left" alt="Rust" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png" />
+<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />
 <img align="left" alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
-<img align="left" alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/c/c.png" />
+<img align="left" alt="PHP" width="48px" src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" />
+<img align="left" alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/56a826d05cf762b2b50ecbe7d492a839b04f3fbf/topics/laravel/laravel.png" />
 <img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
-<img align="left" alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/laravel/laravel.png" />
 <img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />
-<img alt="Golang" width="48px" src="https://miro.medium.com/max/500/0*5TChMOpqjoswD1j1.png" />
+<img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/csharp/csharp.png" />
+<img align="left" alt="C" width="48px" src="https://raw.githubusercontent.com/github/explore/f3e22f0dca2be955676bc70d6214b95b13354ee8/topics/c/c.png" />
 
 <br/>
 </div>
@@ -40,12 +42,21 @@ building various backend systems including payments, advertizment and other web 
 <img align="left" alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />
 <img align="left" alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />
 <img align="left" alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />
+<img align="left" alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />
 
-
-<br />
 <br/>
+<br/>
+
+### DevOps
+<img align="left" alt="Ansible" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ansible/ansible.png" />
+<img align="left" alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />
+<img align="left" alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terraform/terraform.png" />
+<img align="left" alt="Vagrant" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" />
+
+
 <br/>
 <br/>
 
 ![Github Stats](https://github-readme-stats.vercel.app/api?username=malusev998&count_private=true&show_icons=true&theme=onedark&line_height=27)
+
 ![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=malusev998&hide=css,java,html&theme=tokyonight)

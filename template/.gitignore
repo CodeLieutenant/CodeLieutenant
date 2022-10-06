@@ -1,8 +1,0 @@
-node_modules/
-.cache/
-dist/
-.vscode/
-views_copy
-*.html
-!*.jet.html
-rendered/
