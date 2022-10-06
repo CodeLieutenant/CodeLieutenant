@@ -26,6 +26,14 @@ building various backend systems including payments, advertizment and other web 
   width="32" height="32"
   >
 </picture></a>&nbsp;&nbsp;
+<a href="https://dev.to/malusev998">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png">
+  <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+  width="40" height="32"
+  >
+</picture></a>&nbsp;&nbsp;
 <a href="https://medium.com/@malusevd99">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png">
