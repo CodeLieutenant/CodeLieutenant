@@ -8,6 +8,14 @@ I'm backend software engineer from Serbia with relevant experience in
 building various backend systems including payments, advertizment and other web applications. Maily Go and PHP developer with proven track record in both of them. Proud member of github oranisation <a class="text-blue-400 hover:text-blue-600 transition-all" href="https://github.com/BrosSquad">BrosSquad</a>
 </p>
 
+## Social Media
+
+[[https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png|alt=LinkedIn]](https://www.linkedin.com/in/malusevd998/)
+[[https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png|alt=Website]](https://www.dusanmalusev.dev)
+[[https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png|alt=Medium]](https://medium.com/@malusevd99)
+
+
+
 - 🏢 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
 - ⛑️ Maintaining set of Go libraries for [NanoInteractive](https://github.com/nano-interactive)
 - ⛑️ Maintaining PHP Binding for LibCassandra/LibScylla [PHP Cassandra Driver](https://github.com/nano-interactive/ext-cassandra)
