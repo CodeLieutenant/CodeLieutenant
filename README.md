@@ -1,4 +1,4 @@
-### Hi, My name is Dusan Malusev 👋
+## Hi, My name is Dusan Malusev 👋
 
 <br/>
 <a href="https://github.com/malusev998"><img src="https://img.shields.io/github/followers/malusev998.svg?label=GitHub&style=social" alt="GitHub"></a>
@@ -10,11 +10,33 @@ building various backend systems including payments, advertizment and other web 
 
 ## Social Media
 
-[[https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png|alt=LinkedIn]](https://www.linkedin.com/in/malusevd998/)
-[[https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png|alt=Website]](https://www.dusanmalusev.dev)
-[[https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png|alt=Medium]](https://medium.com/@malusevd99)
-
-
+<a href="https://www.linkedin.com/in/malusevd998/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png">
+  <img src="https://www.pikpng.com/pngl/m/57-572097_linkedin-transparent-icon-linked-in-logo-with-white.png"
+  width="32" height="32"
+  >
+</picture></a>&nbsp;&nbsp;
+<a href="https://www.dusanmalusev.dev">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png">
+  <img src="https://www.pikpng.com/pngl/m/74-747829_internet-icon-png.png"
+  width="32" height="32"
+  >
+</picture></a>&nbsp;&nbsp;
+<a href="https://medium.com/@malusevd99">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png">
+  <img src="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png"
+  width="32" height="32"
+  >
+</picture></a>
+<br/>
+<br/>
+<br/>
 
 - 🏢 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
 - ⛑️ Maintaining set of Go libraries for [NanoInteractive](https://github.com/nano-interactive)
@@ -25,41 +47,51 @@ building various backend systems including payments, advertizment and other web 
 
 ## Technology stack:
 
+<br/>
+
 ### Frontend:
-<img alt="Svelte" width="48px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/800px-Svelte_Logo.svg.png" />&nbsp;
-<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;
+
+<br/>
+<img alt="Svelte" width="48px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/800px-Svelte_Logo.svg.png" />&nbsp;&nbsp;
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;&nbsp;
 <img alt="Vue" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" />&nbsp;
 
 #### Backend:
-<img align="left" alt="Rust" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png" />
-<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />
-<img align="left" alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
-<img align="left" alt="PHP" width="48px" src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" />
-<img align="left" alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/56a826d05cf762b2b50ecbe7d492a839b04f3fbf/topics/laravel/laravel.png" />
-<img align="left" alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
-<img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />
-<img align="left" alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/csharp/csharp.png" />
-<img align="left" alt="C" width="48px" src="https://raw.githubusercontent.com/github/explore/f3e22f0dca2be955676bc70d6214b95b13354ee8/topics/c/c.png" />
 
 <br/>
-</div>
+<img alt="Rust" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png" />&nbsp;&nbsp;
+<img alt="Golang" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png" />&nbsp;&nbsp;
+<img alt="Node.JS" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />&nbsp;&nbsp;
+<img alt="PHP" width="48px" src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" />&nbsp;&nbsp;
+<img alt="Laravel" width="48px" src="https://raw.githubusercontent.com/github/explore/56a826d05cf762b2b50ecbe7d492a839b04f3fbf/topics/laravel/laravel.png" />&nbsp;
+<img alt="Typescript" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />&nbsp;
+<img alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/dotnet/dotnet.png" />&nbsp;
+<img alt="ASP NET Core" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/csharp/csharp.png" />&nbsp;
+<img alt="C" width="48px" src="https://raw.githubusercontent.com/github/explore/f3e22f0dca2be955676bc70d6214b95b13354ee8/topics/c/c.png" />&nbsp;
+
+<br/>
 
 ### Databases:
+
 <br/>
-<img align="left" alt="PostgreSQL" width="48px" src="https://avatars0.githubusercontent.com/u/177543?s=200&v=4" />
-<img align="left" alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />
-<img align="left" alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />
-<img align="left" alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />
-<img align="left" alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />
+
+<img alt="PostgreSQL" width="48px" src="https://avatars0.githubusercontent.com/u/177543?s=200&v=4" />&nbsp;&nbsp;
+<img alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />&nbsp;&nbsp;
+<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&nbsp;
+<img alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />&nbsp;&nbsp;&nbsp;
+<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&nbsp;&nbsp;
 
 <br/>
 <br/>
 
-### DevOps
-<img align="left" alt="Ansible" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ansible/ansible.png" />
-<img align="left" alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />
-<img align="left" alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terraform/terraform.png" />
-<img align="left" alt="Vagrant" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" />
+### DevOps:
+
+<br/>
+
+<img alt="Ansible" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ansible/ansible.png" />&nbsp;&nbsp;
+<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />&nbsp;&nbsp;
+<img alt="Terraform" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terraform/terraform.png" />&nbsp;&nbsp;
+<img alt="Vagrant" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" />&nbsp;&nbsp;
 
 
 <br/>
