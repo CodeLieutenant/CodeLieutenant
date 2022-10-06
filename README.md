@@ -89,7 +89,6 @@ building various backend systems including payments, advertizment and other web 
 <img alt="MariaDB" width="48px" src="https://avatars0.githubusercontent.com/mariadb" />&nbsp;
 <img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;
 <img alt="Redis" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png" />&nbsp;&nbsp;
-<img alt="MongoDB" width="48px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png" />&nbsp;&nbsp;
 
 <br/>
 <br/>
