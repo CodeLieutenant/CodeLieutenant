@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "API: Serve",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/api",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "preLaunchTask": "api: cargo build debug",
+            "enableDebugHeap": true,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "args": [],
+            "environment": [
+                {
+                    "name": "RUST_LOG",
+                    "value": "api=debug"
+                }
+            ],
+            "windows": {
+                "name": "API (Windows): Serve",
+                "program": "${workspaceFolder}/target/debug/api.exe",
+                "type": "cppvsdbg",
+                "request": "launch",
+                "cwd": "${workspaceFolder}",
+            }
+        },
+    ]
+}

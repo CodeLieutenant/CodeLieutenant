@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cargo",
+            "command": "clippy",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "build",
+            "label": "api: cargo clippy"
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "args": [
+                "--release"
+            ],
+            "group": "build",
+            "label": "api: cargo build release"
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "build",
+            "label": "api: cargo build debug"
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "args": [
+                "--profile",
+                "dist"
+            ],
+            "group": "build",
+            "label": "api: cargo build dist"
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "args": [
+                "--release",
+            ],
+            "group": "build",
+            "label": "api: cargo build release"
+        }
+    ]
+}

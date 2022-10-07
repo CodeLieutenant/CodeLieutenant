@@ -1,3 +1,11 @@
+use ::tracing::info;
+
+use crate::tracing::setup_tracing;
+
+mod tracing;
+
 fn main() {
-    println!("Hello, world!");
+    let _guard = setup_tracing();
+
+    info!(name = "Dusan", "Hello, world!");
 }

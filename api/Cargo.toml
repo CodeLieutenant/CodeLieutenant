@@ -2,16 +2,31 @@
 name = "api"
 version = "0.1.0"
 edition = "2021"
-license = "GPL-2.0"
 keywords = ["website", "blog", "dusanmalusev.dev"]
 authors = ["Dusan Malusev <dusan@dusanmalusev.dev>"]
 description = "My personal website and blog"
 categories = ["web-programming", "web-programming::http-server"]
-rust-version = "1.63"
+rust-version = "1.64"
 license-file = "../LICENCE"
 readme = "../README.md"
 
 [dependencies]
+tracing = { version = "0.1.36", features = ["async-await"] }
+tracing-appender = "0.2.0"
+tracing-futures = { version = "0.2.5", default-features = false, features = ["std", "tokio", "futures-03"] }
+tracing-subscriber = { version = "0.3.15", features = [
+    "json",
+    "parking_lot",
+    "serde",
+    "serde_json",
+    "time",
+    "tracing",
+    "once_cell",
+    "env-filter",
+] }
+tokio = { version = "1.20.1", features = ["full"] }
+console-subscriber = { version = "0.1.8", features = ["env-filter", "parking_lot", "parking_lot_crate"] }
+
 
 
 [profile.dist]
