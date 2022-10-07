@@ -1,0 +1,25 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-2.0"
+keywords = ["website", "blog", "dusanmalusev.dev"]
+authors = ["Dusan Malusev <dusan@dusanmalusev.dev>"]
+description = "My personal website and blog"
+categories = ["web-programming", "web-programming::http-server"]
+rust-version = "1.63"
+license-file = "../LICENCE"
+readme = "../README.md"
+
+[dependencies]
+
+
+[profile.dist]
+inherits = "release"
+opt-level = 3
+overflow-checks = false
+debug = false
+strip = true
+debug-assertions = false
+lto = true
+codegen-units = 1
