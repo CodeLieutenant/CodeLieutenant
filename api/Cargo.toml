@@ -29,7 +29,7 @@ tracing-subscriber = { version = "0.3", features = [
     "once_cell",
     "env-filter",
 ] }
-tokio = { version = "1.20", features = ["full"] }
+tokio = { version = "1.20", features = ["full", "tracing"] }
 console-subscriber = { version = "0.1.8", features = [
     "env-filter",
     "parking_lot",

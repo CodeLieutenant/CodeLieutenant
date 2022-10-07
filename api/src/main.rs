@@ -1,7 +1,8 @@
 use std::net::SocketAddr;
+use std::process::exit;
 
 use tokio::signal;
-use ::tracing::{error, info};
+use ::tracing::{error, info, debug};
 
 use crate::tracing::setup_tracing;
 
@@ -12,11 +13,13 @@ mod handlers;
 async fn main() {
     let _guard = setup_tracing();
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     let app = handlers::router();
 
-    info!(addr = ?addr, "Axum HTTP Server is running");
+    info!(
+        addr = ?addr,
+        "Axum HTTP Server is running"
+    );
 
     let result = axum::Server::bind(&addr)
         .serve(app.into_make_service())
@@ -40,6 +43,7 @@ async fn shutdown_signal() {
             },
             Err(err) => {
                 error!(error = ?err, "failed to install Ctrl+C handler");
+                exit(1);
             },
         }
     };
@@ -49,13 +53,14 @@ async fn shutdown_signal() {
         let result = signal::unix::signal(signal::unix::SignalKind::terminate());
 
         match result {
-            Ok(value) => {
+            Ok(mut value) => {
                 value.recv().await;
                 info!("Received Ctrl+C");
                 value
             },
             Err(err) => {
                 error!(error = ?err, "failed to install Ctrl+C handler");
+                exit(1);
             },
         }
 
