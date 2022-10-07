@@ -13,8 +13,13 @@ readme = "../README.md"
 [dependencies]
 tracing = { version = "0.1.36", features = ["async-await"] }
 tracing-appender = "0.2.0"
-tracing-futures = { version = "0.2.5", default-features = false, features = ["std", "tokio", "futures-03"] }
-tracing-subscriber = { version = "0.3.15", features = [
+tracing-attributes = "0.1"
+tracing-futures = { version = "0.2.5", default-features = false, features = [
+    "std",
+    "tokio",
+    "futures-03",
+] }
+tracing-subscriber = { version = "0.3", features = [
     "json",
     "parking_lot",
     "serde",
@@ -24,10 +29,13 @@ tracing-subscriber = { version = "0.3.15", features = [
     "once_cell",
     "env-filter",
 ] }
-tokio = { version = "1.20.1", features = ["full"] }
-console-subscriber = { version = "0.1.8", features = ["env-filter", "parking_lot", "parking_lot_crate"] }
-
-
+tokio = { version = "1.20", features = ["full"] }
+console-subscriber = { version = "0.1.8", features = [
+    "env-filter",
+    "parking_lot",
+    "parking_lot_crate",
+] }
+axum = { version = "0.6.0-rc.2", features = ["headers", "http2", "macros", "multipart", "ws"] }
 
 [profile.dist]
 inherits = "release"
