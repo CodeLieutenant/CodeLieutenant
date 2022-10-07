@@ -18,7 +18,7 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache musl
 
-# TODO: Copy Config file
+COPY ./config.toml /etc/api/config.toml
 
 ENV RUST_LOG=api=info
 

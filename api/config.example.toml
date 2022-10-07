@@ -1,0 +1,7 @@
+[http]
+host = "0.0.0.0:3000"
+
+[tokio_console]
+bind = "0.0.0.0:6669"
+retention_sec = 3600
+publish_interval_sec = 1

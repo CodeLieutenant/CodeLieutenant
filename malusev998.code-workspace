@@ -162,8 +162,8 @@
 				"name": "API: Serve",
 				"type": "cppvsdbg",
 				"request": "launch",
-				"program": "${workspaceFolder}/target/debug/api",
-				"cwd": "${workspaceFolder}",
+				"program": "${workspaceFolder:api}/target/debug/api",
+				"cwd": "${workspaceFolder:api}",
 				"console": "internalConsole",
 				"preLaunchTask": "api: cargo build debug",
 				"enableDebugHeap": true,
@@ -178,10 +178,10 @@
 				],
 				"windows": {
 					"name": "API (Windows): Serve",
-					"program": "${workspaceFolder}/target/debug/api.exe",
+					"program": "${workspaceFolder:api}/target/debug/api.exe",
 					"type": "cppvsdbg",
 					"request": "launch",
-					"cwd": "${workspaceFolder}",
+					"cwd": "${workspaceFolder:api}",
 				}
 			},
 		]

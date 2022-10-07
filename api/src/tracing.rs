@@ -1,3 +1,5 @@
+use std::net::SocketAddr;
+use std::str::FromStr;
 use std::time::Duration;
 
 use tracing_subscriber::{filter::EnvFilter, fmt::layer as fmt_layer, prelude::*, registry};
@@ -10,7 +12,7 @@ pub(crate) struct Guard {
     _stdout_guard: WorkerGuard,
 }
 
-pub(crate) fn setup_tracing() -> Guard {
+pub(crate) fn setup_tracing(config: &crate::config::TokioConsole) -> Guard {
     let env_filter = EnvFilter::try_from_default_env()
         .or_else(|_| EnvFilter::try_new("info"))
         .unwrap();
@@ -31,9 +33,9 @@ pub(crate) fn setup_tracing() -> Guard {
 
     let layer = ConsoleLayer::builder()
         .enable_self_trace(false)
-        .server_addr(([0, 0, 0, 0], 6669))
-        .publish_interval(Duration::from_secs(1))
-        .retention(Duration::from_secs(3600))
+        .server_addr(SocketAddr::from_str(&config.bind).unwrap())
+        .publish_interval(Duration::from_secs(config.publish_interval_sec))
+        .retention(Duration::from_secs(config.retention_sec))
         .spawn();
 
     registry()

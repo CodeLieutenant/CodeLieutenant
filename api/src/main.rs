@@ -1,19 +1,24 @@
 use std::net::SocketAddr;
 use std::process::exit;
+use std::str::FromStr;
 
+use ::tracing::{error, info};
 use tokio::signal;
-use ::tracing::{error, info, debug};
 
 use crate::tracing::setup_tracing;
 
-mod tracing;
+mod config;
 mod handlers;
+mod tracing;
 
 #[tokio::main]
 async fn main() {
-    let _guard = setup_tracing();
+    let config = config::AppConfig::new("./config").unwrap();
 
-    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let _guard = setup_tracing(&config.tokio_console);
+
+    let addr = SocketAddr::from_str(&config.http.host).unwrap();
+
     let app = handlers::router();
 
     info!(
@@ -33,18 +38,17 @@ async fn main() {
 
 async fn shutdown_signal() {
     let ctrl_c = async {
-        let result = signal::ctrl_c()
-            .await;
+        let result = signal::ctrl_c().await;
 
         match result {
             Ok(value) => {
                 info!("Received Ctrl+C");
                 value
-            },
+            }
             Err(err) => {
                 error!(error = ?err, "failed to install Ctrl+C handler");
                 exit(1);
-            },
+            }
         }
     };
 
@@ -57,13 +61,12 @@ async fn shutdown_signal() {
                 value.recv().await;
                 info!("Received Ctrl+C");
                 value
-            },
+            }
             Err(err) => {
                 error!(error = ?err, "failed to install Ctrl+C handler");
                 exit(1);
-            },
+            }
         }
-
     };
 
     #[cfg(not(unix))]
