@@ -1,3 +1,0 @@
-[build]
-rustflags = ["-C", "target-feature=-crt-static", "-C", "target-cpu=native", "--cfg", "tokio_unstable"]
-
