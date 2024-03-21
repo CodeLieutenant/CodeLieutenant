@@ -106,6 +106,6 @@ building various backend systems including payments, advertizment and other web 
 <br/>
 <br/>
 
-![Github Stats](https://github-readme-stats.vercel.app/api?username=malusev998&count_private=true&show_icons=true&theme=onedark&line_height=27)
+![Github Stats](https://github-readme-stats.vercel.app/api?username=CodeLieutenant&count_private=true&show_icons=true&theme=onedark&line_height=27)
 
-![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=malusev998&hide=css,java,html&theme=tokyonight)
+![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=CodeLieutenant&hide=css,java,html&theme=tokyonight)
