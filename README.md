@@ -1,7 +1,7 @@
 ## Hi, My name is Dusan Malusev 👋
 
 <br/>
-<a href="https://github.com/malusev998"><img src="https://img.shields.io/github/followers/malusev998.svg?label=GitHub&style=social" alt="GitHub"></a>
+<a href="https://github.com/CodeLieutenant"><img src="https://img.shields.io/github/followers/CodeLieutenant.svg?label=GitHub&style=social" alt="GitHub"></a>
 <br/>
 <p>
 I'm backend software engineer from Serbia with relevant experience in
