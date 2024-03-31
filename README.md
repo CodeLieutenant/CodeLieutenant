@@ -48,7 +48,7 @@ building various backend systems including payments, advertizment and other web 
 
 - 🏢 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
 - ⛑️ Maintaining set of Go libraries for [NanoInteractive](https://github.com/nano-interactive)
-- ⛑️ Maintaining PHP Binding for LibCassandra/LibScylla [PHP Cassandra Driver](https://github.com/nano-interactive/ext-cassandra)
+- ⛑️ Maintaining PHP Binding for LibCassandra/LibScylla [scylladb-php-driver]([https://github.com/nano-interactive/ext-cassandra](https://github.com/he4rt/scylladb-php-driver))
 - ⛑️ Maintaining PHP Binding for LibUV [PHP LibUV](https://github.com/nano-interactive/ext-uv)
 - 🧑‍💻 FON Hackathon 2021 Winner [relieveme](https://github.com/BrosSquad/relieveme)
 - 🏗️ GoFiber Boilerplate creator [Boilerplate](https://github.com/BrosSquad/GoFiber-Boilerplate)
