@@ -16,10 +16,10 @@ Proud member of GitHub organisation <a class="text-blue-400 hover:text-blue-600 
 ## Social Media
 
 <div>
-<a href="https://www.dusanmalusev.dev"> Website</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://dev.to/malusev998">dev.to</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/malusevd998/">LinkedIn</a>&nbsp;&nbsp;
-<a href="https://medium.com/@malusevd99">Medium</a>
+<a href="https://www.dusanmalusev.dev?ref=github"> Website</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://dev.to/malusev998?ref=github">dev.to</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/malusevd998/?ref=github">LinkedIn</a>&nbsp;&nbsp;
+<a href="https://medium.com/@malusevd99?ref=github">Medium</a>
 </div>
 
 <br/>
@@ -28,14 +28,13 @@ Proud member of GitHub organisation <a class="text-blue-400 hover:text-blue-600 
 
 ## Works
 
-- 🏢 I'm currently working as a Software Engineer at [NanoInteractive](https://github.com/nano-interactive)
-- ⛑️ Maintaining PHP Binding for LibCassandra/LibScylla [PHP Cassandra Driver](https://github.com/he4rt/scylladb-php-driver)
-- ⛑️ Maintaining PHP Binding for Rust [phper](https://github.com/CodeLieutenant/phper)
-- ⛑️ Maintaining PHP Binding for LibUV [PHP LibUV](https://github.com/CodeLieutenant/ext-uv)
-- ⛑️ Maintaining a set of Go libraries for [NanoInteractive](https://github.com/nano-interactive)
+- 🏢 I'm currently working as a Software Engineer at [ScyllaDB](https://www.scylladb.com)
+- ⛑️ Maintaining PHP Binding for LibScylla/LibCassandra [Scylla PHP Driver](https://github.com/he4rt/scylladb-php-driver)
+- ⛑️ Maintaining PHP Binding for Rust [phper](https://github.com/MalusevDevelopment/phper)
+- ⛑️ Maintaining PHP Binding for LibUV [PHP LibUV](https://github.com/MalusevDevelopment/ext-uv)
 - 🧑‍💻 FON Hackathon 2021 Winner [relieveme](https://github.com/BrosSquad/relieveme)
 - 🏗️ GoFiber Boilerplate creator [Boilerplate](https://github.com/CodeLieutenant/GoFiber-Boilerplate)
-- 🏗️ Crypto library creator for Laravel [LaraCrypto](https://github.com/CodeLieutenant/laravel-crypto)
+- 🏗️ Crypto library creator for Laravel [LaraCrypto](https://github.com/MalusevDevelopment/laravel-crypto)
 
 ## Technology stack:
 
